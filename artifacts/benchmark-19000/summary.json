@@ -1,0 +1,80 @@
+{
+  "upload_id": "581c6613-9e8f-4690-bb33-4020546de57f",
+  "rows": 19000,
+  "accepted": 19000,
+  "rejected": 0,
+  "batches": 38,
+  "discovery_seconds": 1.312,
+  "browser_upload_seconds": 0.1298120170000002,
+  "queue_and_ingestion_seconds": 4.749701,
+  "first_fast_results_seconds": 9.803411,
+  "all_fast_results_seconds": 443.78573,
+  "matching_wall_seconds": 448.910054,
+  "full_pipeline_seconds": 469.171185,
+  "fast_lane_per_batch_seconds": {
+    "min": 4.278,
+    "mean": 7.031,
+    "max": 11.562
+  },
+  "qualitative_and_final_save_per_batch_seconds": {
+    "min": 5.124,
+    "mean": 14.464,
+    "max": 57.768
+  },
+  "notification_phase_per_batch_seconds": {
+    "min": 20.261,
+    "mean": 28.88,
+    "max": 36.427
+  },
+  "matches": 248066,
+  "match_counts": [
+    {
+      "status": "eligible",
+      "decided_by": "llm",
+      "count": 69
+    },
+    {
+      "status": "eligible",
+      "decided_by": "rules",
+      "count": 114745
+    },
+    {
+      "status": "likely",
+      "decided_by": "llm",
+      "count": 116153
+    },
+    {
+      "status": "likely",
+      "decided_by": "rules",
+      "count": 17099
+    }
+  ],
+  "notifications": [
+    {
+      "status": "sent",
+      "count": 190
+    }
+  ],
+  "gateway": {
+    "active": 0,
+    "peak": 2,
+    "calls": {
+      "decider": 43,
+      "llm": 4
+    },
+    "failures": {
+      "decider": 2,
+      "llm": 0
+    },
+    "joined": 0,
+    "inflight": 0
+  },
+  "cache_mode": "Existing persisted verdict cache reused; new uncached buckets exercised Decider and LLM fallback.",
+  "complete": true,
+  "notes": [
+    "Fast and qualitative groups share an ingestion batch, but fast matches are persisted before provider calls.",
+    "Notification phase includes n8n scheduling and SMTP; inbox placement is not checked.",
+    "Worker retains a 10-second interval between matching batch triggers (37 pauses).",
+    "Per-batch durations overlap; do not sum them to infer elapsed time."
+  ]
+}

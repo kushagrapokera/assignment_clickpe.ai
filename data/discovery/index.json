@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-10-21T22:43:40.532Z",
+  "snapshot_count": 2,
+  "product_count": 17,
+  "snapshots": [
+    {
+      "publisher": "Bajaj Finserv",
+      "publisher_id": "bajaj-finserv",
+      "file": "bajaj-finserv.json",
+      "source_count": 7,
+      "product_count": 1,
+      "sources": [
+        "bajaj-finserv-education-personal-loan",
+        "bajaj-finserv-home-personal-loan",
+        "bajaj-finserv-medical-personal-loan",
+        "bajaj-finserv-personal-loan",
+        "bajaj-finserv-salaried-personal-loan",
+        "bajaj-finserv-travel-personal-loan",
+        "bajaj-finserv-wedding-personal-loan"
+      ],
+      "providers": [
+        "Bajaj Finance"
+      ]
+    },
+    {
+      "publisher": "BankBazaar",
+      "publisher_id": "bankbazaar",
+      "file": "bankbazaar.json",
+      "source_count": 1,
+      "product_count": 16,
+      "sources": [
+        "bankbazaar-personal-loan"
+      ],
+      "providers": [
+        "Aditya Birla Capital",
+        "Edelweiss Salaried",
+        "HDBFS",
+        "HDFC Bank",
+        "HOME CREDIT",
+        "IDFC First Bank",
+        "InCred",
+        "India Infoline Finance Ltd.",
+        "IndusInd Bank",
+        "Kotak Mahindra Bank",
+        "MyShubhLife",
+        "Standard Chartered Bank",
+        "Tata Capital",
+        "TurboLoan powered by Chola",
+        "Ujjivan Small Finance Bank",
+        "Yes Bank"
+      ]
+    }
+  ]
+}

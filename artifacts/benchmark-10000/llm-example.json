@@ -1,0 +1,141 @@
+{
+  "workflow_a_product": {
+    "product_key": "bankbazaar:kotak-mahindra-bank",
+    "product_name": "Kotak Mahindra Bank Personal Loan",
+    "provider": "Kotak Mahindra Bank",
+    "source_id": "bankbazaar-personal-loan",
+    "source_url": "https://www.bankbazaar.com/personal-loan",
+    "interest_rate_min": 10.99,
+    "interest_rate_max": 16.99,
+    "min_loan_amount": 4000000,
+    "max_loan_amount": 4000000,
+    "min_tenure_months": 60,
+    "max_tenure_months": 60,
+    "min_monthly_income": 25000,
+    "max_monthly_income": null,
+    "min_credit_score": null,
+    "max_credit_score": null,
+    "min_age": 21,
+    "max_age": 55,
+    "min_employment_years": null,
+    "required_employment_statuses": [
+      "Salaried"
+    ],
+    "criteria": {
+      "min_monthly_income": 25000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 55,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "per_employment": {
+        "Salaried": {
+          "min_monthly_income": null,
+          "max_monthly_income": null,
+          "min_credit_score": null,
+          "max_credit_score": null,
+          "min_age": null,
+          "max_age": null,
+          "min_employment_years": null,
+          "required_employment_statuses": [],
+          "per_employment": {}
+        }
+      },
+      "eligibility_lines": [
+        "Age - At least 21 and less than 55",
+        "Applicants must be salaried Indian residents working at MNCs, public companies or other large private organisations",
+        "Monthly income should be more than ₹ 25,000"
+      ]
+    },
+    "raw": {
+      "amount_text": "Up to ₹40L",
+      "rate_text": "10.99% - 16.99%",
+      "tenure_text": "5 Years",
+      "processing_fee": "3.00%",
+      "eligibility_lines": [
+        "Age - At least 21 and less than 55",
+        "Applicants must be salaried Indian residents working at MNCs, public companies or other large private organisations",
+        "Monthly income should be more than ₹ 25,000"
+      ],
+      "variants": [],
+      "variant_count": 0
+    },
+    "criteria_signature": "fbba7eab12feb68b",
+    "source_name": "BankBazaar Personal Loan Comparison",
+    "source_publisher": "BankBazaar",
+    "source_publisher_id": "bankbazaar",
+    "source_strategy": "html",
+    "crawled_at": "2026-10-21T17:14:13.502Z",
+    "variants": []
+  },
+  "applicant": {
+    "user_id": "fc597923-e5be-423b-a872-3ecc5318d1ba",
+    "name": "Meera Sharma",
+    "monthly_income": "30000.00",
+    "credit_score": 603,
+    "employment_status": "Salaried",
+    "age": 24
+  },
+  "stored_result": {
+    "status": "likely",
+    "decided_by": "llm",
+    "llm_assessment": {
+      "score": null,
+      "reasons": [
+        "The qualitative check could not be completed, a manual review is required"
+      ],
+      "verdict": "uncertain",
+      "cache_key": "8874a67d7b96747c::age=20|employment_status=Salaried|monthly_income=30000",
+      "narrative": [
+        "Applicants must be salaried Indian residents working at MNCs, public companies or other large private organisations"
+      ]
+    },
+    "reasons": [
+      {
+        "code": "AGE_OK",
+        "state": "pass",
+        "value": 24,
+        "detail": "Age 24 satisfies the requirement",
+        "requirement": {
+          "max": 55,
+          "min": 21
+        }
+      },
+      {
+        "code": "INCOME_OK",
+        "state": "pass",
+        "value": 30000,
+        "detail": "Monthly income 30000.00 satisfies the requirement",
+        "requirement": {
+          "max": null,
+          "min": "25000.00"
+        }
+      },
+      {
+        "code": "CREDIT_SCORE_NOT_PUBLISHED",
+        "state": "not_published",
+        "detail": "Credit score requirement is not published by the lender"
+      },
+      {
+        "code": "EMPLOYMENT_OK",
+        "state": "pass",
+        "value": "Salaried",
+        "detail": "Employment status \"Salaried\" is accepted",
+        "requirement": {
+          "allowed": [
+            "Salaried"
+          ]
+        }
+      },
+      {
+        "code": "EMPLOYMENT_YEARS_NOT_PUBLISHED",
+        "state": "not_published",
+        "detail": "Work experience requirement is not published by the lender"
+      }
+    ]
+  }
+}

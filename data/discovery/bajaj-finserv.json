@@ -1,0 +1,149 @@
+{
+  "publisher": "Bajaj Finserv",
+  "publisher_id": "bajaj-finserv",
+  "sources": [
+    "bajaj-finserv-education-personal-loan",
+    "bajaj-finserv-home-personal-loan",
+    "bajaj-finserv-medical-personal-loan",
+    "bajaj-finserv-personal-loan",
+    "bajaj-finserv-salaried-personal-loan",
+    "bajaj-finserv-travel-personal-loan",
+    "bajaj-finserv-wedding-personal-loan"
+  ],
+  "providers": [
+    "Bajaj Finance"
+  ],
+  "products": [
+    {
+      "product_key": "bajaj-finserv:bajaj-finance",
+      "product_name": "Bajaj Finance Personal Loan",
+      "provider": "Bajaj Finance",
+      "source_id": "bajaj-finserv-personal-loan",
+      "source_url": "https://www.bajajfinserv.in/personal-loan",
+      "interest_rate_min": 10,
+      "interest_rate_max": 30.5,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 5500000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 108,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": 650,
+      "max_credit_score": null,
+      "min_age": null,
+      "max_age": 80,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": 650,
+        "max_credit_score": null,
+        "min_age": null,
+        "max_age": 80,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {},
+        "eligibility_lines": [],
+        "min_loan_amount": 40000,
+        "max_loan_amount": 5500000,
+        "min_tenure_months": 12,
+        "max_tenure_months": 108
+      },
+      "raw": {
+        "extraction": "json-ld",
+        "json_ld_types": [
+          "LoanOrCredit",
+          "FinancialProduct"
+        ],
+        "page_title": "Personal Loan - Apply for Instant Personal Loan up to ₹55 lakh | Bajaj Finance",
+        "description": "Apply for instant personal loan online up to ₹55 lakh starting at 10% p.a. from Bajaj Finance. Get quick approval, flexible tenures with an online application process.",
+        "alternate_names": [
+          "Instant Personal Loan",
+          "Personal Loan Online",
+          "Unsecured Loan"
+        ],
+        "variants": [
+          {
+            "product_name": "Bajaj Finance Personal Loan for Salaried Professionals",
+            "source_id": "bajaj-finserv-salaried-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/salaried-personal-loan"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Travel",
+            "source_id": "bajaj-finserv-travel-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-travel"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Wedding",
+            "source_id": "bajaj-finserv-wedding-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-wedding"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Medical Emergency",
+            "source_id": "bajaj-finserv-medical-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-medical-expenses"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Home Expenses",
+            "source_id": "bajaj-finserv-home-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-home-expenses"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Higher Education",
+            "source_id": "bajaj-finserv-education-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-higher-education"
+          }
+        ],
+        "variant_count": 6
+      },
+      "criteria_signature": "224b82a5efed7d67",
+      "source_name": "Bajaj Finserv Personal Loan",
+      "source_publisher": "Bajaj Finserv",
+      "source_publisher_id": "bajaj-finserv",
+      "source_strategy": "json-ld",
+      "crawled_at": "2026-10-21T22:43:41.610Z",
+      "variants": [
+        {
+          "product_name": "Bajaj Finance Personal Loan for Salaried Professionals",
+          "source_id": "bajaj-finserv-salaried-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/salaried-personal-loan"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Travel",
+          "source_id": "bajaj-finserv-travel-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-travel"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Wedding",
+          "source_id": "bajaj-finserv-wedding-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-wedding"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Medical Emergency",
+          "source_id": "bajaj-finserv-medical-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-medical-expenses"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Home Expenses",
+          "source_id": "bajaj-finserv-home-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-home-expenses"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Higher Education",
+          "source_id": "bajaj-finserv-education-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-higher-education"
+        }
+      ]
+    }
+  ],
+  "product_count": 1,
+  "source_count": 7,
+  "generated_at": "2026-10-21T22:43:40.532Z"
+}

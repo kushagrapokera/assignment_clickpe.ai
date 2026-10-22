@@ -1,0 +1,9 @@
+{
+  "historical_notice": true,
+  "lane_navigation": true,
+  "batch_details": true,
+  "pagination": true,
+  "search": true,
+  "mobile_overflow": false,
+  "browser_errors": []
+}

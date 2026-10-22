@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="760" viewBox="0 0 1040 760" role="img" aria-labelledby="title desc"><title id="title">Loan Eligibility Engine · local architecture</title><desc id="desc">Implemented local deployment. AWS service equivalents are documented in the README.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a0a0a0"/></marker></defs>
+<rect width="1040" height="760" rx="0" fill="#101010"/>
+<text x="30" y="37" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#f2f2f2" font-weight="600">Loan Eligibility Engine · local architecture</text>
+<text x="30" y="64" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Implemented local deployment. AWS service equivalents are documented in the README.</text>
+<text x="30" y="105" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#a0a0a0" font-weight="600">UPLOAD &amp; INGESTION</text>
+<text x="345" y="105" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#a0a0a0" font-weight="600">N8N AUTOMATION</text>
+<text x="760" y="105" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#a0a0a0" font-weight="600">SHARED SERVICES</text>
+<rect x="30" y="125" width="280" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="151" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Browser UI</text>
+<text x="44" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">CSV upload · progress · final counts</text>
+<rect x="30" y="235" width="280" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="261" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">FastAPI</text>
+<text x="44" y="285" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Validate request · return 202</text>
+<rect x="30" y="345" width="280" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="371" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Local object storage</text>
+<text x="44" y="395" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Stream CSV to a Docker volume</text>
+<rect x="30" y="455" width="280" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="481" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">PostgreSQL job queue</text>
+<text x="44" y="505" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Durable ingestion jobs and leases</text>
+<rect x="30" y="565" width="280" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="591" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Python worker + dispatcher</text>
+<text x="44" y="615" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Validate CSV · 500 rows / batch</text>
+<text x="44" y="635" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">At most 2 matching batches active</text>
+<polyline points="170,215 170,235" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="170,325 170,345" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="170,435 170,455" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="170,545 170,565" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="345" y="125" width="365" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="359" y="151" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Workflow A · Discovery</text>
+<text x="359" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Scheduled HTTP crawl · parse · deduplicate</text>
+<text x="359" y="195" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Upsert products + policy fingerprints</text>
+<rect x="760" y="125" width="250" height="110" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="774" y="151" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">PostgreSQL</text>
+<text x="774" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Products · applicants · matches</text>
+<text x="774" y="195" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Decision audit · verdict cache</text>
+<text x="774" y="215" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Dispatch + delivery records</text>
+<polyline points="710,170 760,170" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="345" y="355" width="365" height="135" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="359" y="381" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Workflow B · Matching</text>
+<text x="359" y="405" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Pre-filter → deterministic rules</text>
+<text x="359" y="425" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Persist early results → cache lookup</text>
+<text x="359" y="445" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Decider first → selective LLM fallback</text>
+<text x="359" y="465" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Update only affected decisions</text>
+<polyline points="310,610 328,610 328,422 345,422" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="710,390 735,390 735,215 760,215" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="760" y="355" width="250" height="135" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="774" y="381" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Shared model gateway</text>
+<text x="774" y="405" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Typed eligibility choices</text>
+<text x="774" y="425" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Deduplicate in-flight requests</text>
+<text x="774" y="445" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">2 upstream calls at a time</text>
+<text x="774" y="465" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Retries · cooldown · error audit</text>
+<polyline points="710,442 760,442" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="345" y="575" width="365" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="359" y="601" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">Workflow C · Notifications</text>
+<text x="359" y="625" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Confirmed loans + open evidence requests</text>
+<text x="359" y="645" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Allow-listed inbox only · record delivery</text>
+<polyline points="525,490 525,575" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="760" y="575" width="250" height="90" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="774" y="601" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">SMTP delivery</text>
+<text x="774" y="625" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Gmail: real test inbox</text>
+<text x="774" y="645" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Mailpit: local benchmark inbox</text>
+<polyline points="710,620 760,620" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="30" y="713" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">External inputs: public lender / aggregator pages → A. Model gateway → Decider API / configured LLM.</text>
+<text x="30" y="739" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Cloud target (not deployed): API Gateway / Lambda · S3 · SQS · RDS PostgreSQL · SES.</text>
+</svg>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#167451" />
+  <title>Loan Eligibility Engine</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="bar"><a class="brand" href="/" aria-label="Loan Eligibility Engine home"><span class="brand-mark">↗</span><span>Loan Eligibility Engine<small>APPLICATION WORKSPACE</small></span></a><span class="environment"><span class="dot"></span> Workflow monitor</span></header>
+  <main>
+    <div class="page-heading"><div><p class="eyebrow">OVERVIEW</p><h1>From applicants to answers.</h1><p class="subtitle">Follow your upload, explore decisions, and track every notification.</p></div><span class="workspace-label">Your lending workspace</span></div>
+    <div class="setup-grid">
+      <section class="card upload-card" aria-labelledby="upload-title">
+        <div class="section-heading"><div><p class="eyebrow">01 / GET STARTED</p><h2 id="upload-title">Upload applicants</h2></div><span class="subtle-tag">CSV import</span></div>
+        <form id="upload-form">
+          <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Choose an applicant CSV file">
+            <input type="file" id="file" name="file" accept=".csv,text/csv" hidden />
+            <span class="upload-icon" aria-hidden="true">↑</span><div><p><strong>Choose a CSV file</strong> <span class="muted">or drag it here</span></p><p class="muted" id="file-name">Your file stays selected until you start.</p></div><span class="browse-label">Browse files</span>
+          </div>
+          <div class="upload-footer"><details class="csv-help"><summary>Required CSV columns</summary><code>user_id, name, email, monthly_income, credit_score, employment_status, age</code></details><button type="submit" id="submit">Start the pipeline <span aria-hidden="true">↗</span></button></div>
+        </form>
+        <p id="message" class="message" role="status" aria-live="polite">Ready when you are. Choose an applicant file to begin.</p>
+      </section>
+      <aside class="card recent-card"><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Recent uploads</h2><label for="recent-uploads" class="muted">Open an earlier run to inspect its results.</label><select id="recent-uploads"><option value="">Choose an upload…</option></select><div class="info-note"><span aria-hidden="true">↳</span><p>Follow processing progress here. Final Non-LLM and Decider / LLM decision counts appear when the run completes.</p></div></aside>
+    </div>
+
+    <section class="card" id="status-card" hidden aria-labelledby="pipeline-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / LIVE PROGRESS</p><h2 id="pipeline-title">Pipeline activity</h2></div><span id="run-state">Queued</span></div>
+      <ol id="pipeline" class="pipeline" aria-label="Pipeline stages"></ol>
+      <div class="progress-caption"><span id="progress-label">Waiting for the worker</span><strong id="progress-value">0 / 0 batches</strong></div><div class="progress-track" role="progressbar" id="run-progress" aria-label="Batches with notifications processed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill"></div></div>
+      <div id="metrics" class="metrics"></div><dl id="status" class="run-meta"></dl>
+    </section>
+
+    <section id="matches-card" class="card explorer" hidden aria-labelledby="batch-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / RESULTS</p><h2 id="batch-title">Processing complete</h2></div></div>
+      <div class="metrics"><div class="metric"><span>Non-LLM decisions</span><strong id="final-rules">0</strong></div><div class="metric"><span>Decider / LLM decisions</span><strong id="final-qualitative">0</strong></div></div>
+      <p class="footnote">Counts are applicant–loan decisions, not API calls or unique applicants. Cached model decisions are included.</p>
+      <div hidden>
+      <div class="lane-tabs" role="tablist" aria-label="Decision type">
+        <button id="lane-rules" class="lane-tab active" type="button" role="tab" aria-selected="true" aria-controls="batch-panel" data-lane="rules"><span class="lane-icon" aria-hidden="true">ϟ</span><span><strong>Non-LLM</strong><small>Rules-only applicants</small></span><span class="lane-count" id="count-rules">0</span></button>
+        <button id="lane-qualitative" class="lane-tab" type="button" role="tab" aria-selected="false" aria-controls="batch-panel" data-lane="qualitative"><span class="lane-icon" aria-hidden="true">✧</span><span><strong>Decider / LLM</strong><small>Applicants needing any qualitative check</small></span><span class="lane-count" id="count-qualitative">0</span></button>
+      </div>
+      <p id="routing-note" class="history-note" hidden></p>
+      <div id="batch-panel" role="tabpanel" aria-labelledby="lane-rules"><div class="batch-panel-heading"><div><h3 id="lane-title">Non-LLM batches</h3><p class="muted" id="lane-description"></p></div><span id="lane-total" class="subtle-tag"></span></div><div id="batch-grid" class="batch-grid"></div></div>
+      <p class="footnote">Applicants are grouped once. The same upload batch may have different applicants in each view; counts are not duplicated. “Needs review” is not confirmed eligibility.</p>
+      </div>
+    </section>
+
+    <section class="card" id="applicant-card" hidden aria-labelledby="applicant-title">
+      <div class="section-heading"><div><p class="eyebrow" id="applicant-lane"></p><h2 id="applicant-title">Batch applicants</h2><p class="muted" id="applicant-summary"></p></div><button type="button" id="close-details" class="text-button" aria-label="Close applicant details">Close ×</button></div>
+      <div class="applicant-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="applicant-search" type="search" placeholder="Search name or email…" aria-label="Search applicants by name or email" /></label><span class="muted" id="applicant-range"></span></div>
+      <p id="history-note" class="history-note" hidden>Older run: only saved matches are available. Rejected decisions were not recorded; they are not inferred here.</p>
+      <p id="detail-message" class="message" role="status"></p>
+      <div class="table-wrap"><table id="applicants"><thead><tr><th>Applicant</th><th>Eligibility across loans</th><th>Loan decisions</th><th>Email notification</th><th>Details</th></tr></thead><tbody></tbody></table></div>
+      <div class="pagination"><p class="footnote">Email status applies to the applicant across both lanes. A run limit can leave some notifications unsent.</p><div><button type="button" id="previous-page" class="secondary">← Previous</button><button type="button" id="next-page" class="secondary">Next →</button></div></div>
+    </section>
+
+    <section class="card catalogue"><div class="section-heading"><div><p class="eyebrow">LENDING CATALOGUE</p><h2>Products in the engine</h2></div><span class="subtle-tag" id="catalogue-summary">Loading products…</span></div><div class="table-wrap"><table id="catalogue"><thead><tr><th>Lender</th><th>Product</th><th>Interest rate</th><th>Max loan</th><th>Tenure</th></tr></thead><tbody></tbody></table></div></section>
+    <footer>Loan Eligibility Engine <span>Decisions are assessments, not loan approvals.</span></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

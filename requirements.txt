@@ -1,0 +1,7 @@
+# Runtime dependencies of the ingestion service and the HTTP interface.
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+python-multipart==0.0.20
+psycopg2-binary==2.9.13
+boto3==1.43.99
+requests==2.34.2

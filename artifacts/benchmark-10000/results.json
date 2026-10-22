@@ -1,0 +1,4720 @@
+{
+  "upload_request": {
+    "started_at": "2026-10-21T17:13:40.563Z",
+    "upload_response_seconds": 0.14647017700000015,
+    "http_status": 202,
+    "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc",
+    "filename": "ui_benchmark_10000.csv",
+    "size": 1000944,
+    "status": "queued",
+    "links": {
+      "self": "/api/uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    }
+  },
+  "upload": {
+    "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc",
+    "filename": "ui_benchmark_10000.csv",
+    "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+    "size_bytes": 1000944,
+    "status": "completed",
+    "total_rows": 10000,
+    "accepted_rows": 10000,
+    "rejected_rows": 0,
+    "chunk_size": 500,
+    "error": null,
+    "created_at": "2026-10-21 22:43:40.683776+05:30",
+    "completed_at": "2026-10-21 22:43:43.662795+05:30"
+  },
+  "batches": [
+    {
+      "batch_id": "3c675e81-114f-463d-917c-9f477190828e",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:41.679288+05:30",
+      "completed_at": "2026-10-21 22:43:41.780333+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "8822c364-a1ef-42a1-9e0b-acd014d521f5",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:41.782292+05:30",
+      "completed_at": "2026-10-21 22:43:41.871963+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "8e39ab3b-d267-4b28-879a-31d150e47ee0",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:41.873721+05:30",
+      "completed_at": "2026-10-21 22:43:41.965998+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "856e6ac7-2959-403e-a30e-a0e79d898c67",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:41.967611+05:30",
+      "completed_at": "2026-10-21 22:43:42.068811+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "b562bccb-3671-4d92-b59d-1ddc82390689",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.070649+05:30",
+      "completed_at": "2026-10-21 22:43:42.164221+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "3336aae8-3094-45e0-ad78-9377c48b7ad9",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.166056+05:30",
+      "completed_at": "2026-10-21 22:43:42.259363+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "8721fc6e-6b88-47fd-976e-a3c610e05031",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.261316+05:30",
+      "completed_at": "2026-10-21 22:43:42.359141+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "2f8b28d2-7eff-4ce4-992f-465ec7f3dbd5",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.360980+05:30",
+      "completed_at": "2026-10-21 22:43:42.455395+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "726f392b-af7c-4c10-929b-ce5e04796c3a",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.457292+05:30",
+      "completed_at": "2026-10-21 22:43:42.552490+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "d0bccdb9-af2f-4a14-90a4-c97d9d663147",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.554378+05:30",
+      "completed_at": "2026-10-21 22:43:42.653996+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "abf6814d-3440-42c9-b387-c84dc57e84d5",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.655914+05:30",
+      "completed_at": "2026-10-21 22:43:42.751998+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "4e3b4829-f70b-4949-9cb7-2a5cbb30352f",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.754064+05:30",
+      "completed_at": "2026-10-21 22:43:42.858604+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "fcff5136-c545-418d-99a5-d5d78c8fa04f",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.860336+05:30",
+      "completed_at": "2026-10-21 22:43:42.953351+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "9ad49da8-65f3-4cfd-818d-13494517a919",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:42.955166+05:30",
+      "completed_at": "2026-10-21 22:43:43.051197+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "17e03c77-1abe-48ab-9e65-4c11c8e415de",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.053251+05:30",
+      "completed_at": "2026-10-21 22:43:43.149521+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "6b9eb2c2-1430-4e89-ae60-ef03c7f0c2c3",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.151453+05:30",
+      "completed_at": "2026-10-21 22:43:43.246750+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "9718667b-e5a5-40de-b41f-3fa06175f70b",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.248666+05:30",
+      "completed_at": "2026-10-21 22:43:43.368197+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "d45198c4-2269-400a-9c08-f16a58b04ee8",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.370199+05:30",
+      "completed_at": "2026-10-21 22:43:43.470144+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "3bdbc0b0-9e16-48cc-83d6-083f38bc81ef",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.471959+05:30",
+      "completed_at": "2026-10-21 22:43:43.565626+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    },
+    {
+      "batch_id": "2d41c337-d76c-46b8-855b-1d071f5f3355",
+      "filename": "ui_benchmark_10000.csv",
+      "object_key": "uploads/3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc/ui_benchmark_10000.csv",
+      "status": "completed",
+      "total_rows": 500,
+      "accepted_rows": 500,
+      "rejected_rows": 0,
+      "error": null,
+      "created_at": "2026-10-21 22:43:43.567822+05:30",
+      "completed_at": "2026-10-21 22:43:43.660906+05:30",
+      "unique_emails": 0,
+      "upload_id": "3cb3dd5c-1c2d-4f3d-b251-741fce5aefdc"
+    }
+  ],
+  "matches": 130737,
+  "notifications": [
+    {
+      "status": "sent",
+      "count": 100
+    }
+  ],
+  "executions": [
+    {
+      "id": "334",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "3c675e81-114f-463d-917c-9f477190828e",
+      "status": "success",
+      "started_at": "2026-10-21T17:13:43.731Z",
+      "stopped_at": "2026-10-21T17:24:02.025Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 15,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 19,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 170,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2167,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 604,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 11,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 786,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 66,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 592289,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1196,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 203,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2119,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 619,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1450,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 16484,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "357",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "3c675e81-114f-463d-917c-9f477190828e",
+      "status": "success",
+      "started_at": "2026-10-21T17:23:45.581Z",
+      "stopped_at": "2026-10-21T17:24:02.018Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 176,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 418,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 15409,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 328,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 22,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603429 a92af1059eb24-1903ca044d4sm8048594c88.17 - gsmtp",
+          "messageId": "<cc214979-9bde-9efc-0902-b6329e107562@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603432 a92af1059eb24-19035926fe9sm6203572c88.2 - gsmtp",
+          "messageId": "<b458d625-61f9-cba2-3583-3d07da85cec0@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603435 a92af1059eb24-1903bf5d0a1sm7559871c88.14 - gsmtp",
+          "messageId": "<0cf3952d-ec46-4dd0-1078-90a62153b460@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603438 a92af1059eb24-1903d87ab1bsm8057790c88.21 - gsmtp",
+          "messageId": "<255a0164-fd25-060f-b60f-f64aa0ae2e11@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603441 a92af1059eb24-19035926035sm6919080c88.1 - gsmtp",
+          "messageId": "<a535767d-e891-5ee5-8e98-015ce12657fa@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "336",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "8e39ab3b-d267-4b28-879a-31d150e47ee0",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:04.017Z",
+      "stopped_at": "2026-10-21T17:24:55.882Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 13,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 22,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 95,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1922,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 523,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 796,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 67,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 626318,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 980,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 92,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2244,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 545,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1107,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 17008,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "358",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "8e39ab3b-d267-4b28-879a-31d150e47ee0",
+      "status": "success",
+      "started_at": "2026-10-21T17:24:38.922Z",
+      "stopped_at": "2026-10-21T17:24:55.878Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 178,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 344,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 16005,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 326,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 21,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603482 5a478bee46e88-36741e71eaesm18990302eec.26 - gsmtp",
+          "messageId": "<c4d2e433-6fef-33e9-d871-a8369c284395@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603485 a92af1059eb24-1903c71421asm7988200c88.16 - gsmtp",
+          "messageId": "<5467ea9d-323f-4b06-7d9e-3f258d2a057d@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603488 a92af1059eb24-1903a180ca2sm6988080c88.6 - gsmtp",
+          "messageId": "<76d1ba33-b752-f02f-e50a-152d3e21531b@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603491 5a478bee46e88-367411bc89fsm10823742eec.16 - gsmtp",
+          "messageId": "<ceb20385-dd71-0501-5378-cd07d536c201@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603495 a92af1059eb24-19035926fe9sm6208250c88.2 - gsmtp",
+          "messageId": "<75b30acd-4a7a-a775-6d00-f7020969bc69@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "360",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "3336aae8-3094-45e0-ad78-9377c48b7ad9",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:21.987Z",
+      "stopped_at": "2026-10-21T17:25:43.509Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 185,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 331,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 20600,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 311,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 13,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 4,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603525 5a478bee46e88-36741f753f7sm8734638eec.27 - gsmtp",
+          "messageId": "<de9d6f66-c4c6-3a87-d7d9-e652943a0b99@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603529 5a478bee46e88-36740cc88b5sm9149244eec.10 - gsmtp",
+          "messageId": "<1dd56d5e-66d0-a790-fdd3-4d45d3f7ddf8@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603534 a92af1059eb24-1903bf5d0a1sm7570624c88.14 - gsmtp",
+          "messageId": "<28ff718d-39a8-dd71-5077-bc46809d4bcb@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603539 a92af1059eb24-1903e02901fsm7976583c88.22 - gsmtp",
+          "messageId": "<cd449058-d2bb-94e9-9527-dad16fbd5a44@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603543 a92af1059eb24-1903aefe90asm7439691c88.9 - gsmtp",
+          "messageId": "<2615f897-6e2b-92a3-d029-2df41952cad0@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "340",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "3336aae8-3094-45e0-ad78-9377c48b7ad9",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:34.437Z",
+      "stopped_at": "2026-10-21T17:25:43.516Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 144,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2056,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 728,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 991,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 66,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 638194,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1029,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 70,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2176,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 597,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1344,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 21567,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "339",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "b562bccb-3671-4d92-b59d-1ddc82390689",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:24.309Z",
+      "stopped_at": "2026-10-21T17:26:21.435Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 10,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 131,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1987,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 608,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 11,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 836,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 69,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 677260,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1032,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 1548,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2312,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 2627,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 3088,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 25514,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "335",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "8822c364-a1ef-42a1-9e0b-acd014d521f5",
+      "status": "success",
+      "started_at": "2026-10-21T17:13:53.885Z",
+      "stopped_at": "2026-10-21T17:26:23.191Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 10,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 125,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1919,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 561,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 16,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 755,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 68,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 708690,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 2800,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 112,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 6434,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 1195,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1673,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 24858,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "363",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "b562bccb-3671-4d92-b59d-1ddc82390689",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:56.767Z",
+      "stopped_at": "2026-10-21T17:26:21.430Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 888,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 256,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 495,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 22606,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 290,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 13,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603562 a92af1059eb24-1903d3ae06fsm7903666c88.19 - gsmtp",
+          "messageId": "<0c5898b9-31e1-338f-bff8-97639d23cb53@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603566 5a478bee46e88-36741e71eaesm19003958eec.26 - gsmtp",
+          "messageId": "<99539140-b394-9187-f8f3-add2039efbb1@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603572 5a478bee46e88-36740cc8439sm9525116eec.11 - gsmtp",
+          "messageId": "<6bc5f5ac-6b9f-5767-4b1d-0ba490b7dd00@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603576 5a478bee46e88-36740cc8439sm9525708eec.11 - gsmtp",
+          "messageId": "<1ef75140-8947-a30e-9547-47e622178fae@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603581 5a478bee46e88-3674198f1cdsm10005379eec.25 - gsmtp",
+          "messageId": "<558ad62f-b340-52e4-66b6-e025ffa77dee@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "362",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "856e6ac7-2959-403e-a30e-a0e79d898c67",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:39.079Z",
+      "stopped_at": "2026-10-21T17:26:06.495Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 355,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 178,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 441,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 25349,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 369,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 556,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603543 5a478bee46e88-367417a2fadsm8490262eec.21 - gsmtp",
+          "messageId": "<5bf587bc-5a36-4c6a-59fa-11ad9f80f1cd@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603550 5a478bee46e88-367417a2fadsm8490571eec.21 - gsmtp",
+          "messageId": "<cd8a8ae9-44b0-dd05-7b50-75f72d9cef5b@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603556 5a478bee46e88-3674198f1d8sm13045882eec.24 - gsmtp",
+          "messageId": "<844f3e6e-88e4-7c81-c8ec-8bdcbebb05e7@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603560 5a478bee46e88-3673b1d0ab7sm9349195eec.0 - gsmtp",
+          "messageId": "<2ba2dcea-d034-aa73-02fd-e984951ad2ea@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603564 5a478bee46e88-367411bd27dsm9362395eec.17 - gsmtp",
+          "messageId": "<f797e3ba-48ce-8ab5-0b8e-dcd6e57a6ef3@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "361",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "726f392b-af7c-4c10-929b-ce5e04796c3a",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:38.775Z",
+      "stopped_at": "2026-10-21T17:26:04.152Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 192,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 190,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 348,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 24170,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 345,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 44,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603542 a92af1059eb24-1903bb7f098sm11842155c88.12 - gsmtp",
+          "messageId": "<69c7ceec-5b27-866c-ce2d-62aaf7d72da4@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603548 5a478bee46e88-367411bd27dsm9360561eec.17 - gsmtp",
+          "messageId": "<502728cf-5afc-82d1-7b25-c13d25d567de@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603554 5a478bee46e88-36740cca3d8sm8799281eec.14 - gsmtp",
+          "messageId": "<1d5af23d-566e-192a-42e8-03a4c07a052a@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603559 a92af1059eb24-1903a180b9esm11833497c88.4 - gsmtp",
+          "messageId": "<c0ec0101-878b-478c-59ad-75a07715ae32@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603563 5a478bee46e88-3673e24933csm8621294eec.1 - gsmtp",
+          "messageId": "<417e9887-8bba-6c69-060a-a6270d3da3e7@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "344",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "726f392b-af7c-4c10-929b-ce5e04796c3a",
+      "status": "success",
+      "started_at": "2026-10-21T17:15:04.891Z",
+      "stopped_at": "2026-10-21T17:26:04.192Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 92,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2067,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 560,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 985,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 64,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 620881,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1201,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 834,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2237,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 1360,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 3407,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 25499,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "338",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "856e6ac7-2959-403e-a30e-a0e79d898c67",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:14.187Z",
+      "stopped_at": "2026-10-21T17:26:06.620Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 91,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2308,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 571,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 17,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 918,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 65,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 672529,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1851,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 57,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 3652,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 1079,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1616,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27579,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "370",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "4e3b4829-f70b-4949-9cb7-2a5cbb30352f",
+      "status": "success",
+      "started_at": "2026-10-21T17:27:06.542Z",
+      "stopped_at": "2026-10-21T17:27:31.248Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 26,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 212,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 455,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 23596,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 271,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603630 a92af1059eb24-19035c0c9a6sm7176661c88.3 - gsmtp",
+          "messageId": "<8fa9b55a-d2ea-43a9-8283-188d6131fdbd@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603637 5a478bee46e88-367405ee5eesm8008133eec.8 - gsmtp",
+          "messageId": "<af24454a-8397-31f8-2ec0-d9d5083d3dc5@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603641 5a478bee46e88-3673b1d0ab7sm9356934eec.0 - gsmtp",
+          "messageId": "<5dbf2039-36be-ed2b-1f87-5891a39e4d90@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603647 5a478bee46e88-367411bc89fsm10843173eec.16 - gsmtp",
+          "messageId": "<d55d45a4-42ce-92f2-d428-70b9ab67376e@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603650 a92af1059eb24-1903e4f2eacsm7200154c88.23 - gsmtp",
+          "messageId": "<c2d90177-1843-b1a4-06d3-a8190e60482c@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "369",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "fcff5136-c545-418d-99a5-d5d78c8fa04f",
+      "status": "success",
+      "started_at": "2026-10-21T17:26:49.268Z",
+      "stopped_at": "2026-10-21T17:27:17.352Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 40,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 224,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 413,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 25235,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 1794,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 148,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603615 5a478bee46e88-3673e24933csm8626179eec.1 - gsmtp",
+          "messageId": "<c9c9dee0-6a98-10bc-7f48-86370052b4f5@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603620 5a478bee46e88-3674198fb21sm8828994eec.23 - gsmtp",
+          "messageId": "<bb8a0c62-8f97-0c6d-e9e8-999c3484f37a@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603624 5a478bee46e88-367411bd2a6sm13560240eec.18 - gsmtp",
+          "messageId": "<e8a9f7c1-6024-e696-0569-40ba44d22752@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603629 5a478bee46e88-367416a1fb9sm7827993eec.20 - gsmtp",
+          "messageId": "<f7a939c5-b6a8-eb88-a73d-6097d6361f90@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603635 a92af1059eb24-1903b3d0530sm8106127c88.11 - gsmtp",
+          "messageId": "<bf0e3887-e160-2f0b-4e6b-e2290550cbe9@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "368",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "abf6814d-3440-42c9-b387-c84dc57e84d5",
+      "status": "success",
+      "started_at": "2026-10-21T17:26:44.163Z",
+      "stopped_at": "2026-10-21T17:27:20.359Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 1270,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 1721,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 1622,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 29746,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 1658,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 39,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603614 5a478bee46e88-367411bd2a6sm13558870eec.18 - gsmtp",
+          "messageId": "<60fef29e-3a53-6c47-f167-e07da8add3f7@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603617 5a478bee46e88-367412b24e3sm7858539eec.19 - gsmtp",
+          "messageId": "<47731303-7fe2-3cc1-93a6-f88110c48946@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603623 5a478bee46e88-367412b24e3sm7858838eec.19 - gsmtp",
+          "messageId": "<0676026c-d703-7abc-9697-e9f81a8aaf90@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603630 a92af1059eb24-19035c0c9a6sm7176395c88.3 - gsmtp",
+          "messageId": "<e8884e78-8269-0c88-3518-0a96ec374004@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603637 5a478bee46e88-36740cc8c6dsm9976806eec.12 - gsmtp",
+          "messageId": "<ca1660fa-507d-6195-2df2-d2a9d73d27c4@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "367",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "d0bccdb9-af2f-4a14-90a4-c97d9d663147",
+      "status": "success",
+      "started_at": "2026-10-21T17:26:31.916Z",
+      "stopped_at": "2026-10-21T17:26:57.582Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 32,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 219,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 486,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 24280,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 350,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 146,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603597 5a478bee46e88-3674206d1f1sm8893568eec.28 - gsmtp",
+          "messageId": "<02a428c7-73dd-64ea-ee86-cc4cd4975ef7@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603602 5a478bee46e88-3673e153519sm8977156eec.3 - gsmtp",
+          "messageId": "<0258a3ec-4693-967b-d80f-cbda2e47cf04@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603606 5a478bee46e88-3674198f1d8sm13052218eec.24 - gsmtp",
+          "messageId": "<2a13af63-459d-c6f0-c28a-c5696315e75f@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603613 5a478bee46e88-36741f753f7sm8744140eec.27 - gsmtp",
+          "messageId": "<b5c00b5a-a833-0cff-f71a-7fa8b0fe4547@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603616 5a478bee46e88-367405ed2absm10786813eec.5 - gsmtp",
+          "messageId": "<419f5ea6-e563-ab01-c289-37d41c3d1e56@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "366",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "2f8b28d2-7eff-4ce4-992f-465ec7f3dbd5",
+      "status": "success",
+      "started_at": "2026-10-21T17:26:18.957Z",
+      "stopped_at": "2026-10-21T17:26:45.909Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 179,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 363,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 24220,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 1771,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 338,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603582 5a478bee46e88-367405ee5eesm8003610eec.8 - gsmtp",
+          "messageId": "<92f08014-29bf-d182-d0b2-705a42249825@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603588 a92af1059eb24-19140a1e79dsm5563920c88.20 - gsmtp",
+          "messageId": "<05b9223e-0787-7bca-1c74-1032d7563459@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603592 a92af1059eb24-1903a180b9esm11837574c88.4 - gsmtp",
+          "messageId": "<9029dd41-5f5f-6037-5e6b-a305c63c6e39@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603598 a92af1059eb24-1903e4f2eacsm7195424c88.23 - gsmtp",
+          "messageId": "<879718f1-a111-3770-090f-e9a836ac0911@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603603 a92af1059eb24-1903aefe90asm7444577c88.9 - gsmtp",
+          "messageId": "<e8f6c555-842d-23f3-369c-c3343f068c4c@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "365",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "8822c364-a1ef-42a1-9e0b-acd014d521f5",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:59.182Z",
+      "stopped_at": "2026-10-21T17:26:23.186Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 38,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 224,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 483,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 22640,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 435,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 24,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 3,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603564 a92af1059eb24-19035926fe9sm6213223c88.2 - gsmtp",
+          "messageId": "<ae99c5c4-9f6c-d4df-bb86-fdf596491a59@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603568 a92af1059eb24-1903aff3481sm8052767c88.10 - gsmtp",
+          "messageId": "<fbc61b76-680d-3309-a707-f4cf6c20f19d@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603573 5a478bee46e88-36741e71eaesm19005477eec.26 - gsmtp",
+          "messageId": "<f4353f3c-bc39-c335-a345-11520e22c3c0@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603578 5a478bee46e88-367405ee5e3sm8599076eec.4 - gsmtp",
+          "messageId": "<b253989e-08fc-ed32-c708-917176f37c61@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603581 5a478bee46e88-367411bc89fsm10835305eec.16 - gsmtp",
+          "messageId": "<7d051e74-4de0-2598-1f5c-b9b15c5d77d2@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "364",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "8721fc6e-6b88-47fd-976e-a3c610e05031",
+      "status": "success",
+      "started_at": "2026-10-21T17:25:57.862Z",
+      "stopped_at": "2026-10-21T17:26:24.997Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 488,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 271,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 416,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 25353,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 336,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 98,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603562 5a478bee46e88-36741e71eaesm19003374eec.26 - gsmtp",
+          "messageId": "<5965dc9b-07b3-db3c-6b94-77b689b57bad@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603566 5a478bee46e88-367411bd2a6sm13552726eec.18 - gsmtp",
+          "messageId": "<ff695d1c-575d-0e27-0477-ce23996583da@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603573 a92af1059eb24-1903c71421asm7996514c88.16 - gsmtp",
+          "messageId": "<50c52b00-f6af-9316-af0c-b6d6eabb8ad4@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603579 a92af1059eb24-1902f96dc4bsm8512079c88.0 - gsmtp",
+          "messageId": "<6e311eb9-e3fb-2891-ee3f-b5a1eedcdabe@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603583 a92af1059eb24-1903a180b9esm11836471c88.4 - gsmtp",
+          "messageId": "<20d7e2e4-9be5-bbc1-c08a-4ab6b23a989f@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "348",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "fcff5136-c545-418d-99a5-d5d78c8fa04f",
+      "status": "success",
+      "started_at": "2026-10-21T17:15:45.489Z",
+      "stopped_at": "2026-10-21T17:27:17.386Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 87,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2053,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 608,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 923,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 57,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 651283,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1077,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 1000,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2736,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 850,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 2464,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 28653,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "347",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "4e3b4829-f70b-4949-9cb7-2a5cbb30352f",
+      "status": "success",
+      "started_at": "2026-10-21T17:15:35.341Z",
+      "stopped_at": "2026-10-21T17:27:31.252Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 127,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2001,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 573,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 818,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 61,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 681562,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1058,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 77,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2544,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 601,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1398,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 24985,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "346",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "abf6814d-3440-42c9-b387-c84dc57e84d5",
+      "status": "error",
+      "started_at": "2026-10-21T17:15:25.172Z",
+      "stopped_at": "2026-10-21T17:27:14.389Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 12,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 10,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 143,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1890,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 647,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 15,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 895,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 58,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 668035,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 986,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 42,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2429,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 915,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1799,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 31213,
+            "status": "error"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": "The connection was aborted, perhaps the server is offline"
+    },
+    {
+      "id": "345",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "d0bccdb9-af2f-4a14-90a4-c97d9d663147",
+      "status": "success",
+      "started_at": "2026-10-21T17:15:15.025Z",
+      "stopped_at": "2026-10-21T17:26:57.617Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 88,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2019,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 619,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 900,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 61,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 666556,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1801,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 50,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2296,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 689,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1496,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 25911,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "342",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "2f8b28d2-7eff-4ce4-992f-465ec7f3dbd5",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:54.773Z",
+      "stopped_at": "2026-10-21T17:26:45.943Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 87,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2053,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 585,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 18,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 906,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 63,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 675151,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1023,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 33,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2152,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 621,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1352,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27028,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "341",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "8721fc6e-6b88-47fd-976e-a3c610e05031",
+      "status": "success",
+      "started_at": "2026-10-21T17:14:44.593Z",
+      "stopped_at": "2026-10-21T17:26:25.002Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 12,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 35,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 91,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1924,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 544,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 812,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 60,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 657906,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 2041,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 813,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 4457,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 550,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 3041,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27983,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "377",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "d45198c4-2269-400a-9c08-f16a58b04ee8",
+      "status": "success",
+      "started_at": "2026-10-21T17:28:29.844Z",
+      "stopped_at": "2026-10-21T17:28:54.636Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 433,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 239,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 355,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 22844,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 364,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 3,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603716 a92af1059eb24-1902f96dc4bsm8527504c88.0 - gsmtp",
+          "messageId": "<21f761c0-4736-9fe4-68b3-3fefeace25ac@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603719 a92af1059eb24-1903a180b9esm11852254c88.4 - gsmtp",
+          "messageId": "<aec36ad8-36e9-9f99-c5da-484a7f927b4f@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603724 5a478bee46e88-367411bd2a6sm13572501eec.18 - gsmtp",
+          "messageId": "<6e1cbccc-a8ab-cdcf-2999-45fd9983d8b9@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603728 5a478bee46e88-3673e15353csm16478536eec.2 - gsmtp",
+          "messageId": "<01cd722c-8f13-e1e9-4b9c-f64a0ab45a5d@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603733 5a478bee46e88-367405ec6c3sm10755480eec.7 - gsmtp",
+          "messageId": "<24c0b68e-1468-b24b-d33e-afa936dffff5@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "376",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "2d41c337-d76c-46b8-855b-1d071f5f3355",
+      "status": "success",
+      "started_at": "2026-10-21T17:28:29.733Z",
+      "stopped_at": "2026-10-21T17:28:52.878Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 51,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 229,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 402,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 21685,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 391,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 3,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603714 5a478bee46e88-367405ec6c3sm10753622eec.7 - gsmtp",
+          "messageId": "<2aee534d-b9b4-012a-56b4-d145542f7ed2@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603718 5a478bee46e88-3674198f1d8sm13065978eec.24 - gsmtp",
+          "messageId": "<2448152d-38af-44a7-9205-de0bd2c7701d@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603721 5a478bee46e88-36740cc8439sm9539602eec.11 - gsmtp",
+          "messageId": "<5c119823-e06b-62de-4dbc-2637376af9a9@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603727 5a478bee46e88-3673e15353csm16478419eec.2 - gsmtp",
+          "messageId": "<145616b9-7862-259f-0ec7-d0faa8aa2d2b@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603730 5a478bee46e88-367405ec6c3sm10755387eec.7 - gsmtp",
+          "messageId": "<2e83cdc6-8da3-a5e4-7f2b-0b712d33d4af@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "375",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "9718667b-e5a5-40de-b41f-3fa06175f70b",
+      "status": "success",
+      "started_at": "2026-10-21T17:28:18.402Z",
+      "stopped_at": "2026-10-21T17:28:47.651Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 2191,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 344,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 3987,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 22115,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 365,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 103,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 3,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603710 5a478bee46e88-36741e71eaesm19026193eec.26 - gsmtp",
+          "messageId": "<31374a0e-d8a7-cd0e-9959-5ad038841929@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603714 5a478bee46e88-367405ec6c3sm10753627eec.7 - gsmtp",
+          "messageId": "<1d8b5295-bc5a-0537-4c11-05e97750e315@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603718 5a478bee46e88-3674198f1d8sm13065976eec.24 - gsmtp",
+          "messageId": "<91fc2e4c-038b-f693-aae2-4d2f85871bee@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603721 a92af1059eb24-1903aefe90asm7454431c88.9 - gsmtp",
+          "messageId": "<8a54ec34-2308-7940-b9b3-80b4f041acf4@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603727 5a478bee46e88-367411bd2a6sm13572928eec.18 - gsmtp",
+          "messageId": "<8a81a5a0-c09a-8efc-1601-8b0374466046@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "374",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "6b9eb2c2-1430-4e89-ae60-ef03c7f0c2c3",
+      "status": "success",
+      "started_at": "2026-10-21T17:27:57.106Z",
+      "stopped_at": "2026-10-21T17:28:25.088Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 644,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 188,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 399,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 21774,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 4426,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 24,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 4,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603682 a92af1059eb24-1903ca044d4sm8075775c88.17 - gsmtp",
+          "messageId": "<7cbf4ca0-79d5-aa5c-c3b4-be9821a1c071@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603685 a92af1059eb24-1902f96dc4bsm8524257c88.0 - gsmtp",
+          "messageId": "<d064d65d-f608-d236-5c70-215c5f43e2e6@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603691 a92af1059eb24-1903aff3481sm8064257c88.10 - gsmtp",
+          "messageId": "<172e783d-22a4-047f-7487-21b12c385eea@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603694 5a478bee46e88-3674198f1d8sm13063228eec.24 - gsmtp",
+          "messageId": "<9c9cc261-a8cd-c604-3f98-a19bd755b201@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603700 5a478bee46e88-367412b24e3sm7865671eec.19 - gsmtp",
+          "messageId": "<1aac644b-2191-ee36-ca6b-e4a904082cff@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "373",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "9ad49da8-65f3-4cfd-818d-13494517a919",
+      "status": "success",
+      "started_at": "2026-10-21T17:27:56.750Z",
+      "stopped_at": "2026-10-21T17:28:25.095Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 54,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 259,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 897,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 22250,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 4558,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 28,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 4,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603682 a92af1059eb24-19035926035sm6937828c88.1 - gsmtp",
+          "messageId": "<53d18de0-94ef-6dc3-8e52-11751577b021@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603685 a92af1059eb24-1903b3d0530sm8110992c88.11 - gsmtp",
+          "messageId": "<ac19d3d5-b9ab-fb72-5d0f-dee36bee48ba@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603690 5a478bee46e88-367411bc89fsm10848210eec.16 - gsmtp",
+          "messageId": "<0b5bf927-8892-dc1a-a024-25a37cc97c27@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603695 a92af1059eb24-19035c0c9a6sm7181583c88.3 - gsmtp",
+          "messageId": "<ae7892e7-0528-b644-03be-e5299319bd89@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603700 5a478bee46e88-367f52ce166sm5460820eec.29 - gsmtp",
+          "messageId": "<6d0bfb99-9dfc-9a4b-b5ce-25cecb796da2@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "372",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "3bdbc0b0-9e16-48cc-83d6-083f38bc81ef",
+      "status": "success",
+      "started_at": "2026-10-21T17:27:46.133Z",
+      "stopped_at": "2026-10-21T17:28:13.247Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 1025,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 986,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 492,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 23601,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 310,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 154,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 2,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603674 a92af1059eb24-1903a180b9esm11846946c88.4 - gsmtp",
+          "messageId": "<7aab5d64-bfa8-d402-3e80-28fe51d6f081@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603679 a92af1059eb24-1903d87ab1bsm8080368c88.21 - gsmtp",
+          "messageId": "<5357278b-d681-1d7c-e33b-c0e5c583cfe9@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603683 a92af1059eb24-1903e4f2eacsm7202935c88.23 - gsmtp",
+          "messageId": "<c0c9406b-cb86-0b6c-be2e-8789b6a75481@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603686 5a478bee46e88-367411bd2a6sm13568311eec.18 - gsmtp",
+          "messageId": "<08221aa8-9cbb-8462-820c-c00a0e999a63@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603692 a92af1059eb24-1903a180b9esm11848837c88.4 - gsmtp",
+          "messageId": "<a87b0864-e002-9bc1-9cf1-fb3503a1354d@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "371",
+      "workflow_id": "bnSJ8tDGCTjNO8H7",
+      "batch_id": "17e03c77-1abe-48ab-9e65-4c11c8e415de",
+      "status": "success",
+      "started_at": "2026-10-21T17:27:21.082Z",
+      "stopped_at": "2026-10-21T17:27:42.668Z",
+      "nodes": {
+        "Notification Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 33,
+            "status": "success"
+          }
+        ],
+        "Fetch Matched Applicants": [
+          {
+            "milliseconds": 242,
+            "status": "success"
+          }
+        ],
+        "Build Notification Emails": [
+          {
+            "milliseconds": 426,
+            "status": "success"
+          }
+        ],
+        "Send Notification": [
+          {
+            "milliseconds": 19273,
+            "status": "success"
+          }
+        ],
+        "Collect Delivery Results": [
+          {
+            "milliseconds": 1423,
+            "status": "success"
+          }
+        ],
+        "Record Notifications": [
+          {
+            "milliseconds": 16,
+            "status": "success"
+          }
+        ],
+        "Respond to Webhook": [
+          {
+            "milliseconds": 3,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603646 5a478bee46e88-3673e15353csm16468178eec.2 - gsmtp",
+          "messageId": "<0060099a-4cc2-f222-174c-8d3a40ffe377@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603649 a92af1059eb24-1903a180b9esm11844183c88.4 - gsmtp",
+          "messageId": "<1ac69135-f4dc-f5ef-68b3-41a53aa0d44d@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603653 a92af1059eb24-1903a275026sm11863277c88.5 - gsmtp",
+          "messageId": "<e21175f5-a2b6-e7ca-121a-4744f0471d14@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603656 a92af1059eb24-1903bf5d61csm7938918c88.15 - gsmtp",
+          "messageId": "<e1113da7-8cdf-47c6-f00c-2c5c7e681fdc@gmail.com>",
+          "error": null
+        },
+        {
+          "accepted": [
+            "monsterkp2004@gmail.com"
+          ],
+          "rejected": [],
+          "response": "250 2.0.0 OK  1792603660 a92af1059eb24-1903b3d0530sm8108659c88.11 - gsmtp",
+          "messageId": "<4fdb426f-b230-b89d-066f-2c044f050f5a@gmail.com>",
+          "error": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "355",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "2d41c337-d76c-46b8-855b-1d071f5f3355",
+      "status": "success",
+      "started_at": "2026-10-21T17:16:56.383Z",
+      "stopped_at": "2026-10-21T17:28:52.884Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 88,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2020,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 536,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 15,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 1000,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 107,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 675346,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1807,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 59,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 3016,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 742,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 4250,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27413,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "354",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "3bdbc0b0-9e16-48cc-83d6-083f38bc81ef",
+      "status": "success",
+      "started_at": "2026-10-21T17:16:46.246Z",
+      "stopped_at": "2026-10-21T17:28:13.284Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 9,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 95,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2055,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 823,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 924,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 62,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 648615,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 986,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 63,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2553,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 604,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 2506,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27638,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "353",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "d45198c4-2269-400a-9c08-f16a58b04ee8",
+      "status": "success",
+      "started_at": "2026-10-21T17:16:36.104Z",
+      "stopped_at": "2026-10-21T17:28:54.640Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 88,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2137,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 597,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 987,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 58,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 696391,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1204,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 731,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 5422,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 1239,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1694,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 27880,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "352",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "9718667b-e5a5-40de-b41f-3fa06175f70b",
+      "status": "error",
+      "started_at": "2026-10-21T17:16:25.990Z",
+      "stopped_at": "2026-10-21T17:28:44.630Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 88,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2033,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 628,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 923,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 65,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 699722,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 883,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 56,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2157,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 628,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1254,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 30102,
+            "status": "error"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": "The connection was aborted, perhaps the server is offline"
+    },
+    {
+      "id": "351",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "6b9eb2c2-1430-4e89-ae60-ef03c7f0c2c3",
+      "status": "success",
+      "started_at": "2026-10-21T17:16:15.860Z",
+      "stopped_at": "2026-10-21T17:28:25.107Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 177,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1971,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 528,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 7,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 807,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 60,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 687927,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1555,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 1133,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 4176,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 898,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 1563,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 28340,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "350",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "17e03c77-1abe-48ab-9e65-4c11c8e415de",
+      "status": "success",
+      "started_at": "2026-10-21T17:16:05.733Z",
+      "stopped_at": "2026-10-21T17:27:42.674Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 0,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 116,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 2102,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 537,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 823,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 54,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 662942,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1045,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 41,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 3368,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 832,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 2461,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 22515,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    },
+    {
+      "id": "349",
+      "workflow_id": "2mGTgbVsT4YS25rH",
+      "batch_id": "9ad49da8-65f3-4cfd-818d-13494517a919",
+      "status": "success",
+      "started_at": "2026-10-21T17:15:55.615Z",
+      "stopped_at": "2026-10-21T17:28:25.410Z",
+      "nodes": {
+        "Matching Request": [
+          {
+            "milliseconds": 1,
+            "status": "success"
+          }
+        ],
+        "Validate Request": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Acknowledge Request": [
+          {
+            "milliseconds": 5,
+            "status": "success"
+          }
+        ],
+        "Fetch Batch Applicants": [
+          {
+            "milliseconds": 6,
+            "status": "success"
+          }
+        ],
+        "SQL Pre-filter Candidate Pairs": [
+          {
+            "milliseconds": 162,
+            "status": "success"
+          }
+        ],
+        "Evaluate Eligibility Rules": [
+          {
+            "milliseconds": 1989,
+            "status": "success"
+          }
+        ],
+        "Plan Qualitative Checks": [
+          {
+            "milliseconds": 692,
+            "status": "success"
+          }
+        ],
+        "Fetch Cached Verdicts": [
+          {
+            "milliseconds": 8,
+            "status": "success"
+          }
+        ],
+        "Select Missing Checks": [
+          {
+            "milliseconds": 857,
+            "status": "success"
+          }
+        ],
+        "Ask The LLM?": [
+          {
+            "milliseconds": 68,
+            "status": "success"
+          }
+        ],
+        "LLM Qualitative Check": [
+          {
+            "milliseconds": 707174,
+            "status": "error"
+          }
+        ],
+        "Collect Verdicts": [
+          {
+            "milliseconds": 1823,
+            "status": "success"
+          }
+        ],
+        "Cache Verdicts": [
+          {
+            "milliseconds": 907,
+            "status": "success"
+          }
+        ],
+        "Apply Verdicts": [
+          {
+            "milliseconds": 2427,
+            "status": "success"
+          }
+        ],
+        "Persist Matches": [
+          {
+            "milliseconds": 1272,
+            "status": "success"
+          }
+        ],
+        "Summarise Run": [
+          {
+            "milliseconds": 3337,
+            "status": "success"
+          }
+        ],
+        "Trigger Notification Workflow": [
+          {
+            "milliseconds": 28983,
+            "status": "success"
+          }
+        ]
+      },
+      "smtp": [],
+      "error": null
+    }
+  ],
+  "measured_at": "2026-10-21T23:00:24.694524+05:30"
+}

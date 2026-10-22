@@ -1,0 +1,51 @@
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node / n8n local state
+node_modules/
+.local-ingestion/
+.local-discovery/
+n8n-data/*
+!data/discovery/
+data/discovery/*
+!data/discovery/*.json
+n8n/backups/
+
+# Local databases / exports
+*.dump
+*.sql.gz
+data/*
+!data/discovery/
+data/discovery/*
+!data/discovery/*.json
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Local tooling and account configuration
+.aws/
+.codex/
+.agents/
+opencode.json
+
+# Keep only the project README among Markdown files
+*.md
+!README.md

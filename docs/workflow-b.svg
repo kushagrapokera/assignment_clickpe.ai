@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="410" viewBox="0 0 1040 410" role="img" aria-labelledby="title desc"><title id="title">Workflow B · Applicant–loan matching</title><desc id="desc">Deterministic results first; all review pairs enter a deduplicated model plan.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a0a0a0"/></marker></defs>
+<rect width="1040" height="410" rx="0" fill="#101010"/>
+<text x="30" y="37" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#f2f2f2" font-weight="600">Workflow B · Applicant–loan matching</text>
+<text x="30" y="64" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Deterministic results first; all review pairs enter a deduplicated model plan.</text>
+<rect x="30" y="105" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="131" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">1 · Validate + acknowledge</text>
+<text x="44" y="155" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Authenticated batch webhook</text>
+<text x="44" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Fetch applicants and products once</text>
+<rect x="375" y="105" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="389" y="131" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">2 · Pre-filter + rules</text>
+<text x="389" y="155" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Range, employment, policy checks</text>
+<text x="389" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Keep individual decision reasons</text>
+<rect x="720" y="105" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="734" y="131" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">3 · Persist fast decisions</text>
+<text x="734" y="155" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Eligible → matches + audit</text>
+<text x="734" y="175" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Review / rejected → audit only</text>
+<rect x="720" y="255" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="734" y="281" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">4 · Cache + model resolution</text>
+<text x="734" y="305" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Distinct policy / exact-fact profiles</text>
+<text x="734" y="325" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Decider → retry missing → LLM</text>
+<rect x="375" y="255" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="389" y="281" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">5 · Apply affected verdicts</text>
+<text x="389" y="305" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Explicit bucket-label mapping</text>
+<text x="389" y="325" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Failures remain review, not cached</text>
+<rect x="30" y="255" width="290" height="100" rx="3" fill="#191919" stroke="#d0d0d0" stroke-width="1.5"/>
+<text x="44" y="281" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#d0d0d0" font-weight="600">6 · Finalize + notify</text>
+<text x="44" y="305" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Matching complete → Workflow C</text>
+<text x="44" y="325" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">UI displays final method counts</text>
+<polyline points="320,155 375,155" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="665,155 720,155" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="865,205 865,255" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="720,305 665,305" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="375,305 320,305" fill="none" stroke="#a0a0a0" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="30" y="390" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#c6c6c6">Read left → right across the top row, then right → left across the bottom row.</text>
+</svg>

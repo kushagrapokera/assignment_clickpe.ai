@@ -1,0 +1,478 @@
+[
+  {
+    "at": "2026-10-21T20:21:11.782424+00:00",
+    "batches": 0,
+    "fast_batches": 0,
+    "matching_completed": 0,
+    "notification_completed": 0,
+    "decisions": {},
+    "matches": 0,
+    "notifications": [],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 1,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:16.806252+00:00",
+    "batches": 20,
+    "fast_batches": 0,
+    "matching_completed": 0,
+    "notification_completed": 0,
+    "decisions": {
+      "decisions": 0,
+      "eligible": 0,
+      "ineligible": 0,
+      "review": 0
+    },
+    "matches": 0,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 250
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:21.835828+00:00",
+    "batches": 20,
+    "fast_batches": 2,
+    "matching_completed": 2,
+    "notification_completed": 1,
+    "decisions": {
+      "decisions": 17000,
+      "eligible": 6580,
+      "ineligible": 4539,
+      "review": 5881
+    },
+    "matches": 6580,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 255
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:26.864175+00:00",
+    "batches": 20,
+    "fast_batches": 3,
+    "matching_completed": 3,
+    "notification_completed": 3,
+    "decisions": {
+      "decisions": 25500,
+      "eligible": 9800,
+      "ineligible": 6961,
+      "review": 8739
+    },
+    "matches": 9800,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 265
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:31.892730+00:00",
+    "batches": 20,
+    "fast_batches": 4,
+    "matching_completed": 4,
+    "notification_completed": 4,
+    "decisions": {
+      "decisions": 34000,
+      "eligible": 13083,
+      "ineligible": 9261,
+      "review": 11656
+    },
+    "matches": 13083,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 270
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:36.926504+00:00",
+    "batches": 20,
+    "fast_batches": 5,
+    "matching_completed": 5,
+    "notification_completed": 5,
+    "decisions": {
+      "decisions": 42500,
+      "eligible": 16321,
+      "ineligible": 11625,
+      "review": 14554
+    },
+    "matches": 16321,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 275
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:42.007638+00:00",
+    "batches": 20,
+    "fast_batches": 7,
+    "matching_completed": 6,
+    "notification_completed": 6,
+    "decisions": {
+      "decisions": 59500,
+      "eligible": 22848,
+      "ineligible": 16209,
+      "review": 20443
+    },
+    "matches": 22848,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 280
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:47.116996+00:00",
+    "batches": 20,
+    "fast_batches": 8,
+    "matching_completed": 8,
+    "notification_completed": 7,
+    "decisions": {
+      "decisions": 68000,
+      "eligible": 26156,
+      "ineligible": 18448,
+      "review": 23396
+    },
+    "matches": 26156,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 285
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:52.254821+00:00",
+    "batches": 20,
+    "fast_batches": 9,
+    "matching_completed": 9,
+    "notification_completed": 9,
+    "decisions": {
+      "decisions": 76500,
+      "eligible": 29428,
+      "ineligible": 20757,
+      "review": 26315
+    },
+    "matches": 29428,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 295
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:21:57.369814+00:00",
+    "batches": 20,
+    "fast_batches": 10,
+    "matching_completed": 10,
+    "notification_completed": 10,
+    "decisions": {
+      "decisions": 85000,
+      "eligible": 32722,
+      "ineligible": 23019,
+      "review": 29259
+    },
+    "matches": 32722,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 300
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:02.482854+00:00",
+    "batches": 20,
+    "fast_batches": 11,
+    "matching_completed": 11,
+    "notification_completed": 11,
+    "decisions": {
+      "decisions": 93500,
+      "eligible": 35969,
+      "ineligible": 25426,
+      "review": 32105
+    },
+    "matches": 35969,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 305
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:08.112394+00:00",
+    "batches": 20,
+    "fast_batches": 13,
+    "matching_completed": 13,
+    "notification_completed": 12,
+    "decisions": {
+      "decisions": 110500,
+      "eligible": 42466,
+      "ineligible": 30132,
+      "review": 37902
+    },
+    "matches": 42466,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 310
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:13.779149+00:00",
+    "batches": 20,
+    "fast_batches": 14,
+    "matching_completed": 14,
+    "notification_completed": 14,
+    "decisions": {
+      "decisions": 119000,
+      "eligible": 45801,
+      "ineligible": 32317,
+      "review": 40882
+    },
+    "matches": 45801,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 320
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:18.869192+00:00",
+    "batches": 20,
+    "fast_batches": 15,
+    "matching_completed": 15,
+    "notification_completed": 15,
+    "decisions": {
+      "decisions": 127500,
+      "eligible": 49047,
+      "ineligible": 34640,
+      "review": 43813
+    },
+    "matches": 49047,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 325
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:23.981529+00:00",
+    "batches": 20,
+    "fast_batches": 17,
+    "matching_completed": 17,
+    "notification_completed": 16,
+    "decisions": {
+      "decisions": 144500,
+      "eligible": 55688,
+      "ineligible": 39052,
+      "review": 49760
+    },
+    "matches": 55688,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 330
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:29.099587+00:00",
+    "batches": 20,
+    "fast_batches": 18,
+    "matching_completed": 18,
+    "notification_completed": 18,
+    "decisions": {
+      "decisions": 153000,
+      "eligible": 58975,
+      "ineligible": 41351,
+      "review": 52674
+    },
+    "matches": 58975,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 340
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 0
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:34.224476+00:00",
+    "batches": 20,
+    "fast_batches": 19,
+    "matching_completed": 19,
+    "notification_completed": 19,
+    "decisions": {
+      "decisions": 161500,
+      "eligible": 62143,
+      "ineligible": 43865,
+      "review": 55492
+    },
+    "matches": 62143,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 345
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 2,
+        "dispatched": 1
+      }
+    }
+  },
+  {
+    "at": "2026-10-21T20:22:39.362321+00:00",
+    "batches": 20,
+    "fast_batches": 20,
+    "matching_completed": 20,
+    "notification_completed": 20,
+    "decisions": {
+      "decisions": 170000,
+      "eligible": 65378,
+      "ineligible": 46191,
+      "review": 58431
+    },
+    "matches": 65378,
+    "notifications": [
+      {
+        "status": "sent",
+        "count": 350
+      }
+    ],
+    "dispatch": {
+      "value": {
+        "limit": 2,
+        "running": 1,
+        "dispatched": 0
+      }
+    }
+  }
+]

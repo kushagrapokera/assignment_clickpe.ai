@@ -1,0 +1,1314 @@
+{
+  "execution": {
+    "id": "387",
+    "status": "success",
+    "mode": "manual",
+    "started_at": "2026-10-21T18:04:49.001Z",
+    "stopped_at": "2026-10-21T18:04:50.313Z",
+    "workflow_id": "T1kz0VBkeuRykinl"
+  },
+  "stats": {
+    "records_extracted": 23,
+    "products": 17,
+    "products_collapsed": 6,
+    "distinct_profiles": 17,
+    "sources_failed": 0,
+    "products_total": 17,
+    "products_new": 0,
+    "products_updated": 17,
+    "products_deactivated": 0,
+    "runs_logged": 8
+  },
+  "collapsed": [
+    {
+      "group": "bajaj-finserv::bajaj finance",
+      "provider": "Bajaj Finance",
+      "merged_into": "bajaj-finserv:bajaj-finance",
+      "canonical": "Bajaj Finance Personal Loan",
+      "canonical_source_id": "bajaj-finserv-personal-loan",
+      "variants": [
+        "Bajaj Finance Personal Loan for Salaried Professionals",
+        "Bajaj Finance Personal Loan for Travel",
+        "Bajaj Finance Personal Loan for Wedding",
+        "Bajaj Finance Personal Loan for Medical Emergency",
+        "Bajaj Finance Personal Loan for Home Expenses",
+        "Bajaj Finance Personal Loan for Higher Education"
+      ],
+      "variant_source_ids": [
+        "bajaj-finserv-salaried-personal-loan",
+        "bajaj-finserv-travel-personal-loan",
+        "bajaj-finserv-wedding-personal-loan",
+        "bajaj-finserv-medical-personal-loan",
+        "bajaj-finserv-home-personal-loan",
+        "bajaj-finserv-education-personal-loan"
+      ],
+      "count": 7
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "bankbazaar-personal-loan",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "products": 16,
+      "providers": [
+        "Aditya Birla Capital",
+        "Edelweiss Salaried",
+        "HDBFS",
+        "HDFC Bank",
+        "HOME CREDIT",
+        "IDFC First Bank",
+        "InCred",
+        "India Infoline Finance Ltd.",
+        "IndusInd Bank",
+        "Kotak Mahindra Bank",
+        "MyShubhLife",
+        "Standard Chartered Bank",
+        "Tata Capital",
+        "TurboLoan powered by Chola",
+        "Ujjivan Small Finance Bank",
+        "Yes Bank"
+      ]
+    },
+    {
+      "source_id": "bajaj-finserv-personal-loan",
+      "source_name": "Bajaj Finserv Personal Loan",
+      "source_url": "https://www.bajajfinserv.in/personal-loan",
+      "products": 1,
+      "providers": [
+        "Bajaj Finance"
+      ]
+    }
+  ],
+  "failures": [],
+  "products": [
+    {
+      "product_key": "bankbazaar:aditya-birla-capital",
+      "product_name": "Aditya Birla Capital Personal Loan",
+      "provider": "Aditya Birla Capital",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.99,
+      "interest_rate_max": 10.99,
+      "min_loan_amount": 5000000,
+      "max_loan_amount": 5000000,
+      "min_tenure_months": 84,
+      "max_tenure_months": 84,
+      "min_monthly_income": 45000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 23,
+      "max_age": null,
+      "min_employment_years": null,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": 45000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 23,
+        "max_age": null,
+        "min_employment_years": null,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": [
+          "The applicant will have to be a permanent employees of Aditya Birla Financial Services Group",
+          "At least 23 years old and no older than 60 years old",
+          "Minimum net monthly income that is not less than ₹45,000"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹50L",
+        "rate_text": "10.99%",
+        "tenure_text": "7 Years",
+        "processing_fee": "3.00%",
+        "eligibility_lines": [
+          "The applicant will have to be a permanent employees of Aditya Birla Financial Services Group",
+          "At least 23 years old and no older than 60 years old",
+          "Minimum net monthly income that is not less than ₹45,000"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "ec0b78ab85c4d6e9",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bajaj-finserv:bajaj-finance",
+      "product_name": "Bajaj Finance Personal Loan",
+      "provider": "Bajaj Finance",
+      "source_id": "bajaj-finserv-personal-loan",
+      "source_url": "https://www.bajajfinserv.in/personal-loan",
+      "interest_rate_min": 10,
+      "interest_rate_max": 30.5,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 5500000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 108,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": 650,
+      "max_credit_score": null,
+      "min_age": null,
+      "max_age": 80,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": 650,
+        "max_credit_score": null,
+        "min_age": null,
+        "max_age": 80,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {},
+        "eligibility_lines": [],
+        "min_loan_amount": 40000,
+        "max_loan_amount": 5500000,
+        "min_tenure_months": 12,
+        "max_tenure_months": 108
+      },
+      "raw": {
+        "extraction": "json-ld",
+        "json_ld_types": [
+          "LoanOrCredit",
+          "FinancialProduct"
+        ],
+        "page_title": "Personal Loan - Apply for Instant Personal Loan up to ₹55 lakh | Bajaj Finance",
+        "description": "Apply for instant personal loan online up to ₹55 lakh starting at 10% p.a. from Bajaj Finance. Get quick approval, flexible tenures with an online application process.",
+        "alternate_names": [
+          "Instant Personal Loan",
+          "Personal Loan Online",
+          "Unsecured Loan"
+        ],
+        "variants": [
+          {
+            "product_name": "Bajaj Finance Personal Loan for Salaried Professionals",
+            "source_id": "bajaj-finserv-salaried-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/salaried-personal-loan"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Travel",
+            "source_id": "bajaj-finserv-travel-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-travel"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Wedding",
+            "source_id": "bajaj-finserv-wedding-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-wedding"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Medical Emergency",
+            "source_id": "bajaj-finserv-medical-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-medical-expenses"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Home Expenses",
+            "source_id": "bajaj-finserv-home-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-home-expenses"
+          },
+          {
+            "product_name": "Bajaj Finance Personal Loan for Higher Education",
+            "source_id": "bajaj-finserv-education-personal-loan",
+            "source_url": "https://www.bajajfinserv.in/personal-loan-for-higher-education"
+          }
+        ],
+        "variant_count": 6
+      },
+      "criteria_signature": "224b82a5efed7d67",
+      "source_name": "Bajaj Finserv Personal Loan",
+      "source_publisher": "Bajaj Finserv",
+      "source_publisher_id": "bajaj-finserv",
+      "source_strategy": "json-ld",
+      "crawled_at": "2026-10-21T18:04:49.852Z",
+      "variants": [
+        {
+          "product_name": "Bajaj Finance Personal Loan for Salaried Professionals",
+          "source_id": "bajaj-finserv-salaried-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/salaried-personal-loan"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Travel",
+          "source_id": "bajaj-finserv-travel-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-travel"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Wedding",
+          "source_id": "bajaj-finserv-wedding-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-wedding"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Medical Emergency",
+          "source_id": "bajaj-finserv-medical-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-medical-expenses"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Home Expenses",
+          "source_id": "bajaj-finserv-home-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-home-expenses"
+        },
+        {
+          "product_name": "Bajaj Finance Personal Loan for Higher Education",
+          "source_id": "bajaj-finserv-education-personal-loan",
+          "source_url": "https://www.bajajfinserv.in/personal-loan-for-higher-education"
+        }
+      ]
+    },
+    {
+      "product_key": "bankbazaar:edelweiss-salaried",
+      "product_name": "Edelweiss Salaried Personal Loan",
+      "provider": "Edelweiss Salaried",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 25,
+      "interest_rate_max": 25,
+      "min_loan_amount": 2000000,
+      "max_loan_amount": 2000000,
+      "min_tenure_months": 48,
+      "max_tenure_months": 48,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 56,
+      "min_employment_years": 3,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 56,
+        "min_employment_years": 3,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": [
+          "Age - At least 21 and less than 56",
+          "Minimum 3 years of total work experience or minimum 1 year with current company"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹20L",
+        "rate_text": "25.00%",
+        "tenure_text": "4 Years",
+        "processing_fee": "2.00%",
+        "eligibility_lines": [
+          "Age - At least 21 and less than 56",
+          "Minimum 3 years of total work experience or minimum 1 year with current company"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "ee7b69c54ad47c99",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:hdbfs",
+      "product_name": "HDBFS Personal Loan",
+      "provider": "HDBFS",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 19.1,
+      "interest_rate_max": 19.1,
+      "min_loan_amount": 2000000,
+      "max_loan_amount": 2000000,
+      "min_tenure_months": 60,
+      "max_tenure_months": 60,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 22,
+      "max_age": 60,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 22,
+        "max_age": 60,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 22,
+            "max_age": 60,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age limit for salaried - 22-60 at the time of loan maturity",
+          "For salaried minimum income Rs.20,000",
+          "Cities : Chennai, Bangalore, Hyderabad, Secunderabad, Mumbai, Pune"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹20L",
+        "rate_text": "19.10%",
+        "tenure_text": "5 Years",
+        "processing_fee": "Up to 2.00%",
+        "eligibility_lines": [
+          "Age limit for salaried - 22-60 at the time of loan maturity",
+          "For salaried minimum income Rs.20,000",
+          "Cities : Chennai, Bangalore, Hyderabad, Secunderabad, Mumbai, Pune"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "4f0a634e3a08b502",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:hdfc-bank",
+      "product_name": "HDFC Bank Personal Loan",
+      "provider": "HDFC Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.85,
+      "interest_rate_max": 21,
+      "min_loan_amount": 4000000,
+      "max_loan_amount": 4000000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 60,
+      "min_monthly_income": 20000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 65,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": 20000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 65,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 21,
+            "max_age": 60,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          },
+          "Self-Employed": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 21,
+            "max_age": 65,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Salaried - Age at least 21 and less than 60",
+          "Self-employed - Age at least 21 and less than 65",
+          "Applicant should be earning at least ₹ 20,000 per month as net income (₹ 25,000 for applicants from Madhya Pradesh)"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹40L",
+        "rate_text": "10.85% - 21.00%",
+        "tenure_text": "1 - 5 Years",
+        "processing_fee": "₹ 4,999",
+        "eligibility_lines": [
+          "Salaried - Age at least 21 and less than 60",
+          "Self-employed - Age at least 21 and less than 65",
+          "Applicant should be earning at least ₹ 20,000 per month as net income (₹ 25,000 for applicants from Madhya Pradesh)"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "9ed68aeec2412c06",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:home-credit",
+      "product_name": "HOME CREDIT",
+      "provider": "HOME CREDIT",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": null,
+      "interest_rate_max": null,
+      "min_loan_amount": 500000,
+      "max_loan_amount": 500000,
+      "min_tenure_months": 48,
+      "max_tenure_months": 48,
+      "min_monthly_income": 15000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 19,
+      "max_age": 58,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": 15000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 19,
+        "max_age": 58,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": 15000,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": null,
+            "max_age": null,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age limit - 19 years to 58 years",
+          "Salaried individuals with minimum net monthly income of ₹ 15,000 and above"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹5L",
+        "rate_text": null,
+        "tenure_text": "4 Years",
+        "processing_fee": "2.50% - 5.00%",
+        "eligibility_lines": [
+          "Age limit - 19 years to 58 years",
+          "Salaried individuals with minimum net monthly income of ₹ 15,000 and above"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "589954862645a2a6",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:idfc-first-bank",
+      "product_name": "IDFC First Bank Personal Loan",
+      "provider": "IDFC First Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.99,
+      "interest_rate_max": 10.99,
+      "min_loan_amount": 500000,
+      "max_loan_amount": 500000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 60,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 23,
+      "max_age": 68,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 23,
+        "max_age": 68,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 23,
+            "max_age": 58,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          },
+          "Self-Employed": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 28,
+            "max_age": 68,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Salaried - Age at least 23 and less than 58",
+          "Self-employed - Age at least 28 and less than 68",
+          "If self-employed, business must have been in existence for a minimum of 3 years and its profit after tax (PAT) for the last 2 years should be positive"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹5L",
+        "rate_text": "10.99%",
+        "tenure_text": "1 - 5 Years",
+        "processing_fee": "Up to 3.50%",
+        "eligibility_lines": [
+          "Salaried - Age at least 23 and less than 58",
+          "Self-employed - Age at least 28 and less than 68",
+          "If self-employed, business must have been in existence for a minimum of 3 years and its profit after tax (PAT) for the last 2 years should be positive"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "206d49b9033bd400",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:incred",
+      "product_name": "InCred Personal Loan",
+      "provider": "InCred",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 13.99,
+      "interest_rate_max": 13.99,
+      "min_loan_amount": 750000,
+      "max_loan_amount": 750000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 48,
+      "min_monthly_income": 15000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 56,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": 15000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 56,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 21,
+            "max_age": 56,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Salaried - Age at least 21 and less than 56 years",
+          "Minimum monthly income of ₹ 15,000"
+        ]
+      },
+      "raw": {
+        "amount_text": "₹50K - ₹7.5L",
+        "rate_text": "13.99%",
+        "tenure_text": "1 - 4 Years",
+        "processing_fee": "2.00% - 5.00%",
+        "eligibility_lines": [
+          "Salaried - Age at least 21 and less than 56 years",
+          "Minimum monthly income of ₹ 15,000"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "70cb536993c6926c",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:india-infoline-finance-ltd",
+      "product_name": "India Infoline Finance Ltd. Personal Loan",
+      "provider": "India Infoline Finance Ltd.",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 12.75,
+      "interest_rate_max": 44,
+      "min_loan_amount": 500000,
+      "max_loan_amount": 500000,
+      "min_tenure_months": 48,
+      "max_tenure_months": 48,
+      "min_monthly_income": 25000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 25,
+      "max_age": 60,
+      "min_employment_years": null,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": 25000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 25,
+        "max_age": 60,
+        "min_employment_years": null,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": [
+          "Age at least 25 and less than 60",
+          "Minimum Monthly Income ₹25,000",
+          "Sourcable Location will Mumbai, Delhi, Pune, Banglore, Hyderabad & Chennai."
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹5L",
+        "rate_text": "12.75% - 44.00%",
+        "tenure_text": "4 Years",
+        "processing_fee": "2.00% - 6.00%",
+        "eligibility_lines": [
+          "Age at least 25 and less than 60",
+          "Minimum Monthly Income ₹25,000",
+          "Sourcable Location will Mumbai, Delhi, Pune, Banglore, Hyderabad & Chennai."
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "c2e06c213bf0b7c4",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:indusind-bank",
+      "product_name": "IndusInd Bank Personal Loan",
+      "provider": "IndusInd Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.49,
+      "interest_rate_max": 10.49,
+      "min_loan_amount": 5000000,
+      "max_loan_amount": 5000000,
+      "min_tenure_months": 60,
+      "max_tenure_months": 60,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 23,
+      "max_age": 68,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 23,
+        "max_age": 68,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 23,
+            "max_age": 58,
+            "min_employment_years": 2,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          },
+          "Self-Employed": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 28,
+            "max_age": 68,
+            "min_employment_years": 5,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age at least 23 years and less than 58 years for salaried",
+          "Age at least 28 years and less than 68 years for self-employed",
+          "For salaried, 2 years minimum overall work experience with 1 year minimum experience in current company",
+          "For self-employed, at least 5 years of experience after relevant qualification"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹50L",
+        "rate_text": "10.49%",
+        "tenure_text": "5 Years",
+        "processing_fee": "Up to 3.00%",
+        "eligibility_lines": [
+          "Age at least 23 years and less than 58 years for salaried",
+          "Age at least 28 years and less than 68 years for self-employed",
+          "For salaried, 2 years minimum overall work experience with 1 year minimum experience in current company",
+          "For self-employed, at least 5 years of experience after relevant qualification"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "c0f534d8f6417ecd",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:kotak-mahindra-bank",
+      "product_name": "Kotak Mahindra Bank Personal Loan",
+      "provider": "Kotak Mahindra Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.99,
+      "interest_rate_max": 16.99,
+      "min_loan_amount": 4000000,
+      "max_loan_amount": 4000000,
+      "min_tenure_months": 60,
+      "max_tenure_months": 60,
+      "min_monthly_income": 25000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 55,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": 25000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 55,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": null,
+            "max_age": null,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age - At least 21 and less than 55",
+          "Applicants must be salaried Indian residents working at MNCs, public companies or other large private organisations",
+          "Monthly income should be more than ₹ 25,000"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹40L",
+        "rate_text": "10.99% - 16.99%",
+        "tenure_text": "5 Years",
+        "processing_fee": "3.00%",
+        "eligibility_lines": [
+          "Age - At least 21 and less than 55",
+          "Applicants must be salaried Indian residents working at MNCs, public companies or other large private organisations",
+          "Monthly income should be more than ₹ 25,000"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "fbba7eab12feb68b",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:myshubhlife",
+      "product_name": "MyShubhLife",
+      "provider": "MyShubhLife",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 24,
+      "interest_rate_max": 32,
+      "min_loan_amount": 500000,
+      "max_loan_amount": 500000,
+      "min_tenure_months": 12,
+      "max_tenure_months": 48,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 60,
+      "min_employment_years": null,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 60,
+        "min_employment_years": null,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": [
+          "Minimum age - 21 years; Maximum age - 60 years"
+        ]
+      },
+      "raw": {
+        "amount_text": "₹75K - ₹5L",
+        "rate_text": "24.00% - 32.00%",
+        "tenure_text": "1 - 4 Years",
+        "processing_fee": "3.00%",
+        "eligibility_lines": [
+          "Minimum age - 21 years; Maximum age - 60 years"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "df20bf63c609eccb",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:standard-chartered-bank",
+      "product_name": "Standard Chartered Bank",
+      "provider": "Standard Chartered Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 11.49,
+      "interest_rate_max": 11.49,
+      "min_loan_amount": 600000,
+      "max_loan_amount": 600000,
+      "min_tenure_months": 60,
+      "max_tenure_months": 60,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 21,
+      "max_age": 62,
+      "min_employment_years": null,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 21,
+        "max_age": 62,
+        "min_employment_years": null,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": [
+          "Age at least 21 and less than 62"
+        ]
+      },
+      "raw": {
+        "amount_text": "₹1L - ₹6L",
+        "rate_text": "11.49%",
+        "tenure_text": "5 Years",
+        "processing_fee": "2.25%",
+        "eligibility_lines": [
+          "Age at least 21 and less than 62"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "d3a422f4c8ec1d86",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:tata-capital",
+      "product_name": "Tata Capital Personal Loan",
+      "provider": "Tata Capital",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 11.99,
+      "interest_rate_max": 29.99,
+      "min_loan_amount": 3500000,
+      "max_loan_amount": 3500000,
+      "min_tenure_months": 72,
+      "max_tenure_months": 72,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 24,
+      "max_age": 65,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried",
+        "Self-Employed"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 24,
+        "max_age": 65,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried",
+          "Self-Employed"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 24,
+            "max_age": 55,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          },
+          "Self-Employed": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 25,
+            "max_age": 65,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Salaried - Age at least 24 and less than 55",
+          "Self-employed - Age at least 25 and less than 65",
+          "Applicants should be currently employed, with at least 1 year with their current employer"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹35L",
+        "rate_text": "11.99% - 29.99%",
+        "tenure_text": "6 Years",
+        "processing_fee": "Up to 3.00%",
+        "eligibility_lines": [
+          "Salaried - Age at least 24 and less than 55",
+          "Self-employed - Age at least 25 and less than 65",
+          "Applicants should be currently employed, with at least 1 year with their current employer"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "60e31808351d50b7",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:turboloan-powered-by-chola",
+      "product_name": "TurboLoan powered by Chola",
+      "provider": "TurboLoan powered by Chola",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 10.25,
+      "interest_rate_max": 34.05,
+      "min_loan_amount": 300000,
+      "max_loan_amount": 300000,
+      "min_tenure_months": null,
+      "max_tenure_months": 36,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": null,
+      "max_age": null,
+      "min_employment_years": null,
+      "required_employment_statuses": [],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": null,
+        "max_age": null,
+        "min_employment_years": null,
+        "required_employment_statuses": [],
+        "per_employment": {},
+        "eligibility_lines": []
+      },
+      "raw": {
+        "amount_text": "₹1L - ₹3L",
+        "rate_text": "10.25% - 34.05%",
+        "tenure_text": "Up to 3 Years",
+        "processing_fee": "3.00%",
+        "eligibility_lines": [],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "a95b9d14e4ed874f",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:ujjivan-small-finance-bank",
+      "product_name": "Ujjivan Small Finance Bank",
+      "provider": "Ujjivan Small Finance Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 11.49,
+      "interest_rate_max": 16.49,
+      "min_loan_amount": 3000000,
+      "max_loan_amount": 3000000,
+      "min_tenure_months": 36,
+      "max_tenure_months": 36,
+      "min_monthly_income": 20000,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 22,
+      "max_age": 58,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": 20000,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 22,
+        "max_age": 58,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": null,
+            "max_age": null,
+            "min_employment_years": 2,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age - 22 to 58 years old",
+          "The person must have a monthly income of Rs. 20,000 and above",
+          "For salaried, minimum 2 years overall experience is required."
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹30L",
+        "rate_text": "11.49% - 16.49%",
+        "tenure_text": "3 Years",
+        "processing_fee": "2.00%",
+        "eligibility_lines": [
+          "Age - 22 to 58 years old",
+          "The person must have a monthly income of Rs. 20,000 and above",
+          "For salaried, minimum 2 years overall experience is required."
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "523ce7a46f01f758",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    },
+    {
+      "product_key": "bankbazaar:yes-bank",
+      "product_name": "Yes Bank Personal Loan",
+      "provider": "Yes Bank",
+      "source_id": "bankbazaar-personal-loan",
+      "source_url": "https://www.bankbazaar.com/personal-loan",
+      "interest_rate_min": 11.25,
+      "interest_rate_max": 21,
+      "min_loan_amount": 4000000,
+      "max_loan_amount": 4000000,
+      "min_tenure_months": 60,
+      "max_tenure_months": 60,
+      "min_monthly_income": null,
+      "max_monthly_income": null,
+      "min_credit_score": null,
+      "max_credit_score": null,
+      "min_age": 25,
+      "max_age": 53,
+      "min_employment_years": null,
+      "required_employment_statuses": [
+        "Salaried"
+      ],
+      "criteria": {
+        "min_monthly_income": null,
+        "max_monthly_income": null,
+        "min_credit_score": null,
+        "max_credit_score": null,
+        "min_age": 25,
+        "max_age": 53,
+        "min_employment_years": null,
+        "required_employment_statuses": [
+          "Salaried"
+        ],
+        "per_employment": {
+          "Salaried": {
+            "min_monthly_income": null,
+            "max_monthly_income": null,
+            "min_credit_score": null,
+            "max_credit_score": null,
+            "min_age": 25,
+            "max_age": 53,
+            "min_employment_years": null,
+            "required_employment_statuses": [],
+            "per_employment": {}
+          }
+        },
+        "eligibility_lines": [
+          "Age limit for salaried - 25 years to 53 years"
+        ]
+      },
+      "raw": {
+        "amount_text": "Up to ₹40L",
+        "rate_text": "11.25% - 21.00%",
+        "tenure_text": "5 Years",
+        "processing_fee": "2.50%",
+        "eligibility_lines": [
+          "Age limit for salaried - 25 years to 53 years"
+        ],
+        "variants": [],
+        "variant_count": 0
+      },
+      "criteria_signature": "e2e76a9d0ce6bf75",
+      "source_name": "BankBazaar Personal Loan Comparison",
+      "source_publisher": "BankBazaar",
+      "source_publisher_id": "bankbazaar",
+      "source_strategy": "html",
+      "crawled_at": "2026-10-21T18:04:49.834Z",
+      "variants": []
+    }
+  ]
+}

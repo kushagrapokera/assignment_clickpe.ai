@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "description": "Crawl registry for Workflow A. Every entry describes one public page that lists personal loan products. Adding a source here (plus an extractor) is enough to extend the crawler - no workflow change required.",
+  "publishers": {
+    "bankbazaar": {
+      "name": "BankBazaar",
+      "site": "bankbazaar.com",
+      "role": "aggregator",
+      "note": "Comparison page with one card per lender, so a single crawl yields many products."
+    },
+    "bajaj-finserv": {
+      "name": "Bajaj Finserv",
+      "site": "bajajfinserv.in",
+      "role": "publisher",
+      "note": "Direct lender. The main page carries schema.org product markup, the variant pages are read from the rendered text."
+    }
+  },
+  "sources": [
+    {
+      "id": "bankbazaar-personal-loan",
+      "publisher": "bankbazaar",
+      "name": "BankBazaar Personal Loan Comparison",
+      "url": "https://www.bankbazaar.com/personal-loan",
+      "extractor": "bankbazaar",
+      "enabled": true,
+      "strategy": "html",
+      "fingerprint": "Apply Online for",
+      "notes": "Comparison page with one card per lender (16-17 products per crawl). Rates, amounts, tenure and the eligibility bullets are read from the rendered cards."
+    },
+    {
+      "id": "bajaj-finserv-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan",
+      "url": "https://www.bajajfinserv.in/personal-loan",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "json-ld",
+      "fingerprint": "bajajfinserv.in",
+      "notes": "schema.org LoanOrCredit/FinancialProduct markup gives the interest rate range, loan amount range, tenure and the eligible employment types; CIBIL score and maximum age come from the rendered text."
+    },
+    {
+      "id": "bajaj-finserv-salaried-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Salaried Professionals",
+      "url": "https://www.bajajfinserv.in/salaried-personal-loan",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "salaried-personal-loan",
+      "notes": "Segment specific variant. No schema.org product markup, so the heading, amount, tenure and CIBIL requirement are read from the page."
+    },
+    {
+      "id": "bajaj-finserv-travel-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Travel",
+      "url": "https://www.bajajfinserv.in/personal-loan-for-travel",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "personal-loan-for-travel",
+      "notes": "Purpose specific variant for travel expenses."
+    },
+    {
+      "id": "bajaj-finserv-wedding-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Wedding",
+      "url": "https://www.bajajfinserv.in/personal-loan-for-wedding",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "personal-loan-for-wedding",
+      "notes": "Purpose specific variant for wedding expenses."
+    },
+    {
+      "id": "bajaj-finserv-medical-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Medical Emergency",
+      "url": "https://www.bajajfinserv.in/personal-loan-for-medical-expenses",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "personal-loan-for-medical-expenses",
+      "notes": "Purpose specific variant for medical expenses."
+    },
+    {
+      "id": "bajaj-finserv-home-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Home Expenses",
+      "url": "https://www.bajajfinserv.in/personal-loan-for-home-expenses",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "personal-loan-for-home-expenses",
+      "notes": "Purpose specific variant for home improvement and renovation."
+    },
+    {
+      "id": "bajaj-finserv-education-personal-loan",
+      "publisher": "bajaj-finserv",
+      "name": "Bajaj Finserv Personal Loan for Higher Education",
+      "url": "https://www.bajajfinserv.in/personal-loan-for-higher-education",
+      "extractor": "bajaj",
+      "enabled": true,
+      "strategy": "text",
+      "fingerprint": "personal-loan-for-higher-education",
+      "notes": "Purpose specific variant for higher education fees."
+    }
+  ]
+}

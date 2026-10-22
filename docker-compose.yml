@@ -1,0 +1,172 @@
+# ---------------------------------------------------------------------------
+# Local development stack for the Loan Eligibility Engine.
+#
+#   docker compose up -d
+#
+# Services:
+#   postgres  - application database (POSTGRES_DB=loan_clickpe)
+#   n8n       - self-hosted workflow automation engine (SQLite state in a volume)
+#   mailpit   - local SMTP sink + web inbox used by the notification workflow
+# ---------------------------------------------------------------------------
+name: assignment_clickpe
+
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-loan_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-loan_clickpe}
+      TZ: ${TZ:-Asia/Kolkata}
+      PGTZ: ${TZ:-Asia/Kolkata}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-loan_admin} -d ${POSTGRES_DB:-loan_clickpe}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [loan-net]
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:stable
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      # n8n keeps its own state in SQLite inside the named volume.
+      N8N_USER_FOLDER: /home/node
+      N8N_DEFAULT_BINARY_DATA_MODE: filesystem
+      TZ: ${TZ:-Asia/Kolkata}
+      GENERIC_TIMEZONE: ${TZ:-Asia/Kolkata}
+      # Public REST API (used by the MCP server and the import script).
+      N8N_PUBLIC_API_DISABLED: "false"
+      N8N_PUBLIC_API_AUTH: header
+      # The owner account.  n8n 2.x dropped N8N_BASIC_AUTH_*, so the owner is
+      # re-created from these variables on every boot: the password is passed
+      # as a bcrypt hash, never in clear text.
+      N8N_INSTANCE_OWNER_MANAGED_BY_ENV: "${N8N_INSTANCE_OWNER_MANAGED_BY_ENV:-false}"
+      N8N_INSTANCE_OWNER_EMAIL: "${N8N_INSTANCE_OWNER_EMAIL:-}"
+      N8N_INSTANCE_OWNER_PASSWORD_HASH: "${N8N_INSTANCE_OWNER_PASSWORD_HASH:-}"
+      N8N_INSTANCE_OWNER_FIRST_NAME: "${N8N_INSTANCE_OWNER_FIRST_NAME:-Instance}"
+      N8N_INSTANCE_OWNER_LAST_NAME: "${N8N_INSTANCE_OWNER_LAST_NAME:-Owner}"
+      # The Postgres credential used by the n8n Postgres node inside the
+      # container resolves to the compose service name, not 127.0.0.1.
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: ${POSTGRES_USER:-loan_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-loan_clickpe}
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      # The LLM endpoint and the shared secret the workflows use.  They are
+      # passed in from .env and never live in the workflow files.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-https://ollama.com}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma4:31b}
+      RELAY_SHARED_SECRET: ${RELAY_SHARED_SECRET:-}
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
+      EXECUTIONS_DATA_MAX_ROWS: "500"
+      # The Code node runs in the process of n8n instead of a separate task
+      # runner.  A runner hands the task out with a time limit, and a task
+      # that works on tens of thousands of rows outlives that limit, which
+      # makes the other tasks of the workflow expire.
+      N8N_RUNNERS_ENABLED: "false"
+      EXECUTIONS_DATA_PRUNE: "false"
+      EXECUTIONS_DATA_MAX_AGE: "336"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5678/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks: [loan-net]
+
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+    environment:
+      MP_MAX_MESSAGES: "500"
+      MP_SMTP_AUTH_ACCEPT_ANY: "1"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "1"
+    networks: [loan-net]
+
+  # -------------------------------------------------------------------------
+  # The HTTP interface: the upload page and the API around it.
+  # -------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      n8n:
+        condition: service_started
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_SSLMODE: disable
+      N8N_API_URL: http://n8n:5678
+      N8N_MATCHING_WEBHOOK_URL: http://n8n:5678/webhook/loan-matching
+      N8N_NOTIFICATION_WEBHOOK_URL: http://n8n:5678/webhook/loan-notification
+      N8N_DISCOVERY_WEBHOOK_URL: http://n8n:5678/webhook/loan-discovery
+      LOCAL_STORAGE_ROOT: /data/.local-ingestion
+      API_HOST: 0.0.0.0
+      API_PORT: "8000"
+      TZ: ${TZ:-Asia/Kolkata}
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./:/app
+      - ingestion-data:/data
+    networks: [loan-net]
+
+  # -------------------------------------------------------------------------
+  # The worker: it takes the files of the queue and loads the applicants.
+  # -------------------------------------------------------------------------
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      n8n:
+        condition: service_started
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_SSLMODE: disable
+      N8N_API_URL: http://n8n:5678
+      N8N_MATCHING_WEBHOOK_URL: http://n8n:5678/webhook/loan-matching
+      N8N_NOTIFICATION_WEBHOOK_URL: http://n8n:5678/webhook/loan-notification
+      LOCAL_STORAGE_ROOT: /data/.local-ingestion
+      TZ: ${TZ:-Asia/Kolkata}
+    command: ["python3", "scripts/worker.py"]
+    volumes:
+      - ./:/app
+      - ingestion-data:/data
+    networks: [loan-net]
+
+networks:
+  loan-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+  n8n_data:
+  ingestion-data:

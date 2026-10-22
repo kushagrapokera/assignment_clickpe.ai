@@ -1,0 +1,38 @@
+{
+  "applicants": 19000,
+  "products": 17,
+  "potential_pairs": 323000,
+  "before": {
+    "candidate_pairs": 293759,
+    "eligible": 114745,
+    "likely": 17099,
+    "ineligible": 45659,
+    "needs_llm": 116256,
+    "model_applicants": 18594,
+    "unique_model_decisions": 2113,
+    "model_pairs_by_provider": {
+      "Aditya Birla Capital": 16691,
+      "IDFC First Bank": 18066,
+      "India Infoline Finance Ltd.": 16928,
+      "IndusInd Bank": 18066,
+      "Tata Capital": 17547,
+      "HDBFS": 10173,
+      "Kotak Mahindra Bank": 9153,
+      "Ujjivan Small Finance Bank": 9632
+    },
+    "seconds": 0.947
+  },
+  "after": {
+    "candidate_pairs": 294240,
+    "eligible": 123201,
+    "likely": 110552,
+    "ineligible": 60487,
+    "needs_llm": 0,
+    "model_applicants": 0,
+    "unique_model_decisions": 0,
+    "model_pairs_by_provider": {},
+    "seconds": 2.133
+  },
+  "mode": "Offline, cold decision routing replay. No model responses, API calls or email sends were performed.",
+  "reduction_percent": 100
+}

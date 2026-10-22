@@ -1,0 +1,47 @@
+{
+  "execution_id": "465",
+  "batch_id": "edbd71fd-83c2-4802-a934-94710ad108c6",
+  "status": "success",
+  "responses": [
+    {
+      "accepted": [
+        "monsterkp2004@gmail.com"
+      ],
+      "rejected": [],
+      "response": "250 2.0.0 OK  1792606389 5a478bee46e88-367405ec6c3sm11053568eec.7 - gsmtp",
+      "messageId": "<c887c082-be09-a72f-7c9d-5afa30bb48f4@gmail.com>"
+    },
+    {
+      "accepted": [
+        "monsterkp2004@gmail.com"
+      ],
+      "rejected": [],
+      "response": "250 2.0.0 OK  1792606393 a92af1059eb24-1902f96dc4bsm8735411c88.0 - gsmtp",
+      "messageId": "<4b6d9067-63e9-c71d-f868-c58be86d6909@gmail.com>"
+    },
+    {
+      "accepted": [
+        "monsterkp2004@gmail.com"
+      ],
+      "rejected": [],
+      "response": "250 2.0.0 OK  1792606397 a92af1059eb24-1903aff3481sm8298121c88.10 - gsmtp",
+      "messageId": "<273921ad-6b87-6a9b-0a6e-1c6304fe901b@gmail.com>"
+    },
+    {
+      "accepted": [
+        "monsterkp2004@gmail.com"
+      ],
+      "rejected": [],
+      "response": "250 2.0.0 OK  1792606400 5a478bee46e88-36740cc88b5sm9394902eec.10 - gsmtp",
+      "messageId": "<cd8e5fda-19e0-66d9-2d98-f49238fd19c6@gmail.com>"
+    },
+    {
+      "accepted": [
+        "monsterkp2004@gmail.com"
+      ],
+      "rejected": [],
+      "response": "250 2.0.0 OK  1792606404 5a478bee46e88-36741e71eaesm19453721eec.26 - gsmtp",
+      "messageId": "<a8214468-a37c-d18d-ca21-77bc1c41c620@gmail.com>"
+    }
+  ]
+}

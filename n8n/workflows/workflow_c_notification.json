@@ -1,0 +1,312 @@
+{
+  "name": "Workflow C - User Notification",
+  "meta": {
+    "profile": "test",
+    "description": "Sends a personalised email to the applicants that have new results. The email always goes to an address of the allow list, never to the address of the applicant file. The request is answered at once, so the mail server never holds the matching back.",
+    "node_refs": {
+      "sent": "Build Notification Emails"
+    },
+    "template": "workflow_c_notification.json",
+    "bundled_modules": [
+      "notification/delivery.js",
+      "notification/index.js"
+    ]
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-notification",
+        "responseMode": "responseNode",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000001",
+      "name": "Notification Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -900,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Validate the request before anything is sent.\n *\n * The batch id ends up in a SQL statement, so it is checked against the UUID\n * format here.  A value that is not a UUID never reaches the database.\n */\n\nconst items = $input.all();\nconst payload = (items[0] && items[0].json) || {};\nconst body = payload.body && typeof payload.body === 'object' ? payload.body : payload;\n\nconst UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;\nconst batchId = String(body.batch_id || body.batchId || '').trim().toLowerCase();\nif (!UUID.test(batchId)) {\n  throw new Error('invalid_batch_id: the request must carry a batch id in UUID format');\n}\n\nconst limit = Number(body.limit || 0);\nreturn [{\n  json: {\n    batch_id: batchId,\n    limit: Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : 0,\n    requested_at: new Date().toISOString(),\n  },\n}];"
+      },
+      "id": "c1000000-0000-4000-8000-000000000002",
+      "name": "Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -670,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { batch_id: $json.batch_id, status: 'accepted' } }}",
+        "options": {
+          "responseCode": 202
+        }
+      },
+      "id": "c1000000-0000-4000-8000-000000000003",
+      "name": "Acknowledge Request",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -450,
+        300
+      ],
+      "notes": "The request is answered at once. The mails are sent in the background, so a slow mail server never holds the matching back."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH recipients AS (\n  SELECT coalesce(array_agg(address ORDER BY address), ARRAY[]::text[]) AS addresses\n  FROM notification_recipients\n  WHERE active\n),\ndecisions AS (\n  SELECT\n    d.user_id,\n    d.product_id,\n    d.lane,\n    d.status,\n    d.reasons,\n    m.decided_by,\n    m.score,\n    m.llm_assessment,\n    u.name,\n    u.email,\n    u.age,\n    u.monthly_income,\n    u.credit_score,\n    u.employment_status,\n    u.batch_id,\n    p.product_name,\n    p.provider,\n    p.interest_rate_min,\n    p.interest_rate_max,\n    p.min_loan_amount,\n    p.max_loan_amount,\n    p.min_tenure_months,\n    p.max_tenure_months\n  FROM ui_decisions d\n  JOIN users u ON u.user_id = d.user_id\n  JOIN loan_products p ON p.product_id = d.product_id\n  LEFT JOIN matches m ON m.batch_id = d.batch_id AND m.user_id = d.user_id AND m.product_id = d.product_id\n  WHERE d.batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n    AND p.active\n    AND d.status IN ('eligible', 'review', 'pending')\n    AND NOT EXISTS (\n      SELECT 1 FROM notifications n\n      WHERE n.user_id = d.user_id AND n.batch_id = d.batch_id AND n.status <> 'failed'\n    )\n)\nSELECT\n  decisions.*,\n  (SELECT addresses FROM recipients) AS allowed_recipients\nFROM (SELECT 1 AS one) AS anchor\nLEFT JOIN decisions ON TRUE\nORDER BY decisions.user_id NULLS FIRST, decisions.interest_rate_min NULLS LAST, decisions.product_name"
+      },
+      "id": "c1000000-0000-4000-8000-000000000004",
+      "name": "Fetch Matched Applicants",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        -230,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The decisions of the batch: the confirmed eligibility and the requests for missing information, plus the addresses that are allowed to receive a notification.  An applicant that was already notified about this batch is skipped, so a repeated dispatch never sends the same mail twice."
+    },
+    {
+      "parameters": {
+        "jsCode": "// ---------------------------------------------------------\n// Bundled by scripts/build_workflows.py - do not edit here.\n// Edit the modules in n8n/code and rebuild.\n// ---------------------------------------------------------\nconst __bundle = // ---------------------------------------------------------------------------\n// Auto-generated bundle. Source of truth: notification/index.js\n// Regenerate with: python3 scripts/build_workflows.py\n// ---------------------------------------------------------------------------\n(function () {\n  'use strict';\n  const __modules = {};\n  const __cache = {};\n  const __virtual = {};\n\n  function __dirnameOf(key) {\n    const index = key.lastIndexOf('/');\n    return index === -1 ? '' : key.slice(0, index);\n  }\n\n  function __resolve(request, fromKey) {\n    if (!request.startsWith('.')) {\n      return request;\n    }\n    const base = __dirnameOf(fromKey);\n    const segments = (base ? base.split('/') : []).concat(request.split('/'));\n    const stack = [];\n    segments.forEach((segment) => {\n      if (segment === '.' || segment === '') {\n        return;\n      }\n      if (segment === '..') {\n        stack.pop();\n        return;\n      }\n      stack.push(segment);\n    });\n    return stack.join('/');\n  }\n\n  function __require(request, fromKey) {\n    const key = __resolve(request, fromKey || '');\n    if (Object.prototype.hasOwnProperty.call(__virtual, key)) {\n      return __virtual[key];\n    }\n    const candidates = [key, key + '.js', key + '/index.js'];\n    let resolved = null;\n    for (let index = 0; index < candidates.length; index += 1) {\n      if (Object.prototype.hasOwnProperty.call(__modules, candidates[index])) {\n        resolved = candidates[index];\n        break;\n      }\n    }\n    if (!resolved) {\n      throw new Error('Module not found in bundle: ' + key);\n    }\n    if (__cache[resolved]) {\n      return __cache[resolved].exports;\n    }\n    const module = { exports: {} };\n    __cache[resolved] = module;\n    const localRequire = (next) => __require(next, resolved);\n    __modules[resolved](module, module.exports, localRequire);\n    return module.exports;\n  }\n  __modules['notification/index.js'] = function (module, exports, require) {\n/**\n * Entry point: build one notification per applicant.\n *\n * The applicants arrive as one row per decision.  They are grouped per\n * applicant, addressed to the allow list (never to the address of the\n * applicant) and capped, so a large batch does not flood the inbox of the\n * team.\n *\n * The allow list travels with the rows, so the workflow needs a single input\n * and the addresses never end up in the workflow file.\n */\n\nconst { unwrapAll } = require('../lib/items');\nconst { buildEmail } = require('./email');\nconst CONFIG = require('virtual:config.json');\n\n/**\n * Group the decision rows per applicant.\n *\n * @param {object[]} rows one row per decision\n * @returns {object[]} one entry per applicant\n */\nfunction groupByApplicant(rows) {\n  const applicants = new Map();\n  (rows || []).forEach((row) => {\n    const userId = row.user_id;\n    if (!userId) {\n      return;\n    }\n    if (!applicants.has(userId)) {\n      applicants.set(userId, {\n        user: {\n          user_id: userId,\n          name: row.name,\n          email: row.email,\n          age: row.age,\n          monthly_income: row.monthly_income,\n          credit_score: row.credit_score,\n          employment_status: row.employment_status,\n        },\n        batch_id: row.batch_id,\n        matches: [],\n      });\n    }\n    applicants.get(userId).matches.push({\n      match_id: row.match_id,\n      product_id: row.product_id,\n      status: row.status,\n      lane: row.lane,\n      decided_by: row.decided_by,\n      score: row.score,\n      reasons: row.reasons || [],\n      llm_assessment: row.llm_assessment,\n      product_name: row.product_name,\n      provider: row.provider,\n      interest_rate_min: row.interest_rate_min,\n      interest_rate_max: row.interest_rate_max,\n      min_loan_amount: row.min_loan_amount,\n      max_loan_amount: row.max_loan_amount,\n      min_tenure_months: row.min_tenure_months,\n      max_tenure_months: row.max_tenure_months,\n    });\n  });\n  return Array.from(applicants.values());\n}\n\n/**\n * Build the notifications.\n *\n * @param {object[]} items the decision rows\n * @returns {object[]} one item per email\n */\nfunction run(items) {\n  const rows = unwrapAll(items);\n  const applicants = groupByApplicant(rows);\n\n  const allowed = rows.length ? rows[0].allowed_recipients : null;\n  const recipients = Array.isArray(allowed) ? allowed.filter(Boolean) : [];\n\n  const notification = (CONFIG && CONFIG.notification) || {};\n  const fromEmail = notification.from_email || 'alerts@loan-engine.test';\n  const maxEmails = Number(notification.max_emails || 5);\n\n  if (!recipients.length) {\n    // Without an allow list nothing is sent: the addresses of the applicant\n    // file must never be used as a recipient.\n    return [];\n  }\n\n  const emails = [];\n  applicants.forEach((applicant, index) => {\n    if (emails.length >= maxEmails) {\n      return;\n    }\n    // The recipients of the allow list are used in turn, so every applicant\n    // ends up in a different alias of the inbox.\n    const recipient = recipients[index % recipients.length];\n    const email = buildEmail(applicant, recipient, { from_email: fromEmail });\n    const eligible = applicant.matches.filter((match) => match.status === 'eligible').length;\n    const review = applicant.matches.length - eligible;\n    emails.push({\n      to: email.to,\n      from: email.from,\n      subject: email.subject,\n      html: email.html,\n      text: email.text,\n      user_id: applicant.user.user_id,\n      applicant_email: applicant.user.email,\n      batch_id: applicant.batch_id,\n      match_count: eligible,\n      review_count: review,\n      recipient: recipient,\n    });\n  });\n\n  return emails;\n}\n\nmodule.exports = { run, groupByApplicant };\n\n  };\n\n  __modules['lib/items.js'] = function (module, exports, require) {\n/**\n * Helpers for the item shape n8n uses.\n *\n * A Code node receives items shaped like `{ json: {...}, pairedItem: ... }`,\n * while the business logic works with plain objects.  These helpers unwrap\n * the payload once, at the boundary, so the rest of the code never has to\n * care about the n8n item envelope.\n */\n\n/**\n * Return the plain payload of an item.\n *\n * @param {object} item n8n item or plain object\n * @returns {object} payload\n */\nfunction unwrap(item) {\n  if (!item || typeof item !== 'object') {\n    return {};\n  }\n  if (item.json && typeof item.json === 'object') {\n    return item.json;\n  }\n  return item;\n}\n\n/**\n * Unwrap every item of a list.\n *\n * @param {object[]} items n8n items\n * @returns {object[]} plain payloads\n */\nfunction unwrapAll(items) {\n  if (!Array.isArray(items)) {\n    return [];\n  }\n  return items.map(unwrap);\n}\n\nmodule.exports = { unwrap, unwrapAll };\n\n  };\n\n  __modules['notification/email.js'] = function (module, exports, require) {\n/**\n * The notification email.\n *\n * The email is addressed to an address of the allow list, never to the\n * address of the applicant: the applicant file of the assignment contains\n * addresses that must not be mailed.  The applicant is identified in the\n * body of the email, and the address that received it is recorded in the\n * `notifications` table.\n *\n * Two kinds of result are reported separately:\n *\n *   * a confirmed eligibility - the published criteria of the lender are met,\n *   * a request for missing information - the lender publishes a criterion\n *     the applicant file does not answer, so a person has to look at it.\n *\n * Mixing the two would read as an approval that the engine cannot give.\n */\n\n/**\n * Escape a value so it can be used in HTML.\n *\n * @param {*} value value to escape\n * @returns {string} escaped value\n */\nfunction escapeHtml(value) {\n  return String(value === null || value === undefined ? '' : value)\n    .replace(/&/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;')\n    .replace(/'/g, '&#39;');\n}\n\n/**\n * Format an amount in Indian currency.\n *\n * @param {number|null} value amount in rupees\n * @returns {string} formatted amount\n */\nfunction formatAmount(value) {\n  if (value === null || value === undefined) {\n    return 'not published';\n  }\n  const amount = Math.round(Number(value));\n  if (!Number.isFinite(amount)) {\n    return 'not published';\n  }\n  const formatted = amount.toLocaleString('en-IN', { maximumFractionDigits: 0 });\n  return `₹${formatted}`;\n}\n\n/**\n * Format an interest rate range.\n *\n * @param {number|null} min lower bound in percent\n * @param {number|null} max upper bound in percent\n * @returns {string} formatted range\n */\nfunction formatRate(min, max) {\n  if (min === null || min === undefined) {\n    return max === null || max === undefined ? 'not published' : `up to ${trim(max)}% p.a.`;\n  }\n  if (max === null || max === undefined) {\n    return `${trim(min)}% p.a. onwards`;\n  }\n  if (Number(min) === Number(max)) {\n    return `${trim(min)}% p.a.`;\n  }\n  return `${trim(min)}% – ${trim(max)}% p.a.`;\n}\n\n/**\n * Render a number without trailing zeros.\n *\n * @param {number} value the number\n * @returns {string} the number as text\n */\nfunction trim(value) {\n  const number = Number(value);\n  if (!Number.isFinite(number)) {\n    return String(value);\n  }\n  return String(Math.round(number * 100) / 100);\n}\n\n/**\n * Format a tenure range in months.\n *\n * @param {number|null} min lower bound in months\n * @param {number|null} max upper bound in months\n * @returns {string} formatted range\n */\nfunction formatTenure(min, max) {\n  const toYears = (months) => {\n    const years = Math.round((months / 12) * 10) / 10;\n    return `${years} year${years === 1 ? '' : 's'}`;\n  };\n  if (min === null || min === undefined) {\n    // Only an upper bound was published.\n    return max === null || max === undefined ? 'not published' : `up to ${toYears(max)}`;\n  }\n  if (max === null || max === undefined || Number(min) === Number(max)) {\n    return toYears(min);\n  }\n  return `${toYears(min)} – ${toYears(max)}`;\n}\n\n/** Readable names for the reason codes of the rule engine. */\nconst CHECK_LABELS = {\n  AGE: 'the age limit',\n  INCOME: 'the income requirement',\n  CREDIT_SCORE: 'the credit score requirement',\n  EMPLOYMENT_STATUS: 'the employment status requirement',\n  EMPLOYMENT_YEARS: 'the work experience requirement',\n  APPLICANT_AGE: 'the age of the applicant',\n  APPLICANT_INCOME: 'the income of the applicant',\n  APPLICANT_CREDIT_SCORE: 'the credit score of the applicant',\n  APPLICANT_EMPLOYMENT_YEARS: 'the work experience of the applicant',\n  DEBT_SERVICE_RATIO: 'the existing EMIs',\n};\n\n/**\n * Turn a reason code into a readable label.\n *\n * @param {string} code reason code\n * @returns {string} the label\n */\nfunction checkLabel(code) {\n  const key = String(code || '')\n    .replace(/_NOT_PUBLISHED$/, '')\n    .replace(/_UNKNOWN$/, '');\n  return CHECK_LABELS[key] || key.replace(/_/g, ' ').toLowerCase();\n}\n\n/**\n * Join a list of labels into a readable sentence.\n *\n * @param {string[]} labels the labels\n * @returns {string} the sentence\n */\nfunction joinLabels(labels) {\n  if (!labels.length) {\n    return '';\n  }\n  if (labels.length === 1) {\n    return labels[0];\n  }\n  return `${labels.slice(0, -1).join(', ')} and ${labels[labels.length - 1]}`;\n}\n\n/**\n * Collect the items the applicant has to confirm before applying.\n *\n * A lender that publishes no credit requirement is not evidence that the\n * applicant has one, so the check is reported as something to confirm.  The\n * items are grouped per lender, which keeps the list readable when a lender\n * publishes no criterion at all.\n *\n * @param {object[]} matches the decisions of the applicant\n * @returns {string[]} human readable confirmation items\n */\nfunction collectConfirmations(matches) {\n  const byProvider = new Map();\n  (matches || []).forEach((match) => {\n    const provider = match.provider || 'the lender';\n    if (!byProvider.has(provider)) {\n      byProvider.set(provider, { notPublished: new Set(), unknown: new Set(), notes: [] });\n    }\n    const bucket = byProvider.get(provider);\n    const checks = Array.isArray(match.reasons) ? match.reasons : [];\n    checks.forEach((check) => {\n      if (!check) {\n        return;\n      }\n      if (typeof check === 'string') {\n        bucket.notes.push(check);\n        return;\n      }\n      if (check.state === 'not_published') {\n        bucket.notPublished.add(checkLabel(check.code));\n      } else if (check.state === 'unknown') {\n        bucket.unknown.add(checkLabel(check.code));\n      } else if (check.state === 'review') {\n        bucket.notes.push(check.detail || checkLabel(check.code));\n      }\n    });\n  });\n\n  const items = [];\n  byProvider.forEach((bucket, provider) => {\n    if (bucket.notPublished.size) {\n      items.push(\n        `${provider} does not publish ${joinLabels(Array.from(bucket.notPublished))} - confirm it with the lender`,\n      );\n    }\n    if (bucket.unknown.size) {\n      items.push(\n        `${joinLabels(Array.from(bucket.unknown))} is missing from the applicant data - it has to be confirmed`,\n      );\n    }\n    bucket.notes.forEach((note) => {\n      items.push(`${provider}: ${note}`);\n    });\n  });\n  return items;\n}\n\n/**\n * Split the decisions of an applicant into the confirmed and the open ones.\n *\n * @param {object[]} decisions the decisions of the applicant\n * @returns {{eligible: object[], review: object[]}} the two groups\n */\nfunction splitDecisions(decisions) {\n  const eligible = [];\n  const review = [];\n  (decisions || []).forEach((decision) => {\n    if (decision && decision.status === 'eligible') {\n      eligible.push(decision);\n    } else if (decision) {\n      review.push(decision);\n    }\n  });\n  return { eligible, review };\n}\n\n/**\n * Build the email of one applicant.\n *\n * @param {object} applicant the applicant and its decisions\n * @param {string} recipient the address the email is sent to\n * @param {object} config notification configuration\n * @returns {object} the email\n */\nfunction buildEmail(applicant, recipient, config) {\n  const decisions = applicant.matches || [];\n  const { eligible, review } = splitDecisions(decisions);\n  const user = applicant.user || {};\n  const name = user.name || 'there';\n  const from = (config && config.from_email) || 'alerts@loan-engine.test';\n\n  const eligibleRows = eligible\n    .map((match) => {\n      const rate = formatRate(match.interest_rate_min, match.interest_rate_max);\n      const amount = formatAmount(match.max_loan_amount);\n      const tenure = formatTenure(match.min_tenure_months, match.max_tenure_months);\n      return `<tr>\n        <td><strong>${escapeHtml(match.provider)}</strong><br /><span class=\"muted\">${escapeHtml(\n          match.product_name,\n        )}</span></td>\n        <td>${escapeHtml(rate)}</td>\n        <td>${escapeHtml(amount)}</td>\n        <td>${escapeHtml(tenure)}</td>\n        <td><span class=\"badge ok\">eligible</span></td>\n      </tr>`;\n    })\n    .join('\\n');\n\n  const reviewRows = review\n    .map((match) => {\n      const needs = (Array.isArray(match.reasons) ? match.reasons : [])\n        .map((reason) =>\n          typeof reason === 'object' && reason !== null\n            ? reason.detail || checkLabel(reason.code)\n            : String(reason),\n        )\n        .filter(Boolean)\n        .join('; ');\n      return `<tr>\n        <td><strong>${escapeHtml(match.provider)}</strong><br /><span class=\"muted\">${escapeHtml(\n          match.product_name,\n        )}</span></td>\n        <td>${escapeHtml(needs || 'A lender criterion has to be confirmed')}</td>\n        <td><span class=\"badge maybe\">needs information</span></td>\n      </tr>`;\n    })\n    .join('\\n');\n\n  const profile = [\n    user.age ? `age ${user.age}` : null,\n    user.monthly_income ? `monthly income ${formatAmount(user.monthly_income)}` : null,\n    user.credit_score ? `credit score ${user.credit_score}` : null,\n    user.employment_status ? `employed as ${user.employment_status}` : null,\n  ]\n    .filter(Boolean)\n    .join(', ');\n\n  const confirmations = collectConfirmations(eligible);\n  const confirmationBlock = confirmations.length\n    ? `<p class=\"lead\">Before you apply, please confirm:</p><ul>${confirmations\n        .map((item) => `<li>${escapeHtml(item)}</li>`)\n        .join('')}</ul>`\n    : eligible.length\n      ? '<p class=\"lead\">Every published eligibility criterion of these lenders is met.</p>'\n      : '';\n\n  const eligibleBlock = eligible.length\n    ? `<h2>${eligible.length} personal loan${eligible.length === 1 ? '' : 's'} you may qualify for</h2>\n      <table>\n        <thead>\n          <tr><th>Lender</th><th>Interest rate</th><th>Max loan</th><th>Tenure</th><th>Result</th></tr>\n        </thead>\n        <tbody>${eligibleRows}</tbody>\n      </table>`\n    : '';\n\n  const reviewBlock = review.length\n    ? `<h2>${review.length} lender${review.length === 1 ? '' : 's'} need${review.length === 1 ? 's' : ''} more information</h2>\n      <p class=\"lead\">These lenders publish a criterion the applicant file does not answer. A person has to confirm it - it is not a rejection.</p>\n      <table>\n        <thead>\n          <tr><th>Lender</th><th>What has to be confirmed</th><th>Result</th></tr>\n        </thead>\n        <tbody>${reviewRows}</tbody>\n      </table>`\n    : '';\n\n  const heading = eligible.length\n    ? `${eligible.length} personal loan${eligible.length === 1 ? '' : 's'} you may qualify for`\n    : `${review.length} lender${review.length === 1 ? '' : 's'} need more information`;\n\n  const intro = eligible.length\n    ? `Your profile (${escapeHtml(profile)}) matches the published eligibility criteria of ${eligible.length} lender${eligible.length === 1 ? '' : 's'}.`\n    : `Your profile (${escapeHtml(profile)}) was checked against ${review.length} lender${review.length === 1 ? '' : 's'}.`;\n\n  const html = `<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset=\"utf-8\" />\n    <style>\n      body { font-family: -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n             margin: 0; padding: 24px; background: #f5f7fb; color: #14213d; }\n      .card { max-width: 720px; margin: 0 auto; background: #ffffff; border-radius: 12px;\n              padding: 28px 32px; box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08); }\n      h1 { font-size: 20px; margin: 0 0 4px; }\n      h2 { font-size: 15px; margin: 24px 0 8px; }\n      .muted { color: #667085; font-size: 13px; }\n      .lead { font-size: 14px; color: #344054; }\n      table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }\n      th { text-align: left; color: #667085; font-weight: 600; font-size: 12px;\n           text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #eaecf0;\n           padding: 8px 6px; }\n      td { padding: 10px 6px; border-bottom: 1px solid #f2f4f7; vertical-align: top; }\n      .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; }\n      .badge.ok { background: #ecfdf3; color: #027a48; }\n      .badge.maybe { background: #fffaeb; color: #b54708; }\n      .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eaecf0;\n                color: #667085; font-size: 12px; }\n    </style>\n  </head>\n  <body>\n    <div class=\"card\">\n      <h1>${escapeHtml(heading)}</h1>\n      <p class=\"lead\">Hi ${escapeHtml(name)},</p>\n      <p class=\"lead\">${intro}</p>\n      ${eligibleBlock}\n      ${reviewBlock}\n      ${confirmationBlock}\n      <p class=\"footer\">\n        Prepared by the Loan Eligibility Engine from the eligibility criteria published by the\n        lenders on ${escapeHtml(new Date().toISOString().slice(0, 10))}.\n        This is guidance, not an approval - the lender decides.\n        <br />Applicant reference: ${escapeHtml(user.user_id)} - batch ${escapeHtml(applicant.batch_id)}\n      </p>\n    </div>\n  </body>\n</html>`;\n\n  const textLines = [`Hi ${name},`, '', intro, ''];\n  if (eligible.length) {\n    textLines.push(`${eligible.length} confirmed personal loan(s):`);\n    eligible.forEach((match) => {\n      textLines.push(\n        `- ${match.provider} - ${match.product_name}: ${formatRate(\n          match.interest_rate_min,\n          match.interest_rate_max,\n        )}, up to ${formatAmount(match.max_loan_amount)}, ${formatTenure(\n          match.min_tenure_months,\n          match.max_tenure_months,\n        )} [eligible]`,\n      );\n    });\n    textLines.push('');\n  }\n  if (review.length) {\n    textLines.push(`${review.length} lender(s) need more information:`);\n    review.forEach((match) => {\n      const needs = (Array.isArray(match.reasons) ? match.reasons : [])\n        .map((reason) =>\n          typeof reason === 'object' && reason !== null\n            ? reason.detail || checkLabel(reason.code)\n            : String(reason),\n        )\n        .filter(Boolean)\n        .join('; ');\n      textLines.push(`- ${match.provider} - ${match.product_name}: ${needs || 'to be confirmed'}`);\n    });\n    textLines.push('');\n  }\n  if (confirmations.length) {\n    textLines.push('Before you apply, please confirm:');\n    confirmations.forEach((item) => textLines.push(`- ${item}`));\n  } else if (eligible.length) {\n    textLines.push('Every published eligibility criterion of these lenders is met.');\n  }\n  textLines.push('');\n  textLines.push(\n    `Applicant reference: ${user.user_id} - batch ${applicant.batch_id}`,\n    'This is guidance, not an approval - the lender decides.',\n  );\n\n  const subject = review.length\n    ? `${heading} - ${review.length} lender${review.length === 1 ? '' : 's'} need more information`\n    : heading;\n\n  return {\n    to: recipient,\n    from: from,\n    subject: subject,\n    html: html,\n    text: textLines.join('\\n'),\n  };\n}\n\nmodule.exports = {\n  buildEmail,\n  checkLabel,\n  collectConfirmations,\n  escapeHtml,\n  formatAmount,\n  formatRate,\n  formatTenure,\n  joinLabels,\n  splitDecisions,\n  trim,\n};\n\n  };\n\n  Object.assign(__virtual, {\n    'virtual:sources.json': {\n  \"version\": 2,\n  \"description\": \"Crawl registry for Workflow A. Every entry describes one public page that lists personal loan products. Adding a source here (plus an extractor) is enough to extend the crawler - no workflow change required.\",\n  \"publishers\": {\n    \"bankbazaar\": {\n      \"name\": \"BankBazaar\",\n      \"site\": \"bankbazaar.com\",\n      \"role\": \"aggregator\",\n      \"note\": \"Comparison page with one card per lender, so a single crawl yields many products.\"\n    },\n    \"bajaj-finserv\": {\n      \"name\": \"Bajaj Finserv\",\n      \"site\": \"bajajfinserv.in\",\n      \"role\": \"publisher\",\n      \"note\": \"Direct lender. The main page carries schema.org product markup, the variant pages are read from the rendered text.\"\n    }\n  },\n  \"sources\": [\n    {\n      \"id\": \"bankbazaar-personal-loan\",\n      \"publisher\": \"bankbazaar\",\n      \"name\": \"BankBazaar Personal Loan Comparison\",\n      \"url\": \"https://www.bankbazaar.com/personal-loan\",\n      \"extractor\": \"bankbazaar\",\n      \"enabled\": true,\n      \"strategy\": \"html\",\n      \"fingerprint\": \"Apply Online for\",\n      \"notes\": \"Comparison page with one card per lender (16-17 products per crawl). Rates, amounts, tenure and the eligibility bullets are read from the rendered cards.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"json-ld\",\n      \"fingerprint\": \"bajajfinserv.in\",\n      \"notes\": \"schema.org LoanOrCredit/FinancialProduct markup gives the interest rate range, loan amount range, tenure and the eligible employment types; CIBIL score and maximum age come from the rendered text.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-salaried-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Salaried Professionals\",\n      \"url\": \"https://www.bajajfinserv.in/salaried-personal-loan\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"salaried-personal-loan\",\n      \"notes\": \"Segment specific variant. No schema.org product markup, so the heading, amount, tenure and CIBIL requirement are read from the page.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-travel-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Travel\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-travel\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-travel\",\n      \"notes\": \"Purpose specific variant for travel expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-wedding-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Wedding\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-wedding\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-wedding\",\n      \"notes\": \"Purpose specific variant for wedding expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-medical-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Medical Emergency\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-medical-expenses\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-medical-expenses\",\n      \"notes\": \"Purpose specific variant for medical expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-home-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Home Expenses\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-home-expenses\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-home-expenses\",\n      \"notes\": \"Purpose specific variant for home improvement and renovation.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-education-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Higher Education\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-higher-education\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-higher-education\",\n      \"notes\": \"Purpose specific variant for higher education fees.\"\n    }\n  ]\n},\n    'virtual:config.json': {\n  \"llm\": {\n    \"model\": \"gemma4:31b\",\n    \"base_url\": \"https://ollama.com\"\n  },\n  \"notification\": {\n    \"from_email\": \"kushagrapokera@gmail.com\",\n    \"max_emails\": 5\n  }\n}\n  });\n  const __entry = __require('notification/index.js');\n  return __entry;\n})();\n\nreturn __bundle.run($input.all());\n"
+      },
+      "id": "c1000000-0000-4000-8000-000000000005",
+      "name": "Build Notification Emails",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -10,
+        300
+      ],
+      "notes": "One personalised email per applicant, addressed to the allow list.",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "fromEmail": "={{ $json.from }}",
+        "toEmail": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailFormat": "both",
+        "html": "={{ $json.html }}",
+        "text": "={{ $json.text }}",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000006",
+      "name": "Send Notification",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "__CREDENTIAL__:smtp",
+          "name": "Loan Engine Mail"
+        }
+      },
+      "notes": "Local run goes to Mailpit, in production the same credential points at the SMTP endpoint of Amazon SES.",
+      "onError": "continue",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// ---------------------------------------------------------\n// Bundled by scripts/build_workflows.py - do not edit here.\n// Edit the modules in n8n/code and rebuild.\n// ---------------------------------------------------------\nconst __bundle = // ---------------------------------------------------------------------------\n// Auto-generated bundle. Source of truth: notification/delivery.js\n// Regenerate with: python3 scripts/build_workflows.py\n// ---------------------------------------------------------------------------\n(function () {\n  'use strict';\n  const __modules = {};\n  const __cache = {};\n  const __virtual = {};\n\n  function __dirnameOf(key) {\n    const index = key.lastIndexOf('/');\n    return index === -1 ? '' : key.slice(0, index);\n  }\n\n  function __resolve(request, fromKey) {\n    if (!request.startsWith('.')) {\n      return request;\n    }\n    const base = __dirnameOf(fromKey);\n    const segments = (base ? base.split('/') : []).concat(request.split('/'));\n    const stack = [];\n    segments.forEach((segment) => {\n      if (segment === '.' || segment === '') {\n        return;\n      }\n      if (segment === '..') {\n        stack.pop();\n        return;\n      }\n      stack.push(segment);\n    });\n    return stack.join('/');\n  }\n\n  function __require(request, fromKey) {\n    const key = __resolve(request, fromKey || '');\n    if (Object.prototype.hasOwnProperty.call(__virtual, key)) {\n      return __virtual[key];\n    }\n    const candidates = [key, key + '.js', key + '/index.js'];\n    let resolved = null;\n    for (let index = 0; index < candidates.length; index += 1) {\n      if (Object.prototype.hasOwnProperty.call(__modules, candidates[index])) {\n        resolved = candidates[index];\n        break;\n      }\n    }\n    if (!resolved) {\n      throw new Error('Module not found in bundle: ' + key);\n    }\n    if (__cache[resolved]) {\n      return __cache[resolved].exports;\n    }\n    const module = { exports: {} };\n    __cache[resolved] = module;\n    const localRequire = (next) => __require(next, resolved);\n    __modules[resolved](module, module.exports, localRequire);\n    return module.exports;\n  }\n  __modules['notification/delivery.js'] = function (module, exports, require) {\n/**\n * Entry point: collect what the mail server answered.\n *\n * The Send Email node replaces the item with the response of the mail\n * server, so the applicant the mail belonged to is read back from the node\n * that built the emails.\n */\n\nconst { unwrapAll } = require('../lib/items');\nconst { NODES } = require('./nodes');\n\n/**\n * Read the items of another node of the workflow.\n *\n * @param {string} nodeName name of the node\n * @returns {object[]} the JSON payloads of that node\n */\nfunction itemsOf(nodeName) {\n  try {\n    return $(nodeName).all().map((item) => item.json);\n  } catch (error) {\n    return [];\n  }\n}\n\n/**\n * Escape a value so it can be embedded as a SQL string literal.\n *\n * @param {*} value value to serialise\n * @returns {string} SQL string literal\n */\nfunction sqlLiteral(value) {\n  const text = typeof value === 'string' ? value : JSON.stringify(value);\n  return `'${String(text).replace(/'/g, \"''\")}'`;\n}\n\n/**\n * Collect the delivery results.\n *\n * @param {object[]} items the responses of the mail server\n * @returns {object[]} one item per notification\n */\nfunction run(items) {\n  const responses = unwrapAll(items);\n  const sent = itemsOf(NODES.sent);\n\n  const notifications = responses.map((response, index) => {\n    const original = sent[index] || {};\n    if (!original.user_id) {\n      // The placeholder of a run without a single notification.\n      return null;\n    }\n    const failed = Boolean(response && (response.error || response.statusCode >= 400));\n    const messageId =\n      (response && (response.messageId || response.message_id || response.id)) || null;\n    return {\n      user_id: original.user_id || null,\n      batch_id: original.batch_id || null,\n      match_count: original.match_count || 0,\n      review_count: original.review_count || 0,\n      recipient: original.recipient || original.to || null,\n      provider: 'smtp',\n      status: failed ? 'failed' : 'sent',\n      provider_message_id: messageId,\n      error: failed\n        ? String((response && (response.error || response.message)) || 'unknown error')\n        : null,\n    };\n  });\n\n  const delivered = notifications.filter((entry) => entry !== null);\n\n  return [\n    {\n      notifications: delivered,\n      notifications_sql: sqlLiteral(delivered),\n      statistics: {\n        notifications: delivered.length,\n        sent: delivered.filter((entry) => entry.status === 'sent').length,\n        failed: delivered.filter((entry) => entry.status === 'failed').length,\n      },\n    },\n  ];\n}\n\nmodule.exports = { run, sqlLiteral, itemsOf };\n\n  };\n\n  __modules['lib/items.js'] = function (module, exports, require) {\n/**\n * Helpers for the item shape n8n uses.\n *\n * A Code node receives items shaped like `{ json: {...}, pairedItem: ... }`,\n * while the business logic works with plain objects.  These helpers unwrap\n * the payload once, at the boundary, so the rest of the code never has to\n * care about the n8n item envelope.\n */\n\n/**\n * Return the plain payload of an item.\n *\n * @param {object} item n8n item or plain object\n * @returns {object} payload\n */\nfunction unwrap(item) {\n  if (!item || typeof item !== 'object') {\n    return {};\n  }\n  if (item.json && typeof item.json === 'object') {\n    return item.json;\n  }\n  return item;\n}\n\n/**\n * Unwrap every item of a list.\n *\n * @param {object[]} items n8n items\n * @returns {object[]} plain payloads\n */\nfunction unwrapAll(items) {\n  if (!Array.isArray(items)) {\n    return [];\n  }\n  return items.map(unwrap);\n}\n\nmodule.exports = { unwrap, unwrapAll };\n\n  };\n\n  __modules['notification/nodes.js'] = function (module, exports, require) {\n/**\n * References to the other nodes of Workflow C.\n *\n * The names are injected by the build script from the workflow template, so\n * the code and the workflow cannot drift apart.\n */\n\nconst NODES = {\n  /** Node that built the emails, it still holds the applicant of every mail. */\n  sent: 'Build Notification Emails',\n};\n\nmodule.exports = { NODES };\n\n  };\n\n  Object.assign(__virtual, {\n    'virtual:sources.json': {\n  \"version\": 2,\n  \"description\": \"Crawl registry for Workflow A. Every entry describes one public page that lists personal loan products. Adding a source here (plus an extractor) is enough to extend the crawler - no workflow change required.\",\n  \"publishers\": {\n    \"bankbazaar\": {\n      \"name\": \"BankBazaar\",\n      \"site\": \"bankbazaar.com\",\n      \"role\": \"aggregator\",\n      \"note\": \"Comparison page with one card per lender, so a single crawl yields many products.\"\n    },\n    \"bajaj-finserv\": {\n      \"name\": \"Bajaj Finserv\",\n      \"site\": \"bajajfinserv.in\",\n      \"role\": \"publisher\",\n      \"note\": \"Direct lender. The main page carries schema.org product markup, the variant pages are read from the rendered text.\"\n    }\n  },\n  \"sources\": [\n    {\n      \"id\": \"bankbazaar-personal-loan\",\n      \"publisher\": \"bankbazaar\",\n      \"name\": \"BankBazaar Personal Loan Comparison\",\n      \"url\": \"https://www.bankbazaar.com/personal-loan\",\n      \"extractor\": \"bankbazaar\",\n      \"enabled\": true,\n      \"strategy\": \"html\",\n      \"fingerprint\": \"Apply Online for\",\n      \"notes\": \"Comparison page with one card per lender (16-17 products per crawl). Rates, amounts, tenure and the eligibility bullets are read from the rendered cards.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"json-ld\",\n      \"fingerprint\": \"bajajfinserv.in\",\n      \"notes\": \"schema.org LoanOrCredit/FinancialProduct markup gives the interest rate range, loan amount range, tenure and the eligible employment types; CIBIL score and maximum age come from the rendered text.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-salaried-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Salaried Professionals\",\n      \"url\": \"https://www.bajajfinserv.in/salaried-personal-loan\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"salaried-personal-loan\",\n      \"notes\": \"Segment specific variant. No schema.org product markup, so the heading, amount, tenure and CIBIL requirement are read from the page.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-travel-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Travel\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-travel\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-travel\",\n      \"notes\": \"Purpose specific variant for travel expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-wedding-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Wedding\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-wedding\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-wedding\",\n      \"notes\": \"Purpose specific variant for wedding expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-medical-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Medical Emergency\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-medical-expenses\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-medical-expenses\",\n      \"notes\": \"Purpose specific variant for medical expenses.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-home-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Home Expenses\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-home-expenses\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-home-expenses\",\n      \"notes\": \"Purpose specific variant for home improvement and renovation.\"\n    },\n    {\n      \"id\": \"bajaj-finserv-education-personal-loan\",\n      \"publisher\": \"bajaj-finserv\",\n      \"name\": \"Bajaj Finserv Personal Loan for Higher Education\",\n      \"url\": \"https://www.bajajfinserv.in/personal-loan-for-higher-education\",\n      \"extractor\": \"bajaj\",\n      \"enabled\": true,\n      \"strategy\": \"text\",\n      \"fingerprint\": \"personal-loan-for-higher-education\",\n      \"notes\": \"Purpose specific variant for higher education fees.\"\n    }\n  ]\n},\n    'virtual:config.json': {\n  \"llm\": {\n    \"model\": \"gemma4:31b\",\n    \"base_url\": \"https://ollama.com\"\n  },\n  \"notification\": {\n    \"from_email\": \"kushagrapokera@gmail.com\",\n    \"max_emails\": 5\n  }\n}\n  });\n  const __entry = __require('notification/delivery.js');\n  return __entry;\n})();\n\nreturn __bundle.run($input.all());\n"
+      },
+      "id": "c1000000-0000-4000-8000-000000000007",
+      "name": "Collect Delivery Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH written AS (\n  INSERT INTO notifications (\n    user_id, batch_id, match_count, review_count, recipient, provider, status,\n    provider_message_id, error, sent_at\n  )\n  SELECT\n    t.user_id,\n    t.batch_id,\n    t.match_count,\n    t.review_count,\n    t.recipient,\n    t.provider,\n    t.status,\n    t.provider_message_id,\n    t.error,\n    CASE WHEN t.status = 'sent' THEN NOW() ELSE NULL END\n  FROM jsonb_to_recordset({{ $json.notifications_sql }}::jsonb) AS t(\n    user_id text, batch_id uuid, match_count int, review_count int, recipient text,\n    provider text, status text, provider_message_id text, error text\n  )\n  ON CONFLICT (user_id, batch_id) WHERE batch_id IS NOT NULL DO UPDATE SET\n    match_count = EXCLUDED.match_count,\n    review_count = EXCLUDED.review_count,\n    recipient = EXCLUDED.recipient,\n    status = EXCLUDED.status,\n    provider_message_id = EXCLUDED.provider_message_id,\n    error = EXCLUDED.error,\n    sent_at = CASE WHEN EXCLUDED.status = 'sent' THEN NOW() ELSE NULL END\n  RETURNING notification_id, status\n),\nfinished AS (\n  UPDATE ingestion_batches SET notifications_completed_at = NOW()\n  WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n  RETURNING batch_id\n),\nduration AS (\n  UPDATE matching_runs r\n  SET notifications_ms = (EXTRACT(EPOCH FROM (clock_timestamp() -\n        '{{ $('Validate Request').first().json.requested_at }}'::timestamptz)) * 1000)::bigint\n  WHERE r.run_id = (\n    SELECT run_id FROM matching_runs\n    WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n    ORDER BY started_at DESC LIMIT 1)\n  RETURNING run_id\n)\nSELECT\n  count(*)::int AS notifications_written,\n  count(*) FILTER (WHERE status = 'sent')::int AS notifications_sent,\n  count(*) FILTER (WHERE status = 'failed')::int AS notifications_failed,\n  (SELECT count(*) FROM finished)::int AS batches_finished,\n  (SELECT count(*) FROM duration)::int AS durations_written\nFROM written"
+      },
+      "id": "c1000000-0000-4000-8000-000000000008",
+      "name": "Record Notifications",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        680,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "One row per applicant and batch, so a repeated dispatch never sends or records the same mail twice."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1000000-0000-4000-8000-0000000000f1",
+              "leftValue": "={{ Boolean($json.user_id) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000009",
+      "name": "Has Notification Emails?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "Notification Request": {
+      "main": [
+        [
+          {
+            "node": "Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Acknowledge Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acknowledge Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Matched Applicants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Matched Applicants": {
+      "main": [
+        [
+          {
+            "node": "Build Notification Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Notification Emails": {
+      "main": [
+        [
+          {
+            "node": "Has Notification Emails?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Notification": {
+      "main": [
+        [
+          {
+            "node": "Collect Delivery Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Delivery Results": {
+      "main": [
+        [
+          {
+            "node": "Record Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Notification Emails?": {
+      "main": [
+        [
+          {
+            "node": "Send Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Collect Delivery Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": false,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionTimeout": 900
+  },
+  "pinData": {},
+  "tags": []
+}

@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-10-21T20:21:11.769669+00:00",
+  "upload_response_seconds": 0.030716447996383067,
+  "upload_id": "1fd10a90-c913-4d22-886a-de156c378f0c",
+  "filename": "ui_benchmark_10000.csv",
+  "size": 1000944,
+  "status": "queued",
+  "links": {
+    "self": "/api/uploads/1fd10a90-c913-4d22-886a-de156c378f0c"
+  }
+}

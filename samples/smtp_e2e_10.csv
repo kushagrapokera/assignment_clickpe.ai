@@ -1,0 +1,11 @@
+user_id,name,email,monthly_income,credit_score,employment_status,age
+440f730c-c202-4dcb-b3c9-f52a98e8c65e,SMTP Test Applicant 1,smtp-test-1@example.test,80000,780,Salaried,28
+76a3b83c-fdc3-44eb-ac3d-4603e7d9f169,SMTP Test Applicant 2,smtp-test-2@example.test,85000,781,Salaried,29
+445d1e0e-1a9b-418c-8bda-54a35627f73d,SMTP Test Applicant 3,smtp-test-3@example.test,90000,782,Salaried,30
+73ec1d1a-b7a3-4e6a-8386-6df3ec3d6653,SMTP Test Applicant 4,smtp-test-4@example.test,95000,783,Salaried,31
+62419653-df0d-4cb9-9ddb-89a0e50f1599,SMTP Test Applicant 5,smtp-test-5@example.test,100000,784,Salaried,32
+0219401c-1d35-4ea1-916b-7bf8edfea51b,SMTP Test Applicant 6,smtp-test-6@example.test,105000,785,Salaried,33
+0289bdbe-a1e2-4752-995d-834aadd41460,SMTP Test Applicant 7,smtp-test-7@example.test,110000,786,Salaried,34
+5dea08ac-2af5-4a85-82d0-c0961f0730b3,SMTP Test Applicant 8,smtp-test-8@example.test,115000,787,Salaried,35
+933e4702-5200-4479-85b3-322610dbbb58,SMTP Test Applicant 9,smtp-test-9@example.test,120000,788,Salaried,36
+73801770-e9d4-4064-b5e2-ab01d16c681a,SMTP Test Applicant 10,smtp-test-10@example.test,125000,789,Salaried,37

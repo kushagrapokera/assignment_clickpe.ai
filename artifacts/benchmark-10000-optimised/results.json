@@ -1,0 +1,887 @@
+{
+  "upload_request": {
+    "started_at": "2026-10-21T20:21:11.769669+00:00",
+    "upload_response_seconds": 0.030716447996383067,
+    "upload_id": "1fd10a90-c913-4d22-886a-de156c378f0c",
+    "filename": "ui_benchmark_10000.csv",
+    "size": 1000944,
+    "status": "queued",
+    "links": {
+      "self": "/api/uploads/1fd10a90-c913-4d22-886a-de156c378f0c"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-21T20:21:11.782424+00:00",
+      "batches": 0,
+      "fast_batches": 0,
+      "matching_completed": 0,
+      "notification_completed": 0,
+      "decisions": {},
+      "matches": 0,
+      "notifications": [],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 1,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:16.806252+00:00",
+      "batches": 20,
+      "fast_batches": 0,
+      "matching_completed": 0,
+      "notification_completed": 0,
+      "decisions": {
+        "decisions": 0,
+        "eligible": 0,
+        "ineligible": 0,
+        "review": 0
+      },
+      "matches": 0,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 250
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:21.835828+00:00",
+      "batches": 20,
+      "fast_batches": 2,
+      "matching_completed": 2,
+      "notification_completed": 1,
+      "decisions": {
+        "decisions": 17000,
+        "eligible": 6580,
+        "ineligible": 4539,
+        "review": 5881
+      },
+      "matches": 6580,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 255
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:26.864175+00:00",
+      "batches": 20,
+      "fast_batches": 3,
+      "matching_completed": 3,
+      "notification_completed": 3,
+      "decisions": {
+        "decisions": 25500,
+        "eligible": 9800,
+        "ineligible": 6961,
+        "review": 8739
+      },
+      "matches": 9800,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 265
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:31.892730+00:00",
+      "batches": 20,
+      "fast_batches": 4,
+      "matching_completed": 4,
+      "notification_completed": 4,
+      "decisions": {
+        "decisions": 34000,
+        "eligible": 13083,
+        "ineligible": 9261,
+        "review": 11656
+      },
+      "matches": 13083,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 270
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:36.926504+00:00",
+      "batches": 20,
+      "fast_batches": 5,
+      "matching_completed": 5,
+      "notification_completed": 5,
+      "decisions": {
+        "decisions": 42500,
+        "eligible": 16321,
+        "ineligible": 11625,
+        "review": 14554
+      },
+      "matches": 16321,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 275
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:42.007638+00:00",
+      "batches": 20,
+      "fast_batches": 7,
+      "matching_completed": 6,
+      "notification_completed": 6,
+      "decisions": {
+        "decisions": 59500,
+        "eligible": 22848,
+        "ineligible": 16209,
+        "review": 20443
+      },
+      "matches": 22848,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 280
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:47.116996+00:00",
+      "batches": 20,
+      "fast_batches": 8,
+      "matching_completed": 8,
+      "notification_completed": 7,
+      "decisions": {
+        "decisions": 68000,
+        "eligible": 26156,
+        "ineligible": 18448,
+        "review": 23396
+      },
+      "matches": 26156,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 285
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:52.254821+00:00",
+      "batches": 20,
+      "fast_batches": 9,
+      "matching_completed": 9,
+      "notification_completed": 9,
+      "decisions": {
+        "decisions": 76500,
+        "eligible": 29428,
+        "ineligible": 20757,
+        "review": 26315
+      },
+      "matches": 29428,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 295
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:21:57.369814+00:00",
+      "batches": 20,
+      "fast_batches": 10,
+      "matching_completed": 10,
+      "notification_completed": 10,
+      "decisions": {
+        "decisions": 85000,
+        "eligible": 32722,
+        "ineligible": 23019,
+        "review": 29259
+      },
+      "matches": 32722,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 300
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:02.482854+00:00",
+      "batches": 20,
+      "fast_batches": 11,
+      "matching_completed": 11,
+      "notification_completed": 11,
+      "decisions": {
+        "decisions": 93500,
+        "eligible": 35969,
+        "ineligible": 25426,
+        "review": 32105
+      },
+      "matches": 35969,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 305
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:08.112394+00:00",
+      "batches": 20,
+      "fast_batches": 13,
+      "matching_completed": 13,
+      "notification_completed": 12,
+      "decisions": {
+        "decisions": 110500,
+        "eligible": 42466,
+        "ineligible": 30132,
+        "review": 37902
+      },
+      "matches": 42466,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 310
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:13.779149+00:00",
+      "batches": 20,
+      "fast_batches": 14,
+      "matching_completed": 14,
+      "notification_completed": 14,
+      "decisions": {
+        "decisions": 119000,
+        "eligible": 45801,
+        "ineligible": 32317,
+        "review": 40882
+      },
+      "matches": 45801,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 320
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:18.869192+00:00",
+      "batches": 20,
+      "fast_batches": 15,
+      "matching_completed": 15,
+      "notification_completed": 15,
+      "decisions": {
+        "decisions": 127500,
+        "eligible": 49047,
+        "ineligible": 34640,
+        "review": 43813
+      },
+      "matches": 49047,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 325
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:23.981529+00:00",
+      "batches": 20,
+      "fast_batches": 17,
+      "matching_completed": 17,
+      "notification_completed": 16,
+      "decisions": {
+        "decisions": 144500,
+        "eligible": 55688,
+        "ineligible": 39052,
+        "review": 49760
+      },
+      "matches": 55688,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 330
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:29.099587+00:00",
+      "batches": 20,
+      "fast_batches": 18,
+      "matching_completed": 18,
+      "notification_completed": 18,
+      "decisions": {
+        "decisions": 153000,
+        "eligible": 58975,
+        "ineligible": 41351,
+        "review": 52674
+      },
+      "matches": 58975,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 340
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:34.224476+00:00",
+      "batches": 20,
+      "fast_batches": 19,
+      "matching_completed": 19,
+      "notification_completed": 19,
+      "decisions": {
+        "decisions": 161500,
+        "eligible": 62143,
+        "ineligible": 43865,
+        "review": 55492
+      },
+      "matches": 62143,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 345
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 2,
+          "dispatched": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-21T20:22:39.362321+00:00",
+      "batches": 20,
+      "fast_batches": 20,
+      "matching_completed": 20,
+      "notification_completed": 20,
+      "decisions": {
+        "decisions": 170000,
+        "eligible": 65378,
+        "ineligible": 46191,
+        "review": 58431
+      },
+      "matches": 65378,
+      "notifications": [
+        {
+          "status": "sent",
+          "count": 350
+        }
+      ],
+      "dispatch": {
+        "value": {
+          "limit": 2,
+          "running": 1,
+          "dispatched": 0
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "started_at": "2026-10-22 01:51:14.605000+05:30",
+      "completed_at": "2026-10-22 01:51:17.325375+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7761,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3348,
+      "external_updates": 0,
+      "payload_bytes": 858243,
+      "fetch_ms": 37,
+      "rules_ms": 453,
+      "persist_ms": 873,
+      "external_ms": 0,
+      "notifications_ms": 961,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:18.771000+05:30",
+      "completed_at": "2026-10-22 01:51:21.212225+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7741,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3232,
+      "external_updates": 0,
+      "payload_bytes": 872152,
+      "fetch_ms": 25,
+      "rules_ms": 410,
+      "persist_ms": 883,
+      "external_ms": 0,
+      "notifications_ms": 910,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:22.951000+05:30",
+      "completed_at": "2026-10-22 01:51:25.412313+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7746,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3220,
+      "external_updates": 0,
+      "payload_bytes": 865950,
+      "fetch_ms": 25,
+      "rules_ms": 428,
+      "persist_ms": 875,
+      "external_ms": 0,
+      "notifications_ms": 913,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:27.101000+05:30",
+      "completed_at": "2026-10-22 01:51:29.576939+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7714,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3283,
+      "external_updates": 0,
+      "payload_bytes": 878383,
+      "fetch_ms": 28,
+      "rules_ms": 439,
+      "persist_ms": 842,
+      "external_ms": 0,
+      "notifications_ms": 1053,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:31.258000+05:30",
+      "completed_at": "2026-10-22 01:51:33.769882+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7810,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3238,
+      "external_updates": 0,
+      "payload_bytes": 882356,
+      "fetch_ms": 26,
+      "rules_ms": 449,
+      "persist_ms": 895,
+      "external_ms": 0,
+      "notifications_ms": 926,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:35.416000+05:30",
+      "completed_at": "2026-10-22 01:51:37.882566+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7840,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3280,
+      "external_updates": 0,
+      "payload_bytes": 878846,
+      "fetch_ms": 26,
+      "rules_ms": 457,
+      "persist_ms": 836,
+      "external_ms": 0,
+      "notifications_ms": 1034,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:39.561000+05:30",
+      "completed_at": "2026-10-22 01:51:42.157274+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7739,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3247,
+      "external_updates": 0,
+      "payload_bytes": 872319,
+      "fetch_ms": 27,
+      "rules_ms": 453,
+      "persist_ms": 847,
+      "external_ms": 0,
+      "notifications_ms": 1166,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:43.773000+05:30",
+      "completed_at": "2026-10-22 01:51:46.314302+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7792,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3308,
+      "external_updates": 0,
+      "payload_bytes": 871992,
+      "fetch_ms": 30,
+      "rules_ms": 474,
+      "persist_ms": 933,
+      "external_ms": 0,
+      "notifications_ms": 982,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:47.935000+05:30",
+      "completed_at": "2026-10-22 01:51:50.519580+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7762,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3272,
+      "external_updates": 0,
+      "payload_bytes": 869789,
+      "fetch_ms": 26,
+      "rules_ms": 424,
+      "persist_ms": 1015,
+      "external_ms": 0,
+      "notifications_ms": 935,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:52.088000+05:30",
+      "completed_at": "2026-10-22 01:51:54.617558+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7776,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3294,
+      "external_updates": 0,
+      "payload_bytes": 868206,
+      "fetch_ms": 26,
+      "rules_ms": 500,
+      "persist_ms": 879,
+      "external_ms": 0,
+      "notifications_ms": 1112,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:51:56.243000+05:30",
+      "completed_at": "2026-10-22 01:51:58.786052+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7708,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3247,
+      "external_updates": 0,
+      "payload_bytes": 859906,
+      "fetch_ms": 25,
+      "rules_ms": 406,
+      "persist_ms": 949,
+      "external_ms": 0,
+      "notifications_ms": 898,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:00.401000+05:30",
+      "completed_at": "2026-10-22 01:52:02.865434+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7676,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3249,
+      "external_updates": 0,
+      "payload_bytes": 860494,
+      "fetch_ms": 26,
+      "rules_ms": 418,
+      "persist_ms": 955,
+      "external_ms": 0,
+      "notifications_ms": 1002,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:04.550000+05:30",
+      "completed_at": "2026-10-22 01:52:07.217530+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7779,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3248,
+      "external_updates": 0,
+      "payload_bytes": 872607,
+      "fetch_ms": 26,
+      "rules_ms": 466,
+      "persist_ms": 873,
+      "external_ms": 0,
+      "notifications_ms": 1079,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:08.697000+05:30",
+      "completed_at": "2026-10-22 01:52:10.961749+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7726,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3335,
+      "external_updates": 0,
+      "payload_bytes": 869436,
+      "fetch_ms": 30,
+      "rules_ms": 428,
+      "persist_ms": 749,
+      "external_ms": 0,
+      "notifications_ms": 1023,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:12.848000+05:30",
+      "completed_at": "2026-10-22 01:52:15.325120+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7753,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3246,
+      "external_updates": 0,
+      "payload_bytes": 865226,
+      "fetch_ms": 26,
+      "rules_ms": 456,
+      "persist_ms": 798,
+      "external_ms": 0,
+      "notifications_ms": 943,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:17+05:30",
+      "completed_at": "2026-10-22 01:52:19.412527+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7748,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3331,
+      "external_updates": 0,
+      "payload_bytes": 863501,
+      "fetch_ms": 27,
+      "rules_ms": 455,
+      "persist_ms": 808,
+      "external_ms": 0,
+      "notifications_ms": 1007,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:21.151000+05:30",
+      "completed_at": "2026-10-22 01:52:23.579902+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7782,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3310,
+      "external_updates": 0,
+      "payload_bytes": 858037,
+      "fetch_ms": 26,
+      "rules_ms": 408,
+      "persist_ms": 820,
+      "external_ms": 0,
+      "notifications_ms": 965,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:25.302000+05:30",
+      "completed_at": "2026-10-22 01:52:27.611970+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7669,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3287,
+      "external_updates": 0,
+      "payload_bytes": 877669,
+      "fetch_ms": 25,
+      "rules_ms": 402,
+      "persist_ms": 808,
+      "external_ms": 0,
+      "notifications_ms": 899,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:29.465000+05:30",
+      "completed_at": "2026-10-22 01:52:32.009279+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7657,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3168,
+      "external_updates": 0,
+      "payload_bytes": 878602,
+      "fetch_ms": 28,
+      "rules_ms": 475,
+      "persist_ms": 845,
+      "external_ms": 0,
+      "notifications_ms": 937,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    },
+    {
+      "started_at": "2026-10-22 01:52:33.624000+05:30",
+      "completed_at": "2026-10-22 01:52:36.004498+05:30",
+      "applicants": 500,
+      "products": 17,
+      "candidate_pairs": 7787,
+      "evaluated_pairs": 8500,
+      "decisions_written": 8500,
+      "matches_written": 3235,
+      "external_updates": 0,
+      "payload_bytes": 872291,
+      "fetch_ms": 34,
+      "rules_ms": 413,
+      "persist_ms": 827,
+      "external_ms": 0,
+      "notifications_ms": 938,
+      "llm_requests": 0,
+      "llm_verdicts": 0
+    }
+  ],
+  "decisions": {
+    "decisions": 170000,
+    "eligible": 65378,
+    "ineligible": 46191,
+    "review": 58431
+  },
+  "matches": 65378,
+  "notifications": [
+    {
+      "status": "sent",
+      "count": 350
+    }
+  ],
+  "measured_at": "2026-10-21T20:22:39.366481+00:00"
+}

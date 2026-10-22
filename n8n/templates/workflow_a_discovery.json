@@ -1,0 +1,235 @@
+{
+  "name": "Workflow A - Loan Product Discovery",
+  "meta": {
+    "profile": "test",
+    "description": "Crawls the configured public financial websites, extracts personal loan products and stores them in the loan_products table."
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "__CRON__:discovery"
+            }
+          ]
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:discovery/sources.js"
+      },
+      "id": "a1000000-0000-4000-8000-000000000002",
+      "name": "Load Source Registry",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "html",
+              "neverError": true
+            }
+          },
+          "redirect": {
+            "redirect": {
+              "followRedirects": true,
+              "maxRedirects": 5
+            }
+          },
+          "timeout": 45000
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000003",
+      "name": "Fetch Source Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        300
+      ],
+      "notes": "One request per registry entry. The page body is stored in the `html` field."
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "numberInputs": 2,
+          "includeUnpaired": true
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000004",
+      "name": "Combine Source And Page",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -100,
+        300
+      ],
+      "notes": "Re-attaches the source metadata to the crawled page."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:discovery/index.js"
+      },
+      "id": "a1000000-0000-4000-8000-000000000005",
+      "name": "Extract Products",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:discovery/payload.js"
+      },
+      "id": "a1000000-0000-4000-8000-000000000006",
+      "name": "Build Upsert Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH upserted AS (\n  INSERT INTO loan_products AS lp (\n    product_key, product_name, provider, source_id, source_url,\n    interest_rate_min, interest_rate_max, min_loan_amount, max_loan_amount,\n    min_tenure_months, max_tenure_months, min_monthly_income, max_monthly_income,\n    min_credit_score, max_credit_score, min_age, max_age, min_employment_years,\n    required_employment_statuses, criteria_signature, criteria, raw, variants,\n    updated_at, last_seen_at\n  )\n  SELECT\n    t.product_key, t.product_name, t.provider, t.source_id, t.source_url,\n    t.interest_rate_min, t.interest_rate_max, t.min_loan_amount, t.max_loan_amount,\n    t.min_tenure_months, t.max_tenure_months, t.min_monthly_income, t.max_monthly_income,\n    t.min_credit_score, t.max_credit_score, t.min_age, t.max_age, t.min_employment_years,\n    t.required_employment_statuses, t.criteria_signature, t.criteria, t.raw, t.variants,\n    NOW(), NOW()\n  FROM jsonb_to_recordset({{ $json.products_sql }}::jsonb) AS t(\n    product_key text, product_name text, provider text, source_id text, source_url text,\n    interest_rate_min numeric, interest_rate_max numeric,\n    min_loan_amount numeric, max_loan_amount numeric,\n    min_tenure_months int, max_tenure_months int,\n    min_monthly_income numeric, max_monthly_income numeric,\n    min_credit_score int, max_credit_score int,\n    min_age int, max_age int, min_employment_years numeric,\n    required_employment_statuses text[], criteria_signature text,\n    criteria jsonb, raw jsonb, variants jsonb\n  )\n  ON CONFLICT (product_key) DO UPDATE SET\n    product_name = EXCLUDED.product_name,\n    provider = EXCLUDED.provider,\n    source_url = EXCLUDED.source_url,\n    interest_rate_min = EXCLUDED.interest_rate_min,\n    interest_rate_max = EXCLUDED.interest_rate_max,\n    min_loan_amount = EXCLUDED.min_loan_amount,\n    max_loan_amount = EXCLUDED.max_loan_amount,\n    min_tenure_months = EXCLUDED.min_tenure_months,\n    max_tenure_months = EXCLUDED.max_tenure_months,\n    min_monthly_income = EXCLUDED.min_monthly_income,\n    max_monthly_income = EXCLUDED.max_monthly_income,\n    min_credit_score = EXCLUDED.min_credit_score,\n    max_credit_score = EXCLUDED.max_credit_score,\n    min_age = EXCLUDED.min_age,\n    max_age = EXCLUDED.max_age,\n    min_employment_years = EXCLUDED.min_employment_years,\n    required_employment_statuses = EXCLUDED.required_employment_statuses,\n    criteria_signature = EXCLUDED.criteria_signature,\n    criteria = EXCLUDED.criteria,\n    raw = EXCLUDED.raw,\n    variants = EXCLUDED.variants,\n    updated_at = NOW(),\n    last_seen_at = NOW(),\n    active = TRUE\n  RETURNING product_id, product_key, source_id, (xmax = 0) AS inserted\n),\nswept AS (\n  UPDATE loan_products p\n  SET active = FALSE, updated_at = NOW()\n  WHERE p.source_id = ANY({{ $json.crawled_sources_sql }}::text[])\n    AND NOT EXISTS (SELECT 1 FROM upserted u WHERE u.product_key = p.product_key)\n  RETURNING product_id\n),\nrun_log AS (\n  INSERT INTO discovery_runs (\n    run_id, source_id, trigger, status, products_found,\n    products_new, products_updated, products_collapsed, error, started_at, finished_at\n  )\n  SELECT\n    gen_random_uuid(),\n    r.source_id,\n    'schedule',\n    r.status,\n    COALESCE(r.products_found, 0),\n    (SELECT count(*)::int FROM upserted u WHERE u.inserted AND u.source_id = r.source_id),\n    (SELECT count(*)::int FROM upserted u WHERE NOT u.inserted AND u.source_id = r.source_id),\n    COALESCE(r.products_collapsed, 0),\n    r.error,\n    NOW(),\n    NOW()\n  FROM jsonb_to_recordset({{ $json.runs_sql }}::jsonb) AS r(\n    source_id text, status text, products_found int, products_collapsed int, error text\n  )\n  RETURNING run_id\n)\nSELECT\n  (SELECT count(*)::int FROM upserted) AS products_total,\n  (SELECT count(*)::int FROM upserted WHERE inserted) AS products_new,\n  (SELECT count(*)::int FROM upserted WHERE NOT inserted) AS products_updated,\n  (SELECT count(*)::int FROM swept) AS products_deactivated,\n  (SELECT count(*)::int FROM run_log) AS runs_logged"
+      },
+      "id": "a1000000-0000-4000-8000-000000000007",
+      "name": "Persist Products And Run Log",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        620,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "Idempotent upsert on product_key, deactivation sweep for products that disappeared from the site, and the discovery run log - in one atomic statement."
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Load Source Registry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Source Registry": {
+      "main": [
+        [
+          {
+            "node": "Fetch Source Page",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Combine Source And Page",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Fetch Source Page": {
+      "main": [
+        [
+          {
+            "node": "Combine Source And Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Source And Page": {
+      "main": [
+        [
+          {
+            "node": "Extract Products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Products": {
+      "main": [
+        [
+          {
+            "node": "Build Upsert Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Upsert Payload": {
+      "main": [
+        [
+          {
+            "node": "Persist Products And Run Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": false,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "tags": []
+}

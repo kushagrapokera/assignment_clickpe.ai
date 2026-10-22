@@ -1,0 +1,918 @@
+{
+  "name": "Workflow B - User Loan Matching",
+  "meta": {
+    "profile": "test",
+    "description": "Matches the applicants of a batch against the discovered loan products: the applicants and the products are fetched separately, the candidate pairs are built in the evaluator, the deterministic rules decide, the qualitative stage only sees the residue, and the results are written once.",
+    "node_refs": {
+      "validated": "Validate Request",
+      "applicants": "Fetch Batch Applicants",
+      "products": "Fetch Active Products",
+      "pairs": "Evaluate Eligibility Rules",
+      "cached": "Fetch Cached Verdicts",
+      "planned": "Plan Qualitative Checks",
+      "selected": "Select Missing Checks",
+      "answered": "Collect Verdicts",
+      "fast": "Build Fast Matches",
+      "applied": "Apply External Verdicts"
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-matching",
+        "responseMode": "responseNode",
+        "options": {},
+        "authentication": "headerAuth"
+      },
+      "id": "b1000000-0000-4000-8000-000000000001",
+      "name": "Matching Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -880,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Validate the request before anything touches the database.\n *\n * The batch id is interpolated into the SQL statements, so it is checked\n * against the UUID format here.  A value that is not a UUID never reaches\n * the database.  The shared secret is verified by n8n itself, through the\n * header authentication of the webhook node.\n */\n\nconst items = $input.all();\nconst payload = (items[0] && items[0].json) || {};\nconst body = payload.body && typeof payload.body === 'object' ? payload.body : payload;\n\nconst UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;\nconst batchId = String(body.batch_id || body.batchId || '').trim().toLowerCase();\nif (!UUID.test(batchId)) {\n  throw new Error('invalid_batch_id: the request must carry a batch id in UUID format');\n}\n\nreturn [{ json: { batch_id: batchId, requested_at: new Date().toISOString() } }];"
+      },
+      "id": "b1000000-0000-4000-8000-000000000002",
+      "name": "Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { batch_id: $json.batch_id, status: 'accepted' } }}",
+        "options": {
+          "responseCode": 202
+        }
+      },
+      "id": "b1000000-0000-4000-8000-0000000000b2",
+      "name": "Acknowledge Request",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -480,
+        300
+      ],
+      "notes": "The request is acknowledged at once, the matching runs in the background."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH started AS (\n  UPDATE ingestion_batches\n  SET matching_status = 'running',\n      matching_started_at = COALESCE(matching_started_at, NOW())\n  WHERE batch_id = '{{ $json.batch_id }}'::uuid\n  RETURNING batch_id\n)\nSELECT jsonb_agg(to_jsonb(t) ORDER BY t.user_id) AS applicants\nFROM (\n  SELECT u.user_id, u.email, u.monthly_income, u.credit_score, u.employment_status,\n         u.age, u.city, u.existing_emi, u.eligibility_facts, u.batch_id\n  FROM users u\n  WHERE u.batch_id = '{{ $json.batch_id }}'::uuid\n) t"
+      },
+      "id": "b1000000-0000-4000-8000-000000000003",
+      "name": "Fetch Batch Applicants",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        -280,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The applicants of the batch, as one list.  The criteria of the lenders are not repeated for every applicant."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT jsonb_agg(to_jsonb(t) ORDER BY t.product_id) AS products,\n       (EXTRACT(EPOCH FROM (clock_timestamp() - '{{ $('Validate Request').first().json.requested_at }}'::timestamptz)) * 1000)::bigint AS fetch_ms\nFROM (\n  SELECT p.product_id, p.product_key, p.product_name, p.provider,\n         p.min_age, p.max_age, p.min_monthly_income, p.max_monthly_income,\n         p.min_credit_score, p.max_credit_score, p.min_employment_years,\n         p.required_employment_statuses, p.criteria_signature, p.criteria\n  FROM loan_products p\n  WHERE p.active\n) t"
+      },
+      "id": "b1000000-0000-4000-8000-000000000004",
+      "name": "Fetch Active Products",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        -80,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The active policies of the catalogue, sent once per batch."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/index.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000005",
+      "name": "Evaluate Eligibility Rules",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        120,
+        300
+      ],
+      "notes": "Stage 2: the candidate pairs are built here and the deterministic rule engine decides every one of them.",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/plan.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000006",
+      "name": "Plan Qualitative Checks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        300
+      ],
+      "notes": "Stage 3a: the ambiguous pairs are reduced to the distinct decisions."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH keys AS (\n  SELECT jsonb_array_elements_text({{ $json.cache_keys_sql }}::jsonb) AS cache_key\n)\nSELECT c.cache_key, c.criteria_signature, c.user_bucket, c.verdict, c.score,\n       c.reasons, c.model, c.prompt_tokens, c.completion_tokens\nFROM llm_verdict_cache c\nJOIN keys k ON k.cache_key = c.cache_key\n AND NOT c.reasons @> '[\"The qualitative check could not be completed, a manual review is required\"]'::jsonb\nUNION ALL\nSELECT NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL\nWHERE NOT EXISTS (\n  SELECT 1 FROM llm_verdict_cache c JOIN keys k ON k.cache_key = c.cache_key\n AND NOT c.reasons @> '[\"The qualitative check could not be completed, a manual review is required\"]'::jsonb\n)"
+      },
+      "id": "b1000000-0000-4000-8000-000000000007",
+      "name": "Fetch Cached Verdicts",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        520,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The verdicts of previous runs, keyed by criteria profile and applicant bucket."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/fast.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000008",
+      "name": "Build Fast Matches",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        300
+      ],
+      "notes": "The decisions of the whole batch, split into chunks.  Only the confirmed eligibility becomes a match."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH incoming AS MATERIALIZED (\n  SELECT * FROM jsonb_to_recordset({{ $json.decisions_sql }}::jsonb) AS t(\n    batch_id uuid, user_id text, product_id bigint, lane text, status text,\n    reasons jsonb, decided_by text, score numeric, llm_assessment jsonb)\n),\naudit AS (\n  INSERT INTO matching_decisions (batch_id,user_id,product_id,lane,status,reasons)\n  SELECT t.batch_id,t.user_id,t.product_id,t.lane,t.status,t.reasons\n  FROM incoming t\n  ON CONFLICT (batch_id,user_id,product_id) DO UPDATE SET\n    lane=EXCLUDED.lane,status=EXCLUDED.status,reasons=EXCLUDED.reasons,updated_at=NOW()\n  RETURNING user_id\n),\nwritten AS (\n  INSERT INTO matches (\n    user_id, product_id, status, decided_by, score, reasons, llm_assessment, batch_id, updated_at\n  )\n  SELECT t.user_id, t.product_id, 'eligible', COALESCE(t.decided_by, 'rules'), t.score,\n         t.reasons, t.llm_assessment, t.batch_id, NOW()\n  FROM incoming t WHERE t.status = 'eligible'\n  ON CONFLICT (user_id, product_id) DO UPDATE SET\n    status = EXCLUDED.status,\n    decided_by = EXCLUDED.decided_by,\n    score = EXCLUDED.score,\n    reasons = EXCLUDED.reasons,\n    llm_assessment = EXCLUDED.llm_assessment,\n    batch_id = EXCLUDED.batch_id,\n    updated_at = NOW()\n  RETURNING match_id\n),\nprogress AS (\n  UPDATE ingestion_batches\n  SET matching_pending_pairs = {{ $json.pending_pairs }},\n      fast_completed_at = CASE WHEN {{ $json.is_last }}\n        THEN COALESCE(fast_completed_at, NOW()) ELSE fast_completed_at END\n  WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n  RETURNING batch_id\n)\nSELECT (SELECT count(*) FROM audit)::int AS decisions_written,\n       (SELECT count(*) FROM written)::int AS matches_written,\n       (SELECT count(*) FROM progress)::int AS progress_written,\n       (EXTRACT(EPOCH FROM (clock_timestamp() - '{{ $json.persist_started_at }}'::timestamptz)) * 1000)::bigint AS persist_ms"
+      },
+      "id": "b1000000-0000-4000-8000-000000000013",
+      "name": "Persist Fast Matches",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        920,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The one persistence pass of a run that needs no external answer: the audit of every pair and the confirmed matches."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b1000000-0000-4000-8000-0000000000e1",
+              "leftValue": "={{ Number(($('Build Fast Matches').first().json.pending_pairs || 0)) > 0 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-0000000000e2",
+      "name": "External Checks Needed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        300
+      ],
+      "notes": "When nothing has to be asked about, the matching ends with the first persistence step."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/select.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000009",
+      "name": "Select Missing Checks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        300
+      ],
+      "notes": "Only the decisions that are not cached yet are sent to the model."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b1000000-0000-4000-8000-0000000000aa",
+              "leftValue": "={{ $json.ask }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-0000000000a1",
+      "name": "Ask The LLM?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1520,
+        300
+      ],
+      "notes": "When every decision is cached the LLM is not called at all."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/internal/qualitative/llm",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body_json }}",
+        "options": {
+          "timeout": 300000,
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 0
+            }
+          }
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth"
+      },
+      "id": "b1000000-0000-4000-8000-00000000000b",
+      "name": "LLM Qualitative Check",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1720,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      },
+      "notes": "Stage 3b: the qualitative check. One request per criteria profile and applicant bucket, never one per pair. The requests are spaced out and retried, because the API of the provider rate limits a burst.",
+      "onError": "continue",
+      "continueOnFail": true,
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 8000
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/skip.js"
+      },
+      "id": "b1000000-0000-4000-8000-0000000000a2",
+      "name": "No Checks Needed",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/verdicts.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000010",
+      "name": "Collect Verdicts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH written AS (\n  INSERT INTO llm_verdict_cache (\n    cache_key, criteria_signature, user_bucket, verdict, score, reasons,\n    model, prompt_tokens, completion_tokens, hits\n  )\n  SELECT\n    t.cache_key, t.criteria_signature, t.user_bucket, t.verdict, t.score, t.reasons,\n    t.model, t.prompt_tokens, t.completion_tokens, 1\n  FROM jsonb_to_recordset({{ $json.verdicts_sql }}::jsonb) AS t(\n    cache_key text, criteria_signature text, user_bucket text, verdict text,\n    score numeric, reasons jsonb, model text, prompt_tokens int, completion_tokens int\n  )\n  ON CONFLICT (cache_key) DO UPDATE SET\n    verdict = EXCLUDED.verdict,\n    score = EXCLUDED.score,\n    reasons = EXCLUDED.reasons,\n    model = EXCLUDED.model,\n    prompt_tokens = EXCLUDED.prompt_tokens,\n    completion_tokens = EXCLUDED.completion_tokens,\n    hits = llm_verdict_cache.hits + 1\n  RETURNING cache_key\n)\nSELECT count(*)::int AS verdicts_cached FROM written"
+      },
+      "id": "b1000000-0000-4000-8000-000000000011",
+      "name": "Cache Verdicts",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2120,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/external.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000012",
+      "name": "Apply External Verdicts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        300
+      ],
+      "notes": "Stage 4: only the pairs whose answer arrived are updated."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH incoming AS MATERIALIZED (\n  SELECT * FROM jsonb_to_recordset({{ $json.decisions_sql }}::jsonb) AS t(\n    batch_id uuid, user_id text, product_id bigint, lane text, status text,\n    reasons jsonb, decided_by text, score numeric, llm_assessment jsonb)\n),\naudit AS (\n  INSERT INTO matching_decisions (batch_id,user_id,product_id,lane,status,reasons)\n  SELECT t.batch_id,t.user_id,t.product_id,t.lane,t.status,t.reasons\n  FROM incoming t\n  ON CONFLICT (batch_id,user_id,product_id) DO UPDATE SET\n    lane=EXCLUDED.lane,status=EXCLUDED.status,reasons=EXCLUDED.reasons,updated_at=NOW()\n  RETURNING user_id\n),\nwritten AS (\n  INSERT INTO matches (\n    user_id, product_id, status, decided_by, score, reasons, llm_assessment, batch_id, updated_at\n  )\n  SELECT t.user_id, t.product_id, 'eligible', COALESCE(t.decided_by, 'rules'), t.score,\n         t.reasons, t.llm_assessment, t.batch_id, NOW()\n  FROM incoming t WHERE t.status = 'eligible'\n  ON CONFLICT (user_id, product_id) DO UPDATE SET\n    status = EXCLUDED.status,\n    decided_by = EXCLUDED.decided_by,\n    score = EXCLUDED.score,\n    reasons = EXCLUDED.reasons,\n    llm_assessment = EXCLUDED.llm_assessment,\n    batch_id = EXCLUDED.batch_id,\n    updated_at = NOW()\n  RETURNING match_id\n)\nSELECT (SELECT count(*) FROM audit)::int AS decisions_written,\n       (SELECT count(*) FROM written)::int AS matches_written,\n       (EXTRACT(EPOCH FROM (clock_timestamp() - '{{ $json.persist_started_at }}'::timestamptz)) * 1000)::bigint AS persist_ms"
+      },
+      "id": "b1000000-0000-4000-8000-000000000014",
+      "name": "Persist External Updates",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2520,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The pairs whose answer arrived are written again; the rest of the batch is not touched."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/summary.js"
+      },
+      "id": "b1000000-0000-4000-8000-000000000015",
+      "name": "Summarise Run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO matching_runs (\n  run_id, batch_id, started_at, completed_at, applicants, products,\n  candidate_pairs, evaluated_pairs, decisions_written, matches_written,\n  external_updates, payload_bytes, fetch_ms, rules_ms, persist_ms, external_ms,\n  llm_requests, llm_verdicts, prompt_tokens, completion_tokens\n)\nSELECT gen_random_uuid(), t.batch_id, COALESCE(t.started_at::timestamptz, NOW()), NOW(),\n  t.applicants, t.products, t.candidate_pairs, t.evaluated_pairs, t.decisions_written,\n  t.matches_written, t.external_updates, t.payload_bytes, t.fetch_ms, t.rules_ms,\n  t.persist_ms, t.external_ms, t.llm_requests, t.llm_verdicts, t.prompt_tokens,\n  t.completion_tokens\nFROM jsonb_to_recordset({{ $json.run_sql }}::jsonb) AS t(\n  batch_id uuid, started_at text, applicants int, products int, candidate_pairs int,\n  evaluated_pairs int, decisions_written int, matches_written int, external_updates int,\n  payload_bytes bigint, fetch_ms bigint, rules_ms bigint, persist_ms bigint, external_ms bigint,\n  llm_requests int, llm_verdicts int, prompt_tokens int, completion_tokens int\n)\nRETURNING run_id"
+      },
+      "id": "b1000000-0000-4000-8000-000000000016",
+      "name": "Record Run Metrics",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2920,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "How long the stages took, how many bytes travelled through the workflow and how many rows were written."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH removed AS (\n  DELETE FROM matches m WHERE m.batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n  AND NOT EXISTS (SELECT 1 FROM matching_decisions d\n    WHERE d.batch_id=m.batch_id AND d.user_id=m.user_id AND d.product_id=m.product_id\n      AND d.status = 'eligible')\n  RETURNING match_id\n)\nUPDATE ingestion_batches SET matching_status = 'completed', matching_completed_at = NOW(), matching_pending_pairs = 0 WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid RETURNING batch_id"
+      },
+      "id": "b1000000-0000-4000-8000-0000000000f3",
+      "name": "Mark Matching Complete",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        3120,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5678/webhook/loan-notification",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ batch_id: $('Validate Request').first().json.batch_id }) }}",
+        "options": {
+          "timeout": 30000,
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth"
+      },
+      "id": "b1000000-0000-4000-8000-000000000017",
+      "name": "Trigger Notification Workflow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3320,
+        300
+      ],
+      "onError": "continue",
+      "continueOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      },
+      "notes": "The notification workflow answers at once, so the mail server never holds the matching back."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/internal/qualitative/resolve",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({decider: JSON.parse($json.decider_body_json), llm: JSON.parse($json.body_json)}) }}",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 0
+            }
+          }
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth"
+      },
+      "id": "b1000000-0000-4000-8000-0000000000d1",
+      "name": "Decider Qualitative Check",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        120
+      ],
+      "notes": "Resolve each request independently: preserve Decider successes, retry unanswered questions, use LLM fallback only for failures.",
+      "onError": "continue",
+      "continueOnFail": true,
+      "retryOnFail": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:matching/decider_results.js"
+      },
+      "id": "b1000000-0000-4000-8000-0000000000d2",
+      "name": "Read Decider Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b1000000-0000-4000-8000-0000000000ab",
+              "leftValue": "={{ $json.fallback }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000000-0000-4000-8000-0000000000d3",
+      "name": "Use LLM Fallback?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1920,
+        120
+      ],
+      "notes": "When every decision is cached the LLM is not called at all."
+    }
+  ],
+  "connections": {
+    "Matching Request": {
+      "main": [
+        [
+          {
+            "node": "Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Acknowledge Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acknowledge Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Batch Applicants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Batch Applicants": {
+      "main": [
+        [
+          {
+            "node": "Fetch Active Products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Active Products": {
+      "main": [
+        [
+          {
+            "node": "Evaluate Eligibility Rules",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate Eligibility Rules": {
+      "main": [
+        [
+          {
+            "node": "Plan Qualitative Checks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Qualitative Checks": {
+      "main": [
+        [
+          {
+            "node": "Fetch Cached Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Cached Verdicts": {
+      "main": [
+        [
+          {
+            "node": "Build Fast Matches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Fast Matches": {
+      "main": [
+        [
+          {
+            "node": "Persist Fast Matches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist Fast Matches": {
+      "main": [
+        [
+          {
+            "node": "External Checks Needed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "External Checks Needed?": {
+      "main": [
+        [
+          {
+            "node": "Select Missing Checks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Summarise Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Missing Checks": {
+      "main": [
+        [
+          {
+            "node": "Ask The LLM?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ask The LLM?": {
+      "main": [
+        [
+          {
+            "node": "Decider Qualitative Check",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Checks Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Qualitative Check": {
+      "main": [
+        [
+          {
+            "node": "Collect Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Checks Needed": {
+      "main": [
+        [
+          {
+            "node": "Cache Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Verdicts": {
+      "main": [
+        [
+          {
+            "node": "Cache Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cache Verdicts": {
+      "main": [
+        [
+          {
+            "node": "Apply External Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply External Verdicts": {
+      "main": [
+        [
+          {
+            "node": "Persist External Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist External Updates": {
+      "main": [
+        [
+          {
+            "node": "Summarise Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarise Run": {
+      "main": [
+        [
+          {
+            "node": "Record Run Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Run Metrics": {
+      "main": [
+        [
+          {
+            "node": "Mark Matching Complete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Matching Complete": {
+      "main": [
+        [
+          {
+            "node": "Trigger Notification Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decider Qualitative Check": {
+      "main": [
+        [
+          {
+            "node": "Read Decider Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Decider Results": {
+      "main": [
+        [
+          {
+            "node": "Use LLM Fallback?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Use LLM Fallback?": {
+      "main": [
+        [
+          {
+            "node": "LLM Qualitative Check",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Collect Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": false,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionTimeout": 3600
+  },
+  "pinData": {},
+  "tags": []
+}

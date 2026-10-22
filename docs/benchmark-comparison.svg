@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="380" viewBox="0 0 1040 380" role="img" aria-labelledby="title desc"><title id="title">Recorded 10,000-applicant comparison</title><desc id="desc">Historical runs · 17 products · 20 batches. Cache and SMTP conditions differ.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a0a0a0"/></marker></defs>
+<rect width="1040" height="380" rx="0" fill="#101010"/>
+<text x="30" y="37" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#f2f2f2" font-weight="600">Recorded 10,000-applicant comparison</text>
+<text x="30" y="64" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Historical runs · 17 products · 20 batches. Cache and SMTP conditions differ.</text>
+<text x="30" y="115" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#f2f2f2" font-weight="600">All matching after upload</text>
+<text x="30" y="163" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#c6c6c6">Baseline · cold cache</text>
+<rect x="290" y="145" width="610.0" height="30" rx="5" fill="#a0a0a0"/>
+<text x="915" y="166" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#f2f2f2" font-weight="600">910.9 s</text>
+<text x="30" y="238" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#c6c6c6">Optimized · warm cache</text>
+<rect x="290" y="220" width="58.7" height="30" rx="5" fill="#d0d0d0"/>
+<text x="915" y="241" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#f2f2f2" font-weight="600">87.6 s</text>
+<text x="30" y="300" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#c6c6c6">This is not a controlled Decider-vs-LLM benchmark or a guarantee for the current review-all policy.</text>
+<text x="30" y="330" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#c6c6c6">Comparable code-stage evidence: rules 2,035 → 441 ms / batch; fetch 115 → 27 ms / batch.</text>
+<text x="30" y="355" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#c6c6c6">Optimized notifications used Mailpit. Provider calls in that run: 0 (warm cache).</text>
+</svg>

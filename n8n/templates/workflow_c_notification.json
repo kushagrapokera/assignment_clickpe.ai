@@ -1,0 +1,307 @@
+{
+  "name": "Workflow C - User Notification",
+  "meta": {
+    "profile": "test",
+    "description": "Sends a personalised email to the applicants that have new results. The email always goes to an address of the allow list, never to the address of the applicant file. The request is answered at once, so the mail server never holds the matching back.",
+    "node_refs": {
+      "sent": "Build Notification Emails"
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loan-notification",
+        "responseMode": "responseNode",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000001",
+      "name": "Notification Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -900,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "__CREDENTIAL__:relay",
+          "name": "Relay Secret"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Validate the request before anything is sent.\n *\n * The batch id ends up in a SQL statement, so it is checked against the UUID\n * format here.  A value that is not a UUID never reaches the database.\n */\n\nconst items = $input.all();\nconst payload = (items[0] && items[0].json) || {};\nconst body = payload.body && typeof payload.body === 'object' ? payload.body : payload;\n\nconst UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;\nconst batchId = String(body.batch_id || body.batchId || '').trim().toLowerCase();\nif (!UUID.test(batchId)) {\n  throw new Error('invalid_batch_id: the request must carry a batch id in UUID format');\n}\n\nconst limit = Number(body.limit || 0);\nreturn [{\n  json: {\n    batch_id: batchId,\n    limit: Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : 0,\n    requested_at: new Date().toISOString(),\n  },\n}];"
+      },
+      "id": "c1000000-0000-4000-8000-000000000002",
+      "name": "Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -670,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { batch_id: $json.batch_id, status: 'accepted' } }}",
+        "options": {
+          "responseCode": 202
+        }
+      },
+      "id": "c1000000-0000-4000-8000-000000000003",
+      "name": "Acknowledge Request",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -450,
+        300
+      ],
+      "notes": "The request is answered at once. The mails are sent in the background, so a slow mail server never holds the matching back."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH recipients AS (\n  SELECT coalesce(array_agg(address ORDER BY address), ARRAY[]::text[]) AS addresses\n  FROM notification_recipients\n  WHERE active\n),\ndecisions AS (\n  SELECT\n    d.user_id,\n    d.product_id,\n    d.lane,\n    d.status,\n    d.reasons,\n    m.decided_by,\n    m.score,\n    m.llm_assessment,\n    u.name,\n    u.email,\n    u.age,\n    u.monthly_income,\n    u.credit_score,\n    u.employment_status,\n    u.batch_id,\n    p.product_name,\n    p.provider,\n    p.interest_rate_min,\n    p.interest_rate_max,\n    p.min_loan_amount,\n    p.max_loan_amount,\n    p.min_tenure_months,\n    p.max_tenure_months\n  FROM ui_decisions d\n  JOIN users u ON u.user_id = d.user_id\n  JOIN loan_products p ON p.product_id = d.product_id\n  LEFT JOIN matches m ON m.batch_id = d.batch_id AND m.user_id = d.user_id AND m.product_id = d.product_id\n  WHERE d.batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n    AND p.active\n    AND d.status IN ('eligible', 'review', 'pending')\n    AND NOT EXISTS (\n      SELECT 1 FROM notifications n\n      WHERE n.user_id = d.user_id AND n.batch_id = d.batch_id AND n.status <> 'failed'\n    )\n)\nSELECT\n  decisions.*,\n  (SELECT addresses FROM recipients) AS allowed_recipients\nFROM (SELECT 1 AS one) AS anchor\nLEFT JOIN decisions ON TRUE\nORDER BY decisions.user_id NULLS FIRST, decisions.interest_rate_min NULLS LAST, decisions.product_name"
+      },
+      "id": "c1000000-0000-4000-8000-000000000004",
+      "name": "Fetch Matched Applicants",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        -230,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "The decisions of the batch: the confirmed eligibility and the requests for missing information, plus the addresses that are allowed to receive a notification.  An applicant that was already notified about this batch is skipped, so a repeated dispatch never sends the same mail twice."
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:notification/index.js"
+      },
+      "id": "c1000000-0000-4000-8000-000000000005",
+      "name": "Build Notification Emails",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -10,
+        300
+      ],
+      "notes": "One personalised email per applicant, addressed to the allow list.",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "fromEmail": "={{ $json.from }}",
+        "toEmail": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailFormat": "both",
+        "html": "={{ $json.html }}",
+        "text": "={{ $json.text }}",
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000006",
+      "name": "Send Notification",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "__CREDENTIAL__:smtp",
+          "name": "Loan Engine Mail"
+        }
+      },
+      "notes": "Local run goes to Mailpit, in production the same credential points at the SMTP endpoint of Amazon SES.",
+      "onError": "continue",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "__BUNDLE__:notification/delivery.js"
+      },
+      "id": "c1000000-0000-4000-8000-000000000007",
+      "name": "Collect Delivery Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH written AS (\n  INSERT INTO notifications (\n    user_id, batch_id, match_count, review_count, recipient, provider, status,\n    provider_message_id, error, sent_at\n  )\n  SELECT\n    t.user_id,\n    t.batch_id,\n    t.match_count,\n    t.review_count,\n    t.recipient,\n    t.provider,\n    t.status,\n    t.provider_message_id,\n    t.error,\n    CASE WHEN t.status = 'sent' THEN NOW() ELSE NULL END\n  FROM jsonb_to_recordset({{ $json.notifications_sql }}::jsonb) AS t(\n    user_id text, batch_id uuid, match_count int, review_count int, recipient text,\n    provider text, status text, provider_message_id text, error text\n  )\n  ON CONFLICT (user_id, batch_id) WHERE batch_id IS NOT NULL DO UPDATE SET\n    match_count = EXCLUDED.match_count,\n    review_count = EXCLUDED.review_count,\n    recipient = EXCLUDED.recipient,\n    status = EXCLUDED.status,\n    provider_message_id = EXCLUDED.provider_message_id,\n    error = EXCLUDED.error,\n    sent_at = CASE WHEN EXCLUDED.status = 'sent' THEN NOW() ELSE NULL END\n  RETURNING notification_id, status\n),\nfinished AS (\n  UPDATE ingestion_batches SET notifications_completed_at = NOW()\n  WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n  RETURNING batch_id\n),\nduration AS (\n  UPDATE matching_runs r\n  SET notifications_ms = (EXTRACT(EPOCH FROM (clock_timestamp() -\n        '{{ $('Validate Request').first().json.requested_at }}'::timestamptz)) * 1000)::bigint\n  WHERE r.run_id = (\n    SELECT run_id FROM matching_runs\n    WHERE batch_id = '{{ $('Validate Request').first().json.batch_id }}'::uuid\n    ORDER BY started_at DESC LIMIT 1)\n  RETURNING run_id\n)\nSELECT\n  count(*)::int AS notifications_written,\n  count(*) FILTER (WHERE status = 'sent')::int AS notifications_sent,\n  count(*) FILTER (WHERE status = 'failed')::int AS notifications_failed,\n  (SELECT count(*) FROM finished)::int AS batches_finished,\n  (SELECT count(*) FROM duration)::int AS durations_written\nFROM written"
+      },
+      "id": "c1000000-0000-4000-8000-000000000008",
+      "name": "Record Notifications",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        680,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "__CREDENTIAL__:postgres",
+          "name": "Loan Engine PostgreSQL"
+        }
+      },
+      "notes": "One row per applicant and batch, so a repeated dispatch never sends or records the same mail twice."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1000000-0000-4000-8000-0000000000f1",
+              "leftValue": "={{ Boolean($json.user_id) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000009",
+      "name": "Has Notification Emails?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "Notification Request": {
+      "main": [
+        [
+          {
+            "node": "Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Acknowledge Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acknowledge Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Matched Applicants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Matched Applicants": {
+      "main": [
+        [
+          {
+            "node": "Build Notification Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Notification Emails": {
+      "main": [
+        [
+          {
+            "node": "Has Notification Emails?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Notification": {
+      "main": [
+        [
+          {
+            "node": "Collect Delivery Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Delivery Results": {
+      "main": [
+        [
+          {
+            "node": "Record Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Notification Emails?": {
+      "main": [
+        [
+          {
+            "node": "Send Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Collect Delivery Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": false,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionTimeout": 900
+  },
+  "pinData": {},
+  "tags": []
+}

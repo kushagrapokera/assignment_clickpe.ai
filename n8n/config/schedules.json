@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "test": {
+      "note": "Short interval used while developing and demoing the crawl.",
+      "discovery": "*/5 * * * *",
+      "matching": "*/5 * * * *"
+    },
+    "prod": {
+      "note": "Once a day, off the hour so the crawl does not hit every publisher at the same minute.",
+      "discovery": "17 3 * * *",
+      "matching": "23 3 * * *"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1608" height="407" viewBox="0 0 1608 407" role="img" aria-label="Notification workflow from Notification Request to Record Notifications">
+<defs>
+  <pattern id="dots" width="13.7" height="13.7" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="0.65" fill="#323232" opacity="0.76"/></pattern>
+  <style><![CDATA[
+    .node{fill:#292929;stroke:#515151;stroke-width:1.45}
+    .wire{fill:none;stroke:#454545;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .socket{fill:#292929;stroke:#686868;stroke-width:2}
+    .title{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:500;fill:#eeeeee;text-anchor:middle}
+    .subtitle{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:#b7b7b7;text-anchor:middle}
+    .branch{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:#a9a9a9}
+  ]]></style>
+</defs>
+<rect width="1608" height="407" fill="#191919"/><rect width="1608" height="407" fill="url(#dots)"/>
+<!-- connections -->
+<path class="wire" d="M145 265 H254"/><path class="wire" d="M334 265 H443"/><path class="wire" d="M524 265 H633"/><path class="wire" d="M713 265 H809"/>
+<path class="wire" d="M889 264 C946 264 952 115 1011 115"/>
+<path class="wire" d="M1092 102 C1135 102 1133 131 1133 174 V204 Q1133 212 1125 212 H1052 V225"/>
+<path class="wire" d="M1092 129 C1144 129 1134 264 1215 264"/>
+<path class="wire" d="M1092 264 H1215"/>
+<path class="wire" d="M1295 265 H1404"/>
+<!-- first node webhook -->
+<rect class="node" x="66" y="225" width="80" height="80" rx="13"/>
+<g transform="translate(105 265)" stroke="#fb2774" stroke-width="2.55" fill="none" stroke-linecap="round" stroke-linejoin="round">
+ <circle cx="0" cy="-10" r="6"/><circle cx="-11" cy="9" r="6"/><circle cx="11" cy="9" r="6"/>
+ <path d="M-4 -5 L-8 3 M5 -5 L9 3 M-5 9 H5"/>
+</g>
+<path d="M42 263 l5 -6 -1 6 5 0 -6 8 1 -7z" fill="#ff8b22"/>
+<text class="title" x="106" y="337">Notification Request</text>
+<!-- validate -->
+<rect class="node" x="254" y="225" width="80" height="80" rx="8"/>
+<g fill="none" stroke="#f6ab4c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M288 250 h-6 v10 l-4 5 4 5 v10 h6"/><path d="M301 250 h6 v10 l4 5 -4 5 v10 h-6"/></g>
+<text class="title" x="294" y="337">Validate Request</text>
+<!-- acknowledge -->
+<rect class="node" x="443" y="225" width="80" height="80" rx="8"/>
+<g transform="translate(483 265)" stroke="#fc2874" fill="none" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+ <circle cx="0" cy="-10" r="6"/><circle cx="-11" cy="9" r="6"/><circle cx="11" cy="9" r="6"/>
+ <path d="M-4 -5 L-8 3 M5 -5 L9 3 M-5 9 H5"/>
+</g>
+<text class="title" x="483" y="337">Acknowledge Request</text>
+<!-- fetch -->
+<rect class="node" x="633" y="225" width="80" height="80" rx="8"/>
+<g transform="translate(673 260)"><path d="M-12 -9 Q-17 -7 -14 0 Q-15 12 -9 13 L-6 5 0 10 6 6 8 15 12 14 11 3 Q18 -6 11 -11 Q6 -13 2 -9 Q-8 -14 -12 -9Z" fill="#49789a" stroke="#dce7ec" stroke-width="1.2"/><path d="M-6 -9 Q-2 -2 -5 5 M2 -9 Q7 -3 5 6" stroke="#dce7ec" stroke-width="1.1" fill="none"/></g>
+<text class="title" x="673" y="323">Fetch Matched</text><text class="title" x="673" y="341">Applicants</text><text class="subtitle" x="673" y="360">executeQuery</text>
+<!-- build -->
+<rect class="node" x="809" y="225" width="80" height="80" rx="8"/>
+<g fill="none" stroke="#f6ab4c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M842 250 h-6 v10 l-4 5 4 5 v10 h6"/><path d="M855 250 h6 v10 l4 5 -4 5 v10 h-6"/></g>
+<text class="title" x="849" y="323">Build Notification Emails</text>
+<!-- decision -->
+<rect class="node" x="1011" y="76" width="81" height="79" rx="8"/>
+<g stroke="#00d87e" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1036 104 H1053 L1060 112 H1068"/><path d="M1063 107 L1068 112 1063 117"/><path d="M1036 127 H1050 L1058 120 H1068"/><path d="M1063 115 L1068 120 1063 125"/></g>
+<text class="title" x="1051" y="176">Has Notification Emails?</text>
+<text class="branch" x="1103" y="106">true</text><text class="branch" x="1103" y="134">false</text>
+<!-- email -->
+<rect class="node" x="1011" y="225" width="81" height="80" rx="8"/>
+<g stroke="#eeeeee" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1036" y="252" width="30" height="24" rx="2.5"/><path d="M1037 255 L1051 266 L1065 255"/></g>
+<text class="title" x="1051" y="326">Send Notification</text><text class="subtitle" x="1051" y="345">Send</text>
+<!-- collect -->
+<rect class="node" x="1215" y="225" width="80" height="80" rx="8"/>
+<g fill="none" stroke="#f6ab4c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1248 250 h-6 v10 l-4 5 4 5 v10 h6"/><path d="M1261 250 h6 v10 l4 5 -4 5 v10 h-6"/></g>
+<text class="title" x="1255" y="337">Collect Delivery Results</text>
+<!-- record -->
+<rect class="node" x="1404" y="225" width="80" height="80" rx="8"/>
+<g transform="translate(1444 260)"><path d="M-12 -9 Q-17 -7 -14 0 Q-15 12 -9 13 L-6 5 0 10 6 6 8 15 12 14 11 3 Q18 -6 11 -11 Q6 -13 2 -9 Q-8 -14 -12 -9Z" fill="#49789a" stroke="#dce7ec" stroke-width="1.2"/><path d="M-6 -9 Q-2 -2 -5 5 M2 -9 Q7 -3 5 6" stroke="#dce7ec" stroke-width="1.1" fill="none"/></g>
+<text class="title" x="1444" y="337">Record Notifications</text><text class="subtitle" x="1444" y="358">executeQuery</text>
+<!-- sockets and connection labels -->
+<g class="socket"><circle cx="145" cy="265" r="6"/><circle cx="254" cy="265" r="6"/><circle cx="334" cy="265" r="6"/><circle cx="443" cy="265" r="6"/><circle cx="524" cy="265" r="6"/><circle cx="633" cy="265" r="6"/><circle cx="713" cy="265" r="6"/><circle cx="809" cy="265" r="6"/><circle cx="889" cy="264" r="6"/><circle cx="1011" cy="115" r="6"/><circle cx="1092" cy="102" r="6"/><circle cx="1092" cy="129" r="6"/><circle cx="1011" cy="264" r="6"/><circle cx="1092" cy="264" r="6"/><circle cx="1215" cy="264" r="6"/><circle cx="1295" cy="265" r="6"/><circle cx="1404" cy="265" r="6"/><circle cx="1484" cy="265" r="6"/></g>
+<text x="151" y="269" fill="#a0a0a0" font-size="11" font-family="Arial">POST</text>
+<rect x="1531" y="255" width="18" height="18" rx="4" fill="#303030"/><path d="M1536 264 h8 M1540 260 v8" stroke="#ddd" stroke-width="1.4"/>
+</svg>

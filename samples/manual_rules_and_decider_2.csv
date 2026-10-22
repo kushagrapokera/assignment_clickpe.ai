@@ -1,0 +1,3 @@
+user_id,name,email,monthly_income,credit_score,employment_status,age,city,existing_emi,employment_years,current_employer_years,post_qualification_years,residency_country,employer_group,employment_type,employer_category,state,requested_tenure_months
+d40c849d-bc8f-4b5f-a98b-295f7cab1b1c,Rules Only Applicant,manual.rules@example.test,81000,790,Salaried,30,Bengaluru,0,8,4,8,India,Aditya Birla Financial Services Group,Permanent,MNC,Karnataka,36
+bb05c486-3450-4f1c-bbc2-6134a76b5c9c,Decision Review Applicant,manual.decider@example.test,86437,791,Salaried,31,Bengaluru,0,8,4,8,India,Aditya Birla Financial Services Group,Permanent,,Karnataka,36

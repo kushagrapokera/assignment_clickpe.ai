@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="990" viewBox="0 0 1536 990" role="img" aria-label="Three stage matching workflow">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#283039" stroke-width=".6"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#d5dbe1"/></marker><style>text{font-family:Arial,Helvetica,sans-serif;fill:#f3f5f7;font-size:15px;text-anchor:middle;dominant-baseline:middle}.heading{font-size:17px;font-weight:bold}.node{fill:#191e23;stroke:#a6adb4;stroke-width:1.2}.edge{fill:none;stroke:#d5dbe1;stroke-width:1.5;marker-end:url(#arrow)}.small{font-size:13px}</style></defs>
+<rect width="1536" height="990" fill="#10151a"/><rect width="1536" height="990" fill="url(#grid)"/>
+<rect x="20" y="20" width="400" height="940" rx="12" fill="#142034" fill-opacity=".8" stroke="#6daeff" stroke-dasharray="6 4"/>
+<rect x="495" y="20" width="550" height="940" rx="12" fill="#0d2c22" fill-opacity=".8" stroke="#6dc995" stroke-dasharray="6 4"/>
+<rect x="1130" y="20" width="386" height="465" rx="12" fill="#322116" fill-opacity=".8" stroke="#d7975c" stroke-dasharray="6 4"/>
+<text x="220" y="48" class="heading" style="fill:#9bc8ff">STAGE 1 — REQUEST &amp; FAST FILTERING</text>
+<text x="770" y="48" class="heading" style="fill:#a6efc3">STAGE 2 — QUALITATIVE DECISION PIPELINE</text>
+<text x="1323" y="48" class="heading" style="fill:#ffbc88">STAGE 3 — FINALIZATION &amp; NOTIFICATION</text>
+<!-- stage 1 -->
+<g>
+<rect class="node" x="105" y="80" width="230" height="50" rx="7"/><text x="220" y="105">Matching Request</text>
+<rect class="node" x="105" y="168" width="230" height="50" rx="7"/><text x="220" y="193">Validate Request</text>
+<rect class="node" x="105" y="256" width="230" height="50" rx="7"/><text x="220" y="281">Acknowledge Request</text>
+<rect class="node" x="105" y="344" width="230" height="50" rx="7"/><text x="220" y="369">Fetch Batch Applicants</text>
+<rect class="node" x="105" y="432" width="230" height="50" rx="7"/><text x="220" y="457">Fetch Active Products</text>
+<rect class="node" x="105" y="520" width="230" height="50" rx="7"/><text x="220" y="545">Evaluate Eligibility Rules</text>
+<rect class="node" x="105" y="608" width="230" height="50" rx="7"/><text x="220" y="633">Plan Qualitative Checks</text>
+<rect class="node" x="105" y="696" width="230" height="50" rx="7"/><text x="220" y="721">Fetch Cached Verdicts</text>
+<rect class="node" x="105" y="784" width="230" height="50" rx="7"/><text x="220" y="809">Build Fast Matches</text>
+<rect class="node" x="105" y="872" width="230" height="50" rx="7"/><text x="220" y="897">Persist Fast Matches</text>
+<path class="edge" d="M220 130V168 M220 218V256 M220 306V344 M220 394V432 M220 482V520 M220 570V608 M220 658V696 M220 746V784 M220 834V872"/>
+</g>
+<!-- stage 2 -->
+<g>
+<rect class="node" x="650" y="80" width="240" height="50" rx="7"/><text x="770" y="105">External Checks Needed?</text>
+<rect class="node" x="650" y="170" width="240" height="50" rx="7"/><text x="770" y="195">Select Missing Checks</text>
+<rect class="node" x="535" y="270" width="220" height="50" rx="7"/><text x="645" y="295">Decider Qualitative Check</text>
+<rect class="node" x="535" y="355" width="220" height="50" rx="7"/><text x="645" y="380">Filter Decider Results</text>
+<rect class="node" x="535" y="440" width="220" height="50" rx="7"/><text x="645" y="465">Use LLM Fallback?</text>
+<rect class="node" x="805" y="440" width="200" height="50" rx="7"/><text x="905" y="465">Ask The LLM?</text>
+<rect class="node" x="535" y="540" width="220" height="50" rx="7"/><text x="645" y="565">LLM Qualitative Check</text>
+<rect class="node" x="770" y="630" width="190" height="50" rx="7"/><text x="865" y="655">Collect Verdicts</text>
+<rect class="node" x="770" y="720" width="190" height="50" rx="7"/><text x="865" y="745">Cache Verdicts</text>
+<rect class="node" x="770" y="810" width="190" height="50" rx="7"/><text x="865" y="835">Apply External Verdicts</text>
+<rect class="node" x="770" y="900" width="190" height="50" rx="7"/><text x="865" y="925">Persist External Updates</text>
+<path class="edge" d="M770 130V170 M770 220V242H645V270 M645 320V355 M645 405V440 M890 195H905V440 M645 490V540 M755 465H780V655H770 M905 490V610H865V630 M755 565H790V610H865V630 M865 680V720 M865 770V810 M865 860V900"/>
+<text class="small" x="789" y="151">Yes</text><text class="small" x="620" y="517">Yes</text><text class="small" x="770" y="450">No</text><text class="small" x="890" y="525">No</text>
+<path class="edge" d="M905 490V520H735V540"/><text class="small" x="826" y="511">Yes</text>
+</g>
+<!-- stage 3 -->
+<g><rect class="node" x="1200" y="90" width="250" height="55" rx="7"/><text x="1325" y="118">Summarise Run</text>
+<rect class="node" x="1200" y="190" width="250" height="55" rx="7"/><text x="1325" y="218">Record Run Metrics</text>
+<rect class="node" x="1200" y="290" width="250" height="55" rx="7"/><text x="1325" y="318">Mark Matching Complete</text>
+<rect class="node" x="1200" y="390" width="250" height="55" rx="7"/><text x="1325" y="418">Trigger Notification Workflow</text>
+<path class="edge" d="M1325 145V190 M1325 245V290 M1325 345V390"/></g>
+<!-- interstage connectors, routed around panels -->
+<path class="edge" d="M335 897H455V105H650"/>
+<path class="edge" d="M890 105H1200"/><text class="small" x="1058" y="88">No</text>
+<path class="edge" d="M960 925H1090V118H1200"/>
+</svg>
